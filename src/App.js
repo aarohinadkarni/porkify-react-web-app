@@ -12,6 +12,7 @@ import { useLoaderData, useOutlet } from "react-router-dom";
 import { AuthProvider } from "./hooks/useAuth";
 import { useAuth } from "./hooks/useAuth";
 import { Home } from "./pages/Home";
+import Navigation from "./components/Navigation";
 
 export const AuthLayout = () => {
   const outlet = useOutlet();
@@ -36,7 +37,8 @@ function App() {
       <Provider store={store}>
         <AuthProvider>
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div className="col-3 bg-black">{/* <Nav /> */}</div>
+            {/* <div className="col-3 bg-black"><Navigation /></div> */}
+            <Navigation/>
             <Routes>
               <Route path="/" element={<Home />} />
               {/* <Route

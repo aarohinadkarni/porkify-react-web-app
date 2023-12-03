@@ -18,8 +18,11 @@ function Navigation() {
           to={`/${link}`}
           className={`list-group-item ${pathname.includes(link) && "active"}`}
         >
-          {icons[link]}
-          {link}
+          <div class="flex align-items-center">
+            {icons[link]}
+            &nbsp;
+            {link}
+          </div>
         </Link>
       ))}
     </div>
