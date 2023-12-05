@@ -1,0 +1,8 @@
+.p-flex-row-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.porkify-navigation {
+    padding-top: 10px;
+}
