@@ -17,7 +17,9 @@ function Navigation() {
           <div className="p-flex-row-container d-flex align-items-start col-4">
             <img src={porkify}
                 style={{width:40}}
+                alt="porkify logo"
             />
+            &nbsp;
             <h1>Porkify</h1>
           </div>
         <div className="list-group list-group-horizontal d-flex align-items-end col-8">
