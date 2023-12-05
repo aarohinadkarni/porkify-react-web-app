@@ -3,10 +3,10 @@ export function Home() {
     <div className=" items-center justify-center flex flex-col">
       <div className="">
         <div
-          className="absolute inset-y-0 -z-10 w-[200%] origin-top-right skew-x-[-30deg] bg-white "
+          className="absolute inset-y-0 -z-10 origin-top-right skew-x-[-30deg] bg-white "
           aria-hidden="true"
         />
-        <div className="mx-auto max-w-7xl px-6 mt-28 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 mt-10 sm:mt-28 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-6 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8">
             <h1 className="max-w-2xl text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl lg:col-span-2 xl:col-auto">
               Track your favorite music.
@@ -41,15 +41,27 @@ export function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-3 mt-14 px-10 lg:px-12 mb-14">
+        <div className="sm:flex hidden flex-col gap-3 mt-32 mb-14 sm:visible items-center">
           <div className="flex gap-3">
             {[...Array(5)].map((x, i) => (
-              <Card />
+              <Card size={210} />
             ))}
           </div>
           <div className="flex gap-3">
             {[...Array(5)].map((x, i) => (
-              <Card />
+              <Card size={200} />
+            ))}
+          </div>
+        </div>
+
+        <div className="sm:hidden flex-col gap-3 mt-14 px-3 sm:px-10 lg:px-12 mb-14">
+          <div className="flex flex-col gap-3 items-center">
+            {[...Array(3)].map((x, i) => (
+              <div className="flex gap-3">
+                {[...Array(3)].map((x, i) => (
+                  <Card size={150} />
+                ))}
+              </div>
             ))}
           </div>
         </div>
@@ -62,8 +74,8 @@ function Card(props) {
   return (
     <div className="">
       <img
-        className=" rounded-md "
-        width={200}
+        className="rounded-md  "
+        width={props.size}
         src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228"
       ></img>
     </div>
