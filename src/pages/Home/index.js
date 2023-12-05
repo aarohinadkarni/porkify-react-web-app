@@ -41,7 +41,7 @@ export function Home() {
           </div>
         </div>
 
-        <div className="sm:flex hidden flex-col gap-3 mt-32 mb-14 sm:visible items-center">
+        <div className="sm:flex hidden flex-col gap-3 mt-32 mb-14 px-6 lg:px-8 sm:visible items-center">
           <div className="flex gap-3">
             {[...Array(5)].map((x, i) => (
               <Card size={210} />
