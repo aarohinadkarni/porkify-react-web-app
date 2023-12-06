@@ -13,8 +13,8 @@ function Navigation() {
   if (!user) {
     return (
       <div class="container porkify-navigation">
-        <div className="p-flex-row-container">
-          <div className="p-flex-row-container d-flex align-items-start col-4">
+        <div className="row">
+          <div className="p-flex-row-container d-flex align-items-start col-md-4">
             <img src={porkify}
                 style={{width:40}}
                 alt="porkify logo"
@@ -22,7 +22,7 @@ function Navigation() {
             &nbsp;
             <h1>Porkify</h1>
           </div>
-        <div className="list-group list-group-horizontal d-flex align-items-end col-8">
+        <div className="list-group list-group-horizontal d-flex align-items-start col-md-8">
           {links_not_logged_in.map((link, index) => (
             <Link
               key={index}
@@ -40,9 +40,16 @@ function Navigation() {
   } else {
     return (
       <div class="container porkify-navigation">
-        <div className="p-flex-row-container">
-        <h1>Porkify</h1>
-        <div className="list-group list-group-horizontal">
+        <div className="row">
+          <div className="p-flex-row-container d-flex align-items-start col-md-4">
+            <img src={porkify}
+                style={{width:40}}
+                alt="porkify logo"
+            />
+            &nbsp;
+            <h1>Porkify</h1>
+          </div>
+        <div className="list-group list-group-horizontal d-flex align-items-end col-md-8">
           {links_logged_in.map((link, index) => (
             <Link
               key={index}
@@ -50,7 +57,7 @@ function Navigation() {
               className={`list-group-item ${pathname.includes(link) && "active"}`}
               style={{ whiteSpace: "nowrap" }}
             >
-              {link}
+                {link}
             </Link>
           ))}
         </div>

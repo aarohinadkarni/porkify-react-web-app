@@ -36,9 +36,9 @@ function App() {
     <BrowserRouter>
       <Provider store={store}>
         <AuthProvider>
+          <Navigation/>
           <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
             {/* <div className="col-3 bg-black"><Navigation /></div> */}
-            <Navigation/>
             <Routes>
               <Route path="/" element={<Home />} />
               {/* <Route
