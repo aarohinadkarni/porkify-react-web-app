@@ -1,21 +1,21 @@
 import { Link, useLocation } from "react-router-dom";
 import { FaHome, FaSearch, FaUserCircle, FaSignInAlt } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
-import porkify from "./porkify.png";
+import porkify from "./porkify-dark-mode.png";
 import "./index.css";
 
 function Navigation() {
   const links_logged_in = [
-    { name: "Home", route: "home" },
-    { name: "profile", route: "profile" },
-    { name: "Search", route: "search" },
+    { name: "HOME", route: "home" },
+    { name: "PROFILE", route: "profile" },
+    { name: "SEARCH", route: "search" },
   ];
   const links_not_logged_in = [
-    { name: "Home", route: "home" },
-    { name: "Log In", route: "login" },
-    { name: "Create Account", route: "signup" },
-    { name: "Profile", route: "profile" },
-    { name: "Search", route: "search" },
+    { name: "HOME", route: "home" },
+    { name: "LOG IN", route: "login" },
+    { name: "CREATE ACCOUNT", route: "signup" },
+    { name: "PROFILE", route: "profile" },
+    { name: "SEARCH", route: "search" },
   ];
   const { pathname } = useLocation();
   const { user } = useAuth();
