@@ -19,7 +19,6 @@ import Navigation from "./components/Navigation";
 import { Login } from "./pages/LogIn";
 import { Details } from "./pages/Details";
 import { Signup } from "./pages/SignUp";
->>>>>>> f27288008a62833a712133e798d905f09ca23f65
 
 export const AuthLayout = () => {
   const outlet = useOutlet();
@@ -53,6 +52,8 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile/edit" element={<Edit />} />
               <Route path="/details" element={<Details />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
               {/* <Route
                 path="/"
                 element={<Navigate to="/project/napster-search" />}

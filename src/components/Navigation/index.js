@@ -1,26 +1,16 @@
 import { Link, useLocation } from "react-router-dom";
 import { FaHome, FaSearch, FaUserCircle, FaSignInAlt } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
-<<<<<<< HEAD
 import porkify from "./porkify-dark-mode.png";
-=======
-import porkify from "./porkify-logo.png";
->>>>>>> f27288008a62833a712133e798d905f09ca23f65
 import "./index.css";
 import { Popover } from "@headlessui/react";
 import { AnimatePresence, motion } from "framer-motion";
 
 function Navigation() {
   const links_logged_in = [
-<<<<<<< HEAD
     { name: "HOME", route: "home" },
     { name: "PROFILE", route: "profile" },
     { name: "SEARCH", route: "search" },
-=======
-    { name: "Home", route: "home" },
-    { name: "Profile", route: "profile" },
-    { name: "Search", route: "search" },
->>>>>>> f27288008a62833a712133e798d905f09ca23f65
   ];
   const links_not_logged_in = [
     { name: "HOME", route: "home" },
