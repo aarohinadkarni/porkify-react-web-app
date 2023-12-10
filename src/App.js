@@ -13,6 +13,7 @@ import { AuthProvider } from "./hooks/useAuth";
 import { useAuth } from "./hooks/useAuth";
 import { Home } from "./pages/Home";
 import Navigation from "./components/Navigation";
+import { Login } from "./pages/LogIn";
 
 export const AuthLayout = () => {
   const outlet = useOutlet();
@@ -36,11 +37,12 @@ function App() {
     <BrowserRouter>
       <Provider store={store}>
         <AuthProvider>
-          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 flex flex-col">
             {/* <div className="col-3 bg-black"><Navigation /></div> */}
-            <Navigation/>
+            <Navigation />
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="/login" element={<Login />} />
               {/* <Route
                 path="/"
                 element={<Navigate to="/project/napster-search" />}
