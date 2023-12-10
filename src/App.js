@@ -42,6 +42,7 @@ function App() {
             {/* <div className="col-3 bg-black"><Navigation /></div> */}
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/search" element={<Search />} />
               {/* <Route
                 path="/"
