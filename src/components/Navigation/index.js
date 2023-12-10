@@ -5,7 +5,7 @@ import porkify from "./porkify-logo.png";
 import "./index.css";
 
 function Navigation() {
-  const links_logged_in = ["Home", "Profile", "Search"];
+  const links_logged_in = ["HOME", "PROFILE", "SEARCH"];
   const links_not_logged_in = [
     "HOME",
     "LOG IN",
@@ -20,7 +20,7 @@ function Navigation() {
     return (
       <div class="container porkify-navigation">
         <div className="row">
-          <div className="porkify-nav-heading p-flex-row-container d-flex align-items-start col-md-6">
+          <div className="porkify-nav-heading p-flex-row-container d-flex align-items-start col-md-6 col-12">
             <img
               className="d-none d-md-block"
               src={porkify}
@@ -32,7 +32,7 @@ function Navigation() {
               <h1>PORKIFY</h1>
             </Link>
           </div>
-          <div className="p-nav-bar list-group list-group-horizontal d-flex align-items-start col-md-6 justify-content-end">
+          <div className="p-nav-bar list-group list-group-horizontal d-flex align-items-start col-md-6 col-12 justify-content-end">
             {links_not_logged_in.map((link, index) => (
               <Link
                 key={index}
@@ -53,17 +53,24 @@ function Navigation() {
     return (
       <div class="container porkify-navigation">
         <div className="row">
-          <div className="porkify-nav-heading p-flex-row-container d-flex align-items-start col-md-4">
-            <img src={porkify} style={{ width: 40 }} alt="porkify logo" />
+          <div className="porkify-nav-heading p-flex-row-container d-flex align-items-start col-md-6 col-12">
+          <img
+              className="d-none d-md-block"
+              src={porkify}
+              style={{ width: 40 }}
+              alt="porkify logo"
+            />
             &nbsp;
-            <h1>Porkify</h1>
+            <Link to={`/Home`} className="d-none d-md-block">
+              <h1>PORKIFY</h1>
+            </Link>
           </div>
-          <div className="p-nav-bar list-group list-group-horizontal d-flex align-items-end col-md-8 justify-content-end">
+          <div className="p-nav-bar list-group list-group-horizontal d-flex align-items-start col-md-6 col-12 justify-content-end">
             {links_logged_in.map((link, index) => (
               <Link
                 key={index}
                 to={`/${link}`}
-                className={`list-group-item ${
+                className={`list-group-item border-0 ${
                   pathname.includes(link) && "active"
                 }`}
                 style={{ whiteSpace: "nowrap" }}

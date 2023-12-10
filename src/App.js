@@ -12,6 +12,7 @@ import { useLoaderData, useOutlet } from "react-router-dom";
 import { AuthProvider } from "./hooks/useAuth";
 import { useAuth } from "./hooks/useAuth";
 import { Home } from "./pages/Home";
+import { Search } from "./pages/Search";
 import Navigation from "./components/Navigation";
 
 export const AuthLayout = () => {
@@ -41,6 +42,7 @@ function App() {
             {/* <div className="col-3 bg-black"><Navigation /></div> */}
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/search" element={<Search />} />
               {/* <Route
                 path="/"
                 element={<Navigate to="/project/napster-search" />}
