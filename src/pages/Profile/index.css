@@ -1,0 +1,30 @@
+.profile svg {
+    color: #6B4A60;
+}
+
+.profile {
+    padding-top: 50px;
+    font-family: "Roboto";
+}
+
+.profile .list-group-item {
+    border: none;
+}
+
+.user-specific-account {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.favorite-songs {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.green-text {
+    color: #4A6B52;
+}
+
+.edit-profile-button {
+    background-color: #C0EB8F!important;
+}
