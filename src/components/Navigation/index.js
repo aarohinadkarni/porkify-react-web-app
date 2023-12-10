@@ -10,7 +10,6 @@ function Navigation() {
     "HOME",
     "LOG IN",
     "CREATE ACCOUNT",
-    "PROFILE",
     "SEARCH",
   ];
   const { pathname } = useLocation();
