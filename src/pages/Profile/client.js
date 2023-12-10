@@ -5,7 +5,10 @@ const request = axios.create({
 export const BASE_API = process.env.REACT_APP_BASE_API_URL;
 export const USERS_API = `https://kanbas-node-server-app-jphm.onrender.com/api/users`;
 export const signin = async (credentials) => {
-  const response = await request.post( `https://kanbas-node-server-app-jphm.onrender.com/api/users/signin`, credentials );
+  const response = await request.post(
+    `https://kanbas-node-server-app-jphm.onrender.com/api/users/signin`,
+    credentials
+  );
   return response.data;
 };
 export const account = async () => {
@@ -29,13 +32,11 @@ export const findUserById = async (id) => {
   return response.data;
 };
 export const deleteUser = async (user) => {
-  const response = await axios.delete(
-    `${USERS_API}/${user._id}`);
+  const response = await axios.delete(`${USERS_API}/${user._id}`);
   return response.data;
 };
 export const signup = async (credentials) => {
-  const response = await request.post(
-    `${USERS_API}/signup`, credentials);
+  const response = await request.post(`${USERS_API}/signup`, credentials);
   return response.data;
 };
 export const signout = async () => {

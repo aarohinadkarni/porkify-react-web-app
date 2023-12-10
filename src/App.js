@@ -17,6 +17,7 @@ import { Profile } from "./pages/Profile";
 import { Edit } from "./pages/Profile/edit";
 import Navigation from "./components/Navigation";
 import { Login } from "./pages/LogIn";
+import { Signup } from "./pages/SignUp";
 
 export const AuthLayout = () => {
   const outlet = useOutlet();
@@ -49,11 +50,12 @@ function App() {
               <Route path="/search" element={<Search />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile/edit" element={<Edit />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
               {/* <Route
                 path="/"
                 element={<Navigate to="/project/napster-search" />}
               />
-              <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/account" element={<Account />} />
               <Route path="/napster-search" element={<NapsterSearch />} />
