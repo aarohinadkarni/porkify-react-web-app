@@ -1,8 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
 .p-flex-row-container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .porkify-navigation {
-    padding-top: 10px;
+  padding-top: 30px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.porkify-nav-heading {
+  justify-content: flex-start;
+}
+
+.porkify-nav-heading h1 {
+  font-size: 2em;
+  padding-left: 2px;
+  margin-top: 2px;
+  color: #eb8fcc;
+  font-family: "Roboto";
+  font-weight: 505;
+}
+
+.porkify-nav-heading a {
+  text-decoration: none;
+}
+
+.p-nav-bar {
+  margin-left: 500px 0 !important;
+}
+
+.p-nav-bar .list-group-item {
+  color: #eb8fcc;
+  position: relative;
+  font-weight: 505;
+  font-family: "Roboto";
+}
+
+.p-nav-bar .list-group-item:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #eb8fcc;
+  transform-origin: bottom left;
+  transition: transform 0.25s ease-out;
+}
+
+.p-nav-bar .list-group-item:hover:after,
+.p-nav-bar .list-group-item.active:after {
+  transform: scaleX(1);
+  transform-origin: bottom right;
+}
+
+.p-nav-bar .list-group-item.active {
+  color: #eb8fcc;
+  background-color: white;
 }
