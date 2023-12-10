@@ -33,7 +33,11 @@ export function Profile() {
         fetchAccount();
         }
     }, []);
-    if (!user) {
+    // get favorites
+    const favorites = [{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"}]
+    const recentReviews = [{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"}]
+    // get reviews
+    if (user) {
         return (
             // first name
             // last name
@@ -52,16 +56,64 @@ export function Profile() {
                     <div class="col-9">
                         <div class = "list-group">
                             <div class="list-group-item green-text">
-                                <font size="5">[GET NAME FROM SESSION LOOK AT JOSE REPO]</font>
+                            <font class="font-semibold" size="5">Aarohi Nadkarni</font>
+                                {/* <font size="5">{account.first_name} {account.last_name}</font> */}
                             </div>
                             <div class="list-group-item green-text">
-                                [BIRTHDAY]
+                                7/23/2003
+                                {/* {account.dob} */}
                             </div>
                             <div class="list-group-item green-text">
-                                [EMAIL]
+                                nadkarni.aa@northeastern.edu
+                                {/* {account.email} */}
                             </div>
                             <div class="list-group-item green-text">
-                                [BIO]
+                                blah blah blah
+                                {/* {account.biography} */}
+                            </div>
+                            <div class="list-group-item green-text">
+                                <Link to="/profile/edit"
+                                className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                >
+                                Edit profile
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="user-specific-account">
+                    <div class = "row favorite-songs d-flex green-text font-semibold">
+                            <font size="4">FAVORITE SONGS</font>
+                            <div class="">
+                                [MAPPING OF FAVORITE SONGS TO LITTLE CARDS?]
+                            </div>
+                    </div>
+                    <div class = "row recent-reviews d-flex green-text font-semibold">
+                            <font size="4">RECENT REVIEWS</font>
+                            <div class="">
+                                [MAPPING OF RECENT REVIEWS TO LITTLE CARDS?]
+                            </div>
+                    </div>
+                </div>
+            </div>
+        );
+    } 
+    else {
+        return (
+            <div class="">
+                <div class = "row profile d-flex align-content-center">
+                    <div class="col-3">
+                        <FaUser size={150}/>
+                    </div>
+                    <div class="col-9">
+                        <div class = "list-group">
+                            <div class="list-group-item green-text">
+                            <font size="5">Aarohi Nadkarni</font>
+                                {/* <font size="5">{account.first_name} {account.last_name}</font> */}
+                            </div>
+                            <div class="list-group-item green-text">
+                                blah blah blah
+                                {/* {account.biography} */}
                             </div>
                         </div>
                     </div>
@@ -84,60 +136,28 @@ export function Profile() {
                         <i class="fa fa-external-link-alt" aria-hidden="true"></i> */}
                 </div>
                 <div class="user-specific-account">
-                    <div class = "row favorite-songs d-flex green-text">
-                            <font size="4">FAVORITE SONGS</font>
-                            <div class="">
-                                [MAPPING OF FAVORITE SONGS TO LITTLE CARDS?]
-                            </div>
+                    <div class="favorite-songs green-text">
+                        <h4>FAVORITE SONGS</h4>
+                        <div class="row">
+                            {favorites.map((favorite, index) => (
+                                <div key={index} class="col-auto">
+                                    <img src={favorite.image} alt="..." width="150" />
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                    <div class = "row recent-reviews d-flex green-text">
-                            <font size="4">RECENT REVIEWS</font>
-                            <div class="">
-                                [MAPPING OF RECENT REVIEWS TO LITTLE CARDS?]
-                            </div>
+                    <div class="recent-reviews green-text">
+                        <h4>RECENT REVIEWS</h4>
+                        <div class="row">
+                            {recentReviews.map((recent, index) => (
+                                <div key={index} class="col-auto">
+                                    <img src={recent.image} alt="..." width="150" />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
-                <a
-                  href="/profile/edit"
-                  className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  Edit profile
-                </a>
             </div>
         );
-    } 
-    // else {
-    //     return (
-    //         <div class="container porkify-navigation">
-    //         <div className="row">
-    //             <div className="porkify-nav-heading p-flex-row-container d-flex align-items-start col-md-6 col-12">
-    //             <img
-    //                 className="d-none d-md-block"
-    //                 src={porkify}
-    //                 style={{ width: 40 }}
-    //                 alt="porkify logo"
-    //             />
-    //             &nbsp;
-    //             <Link to={`/Home`} className="d-none d-md-block">
-    //                 <h1>PORKIFY</h1>
-    //             </Link>
-    //             </div>
-    //             <div className="p-nav-bar list-group list-group-horizontal d-flex align-items-start col-md-6 col-12 justify-content-end">
-    //             {links_logged_in.map((link, index) => (
-    //                 <Link
-    //                 key={index}
-    //                 to={`/${link}`}
-    //                 className={`list-group-item border-0 ${
-    //                     pathname.includes(link) && "active"
-    //                 }`}
-    //                 style={{ whiteSpace: "nowrap" }}
-    //                 >
-    //                 {link}
-    //                 </Link>
-    //             ))}
-    //             </div>
-    //         </div>
-    //         </div>
-    //     );
-    // }
+    }
 }
