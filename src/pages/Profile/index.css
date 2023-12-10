@@ -11,6 +11,14 @@
     border: none;
 }
 
+.profile .list-group-item.green-text{
+    color: #4A6B52;
+}
+
+.profile .form-control.green-text{
+    color: #4A6B52;
+}
+
 .user-specific-account {
     padding-top: 20px;
     padding-bottom: 20px;
