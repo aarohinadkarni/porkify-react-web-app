@@ -37,17 +37,8 @@ export function Profile() {
     const favorites = [{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"}]
     const recentReviews = [{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"}]
     // get reviews
-    if (user) {
+    if (!user) {
         return (
-            // first name
-            // last name
-            // dob
-            // profile picture 
-            // email
-            // bio
-            // list of favorites
-            // list of recent reviews
-            // edit profile button
             <div class="">
                 <div class = "row profile d-flex align-content-center">
                     <div class="col-3">
@@ -82,17 +73,25 @@ export function Profile() {
                     </div>
                 </div>
                 <div class="user-specific-account">
-                    <div class = "row favorite-songs d-flex green-text font-semibold">
-                            <font size="4">FAVORITE SONGS</font>
-                            <div class="">
-                                [MAPPING OF FAVORITE SONGS TO LITTLE CARDS?]
-                            </div>
+                    <div class="favorite-songs green-text">
+                        <h4>FAVORITE SONGS</h4>
+                        <div class="row">
+                            {favorites.map((favorite, index) => (
+                                <div key={index} class="col-auto">
+                                    <img src={favorite.image} alt="..." width="150" />
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                    <div class = "row recent-reviews d-flex green-text font-semibold">
-                            <font size="4">RECENT REVIEWS</font>
-                            <div class="">
-                                [MAPPING OF RECENT REVIEWS TO LITTLE CARDS?]
-                            </div>
+                    <div class="recent-reviews green-text">
+                        <h4>RECENT REVIEWS</h4>
+                        <div class="row">
+                            {recentReviews.map((recent, index) => (
+                                <div key={index} class="col-auto">
+                                    <img src={recent.image} alt="..." width="150" />
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -117,23 +116,6 @@ export function Profile() {
                             </div>
                         </div>
                     </div>
-                        {/* <form id="edit-profile" action="edit.html">
-                            <label from="edit-profile-button"></label>
-                            <button id="edit-profile-button" type="submit" class="btn btn-secondary btn-sm edit-profile float-end"> <i class="fa fa-pencil-alt pencil"  aria-hidden="true"></i> Edit Profile</button>
-                        </form>
-                        <span class="fa-stack fa-4x">
-                            <i class="fa fa-user fa-stack-1x user" aria-hidden="true"></i>
-                            <i class="far fa-circle fa-stack-2x user"></i><br/><br/>
-                        </span><br/><br/>
-                        <font size="6">Aarohi Nadkarni</font><br/><br/>
-                        <font size="5">Contact</font><br/><br/>
-                        No registered services, you can add some on the <a href="#">settings</a> page.<br/><br/><br/>
-                        <font size="5">Biography</font><br/><br/>
-                        Computer Science & Behavioral Neuroscience student.<br/><br/><br/>
-                        <font size="5">Links</font><br/><br/>
-                        <i class="fas fa-link user" aria-hidden="true"></i>
-                        <a href="https://www.youtube.com/@WebDevTV">YouTube</a>
-                        <i class="fa fa-external-link-alt" aria-hidden="true"></i> */}
                 </div>
                 <div class="user-specific-account">
                     <div class="favorite-songs green-text">
