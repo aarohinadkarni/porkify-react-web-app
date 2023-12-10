@@ -17,9 +17,7 @@ import { Profile } from "./pages/Profile";
 import { Edit } from "./pages/Profile/edit";
 import Navigation from "./components/Navigation";
 import { Login } from "./pages/LogIn";
-<<<<<<< HEAD
 import { Details } from "./pages/Details";
-=======
 import { Signup } from "./pages/SignUp";
 >>>>>>> f27288008a62833a712133e798d905f09ca23f65
 
@@ -54,12 +52,7 @@ function App() {
               <Route path="/search" element={<Search />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile/edit" element={<Edit />} />
-<<<<<<< HEAD
               <Route path="/details" element={<Details />} />
-=======
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
->>>>>>> f27288008a62833a712133e798d905f09ca23f65
               {/* <Route
                 path="/"
                 element={<Navigate to="/project/napster-search" />}
