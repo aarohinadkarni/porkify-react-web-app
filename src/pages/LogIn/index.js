@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
 export function Login() {
-  const { login } = useAuth();
   const [credentials, setCredentials] = useState({ username: "", password: "" });
+  const { login } = useAuth();
+
   const navigate = useNavigate();
   const signin = async () => {
-    await client.signin(credentials);
+    const response = await client.signin(credentials);
+    login(response)
     navigate("/profile");
   };
   return (
