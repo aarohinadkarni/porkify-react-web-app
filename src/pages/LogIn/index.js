@@ -1,12 +1,16 @@
 import * as client from "../client";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 export function Login() {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
+  const { login } = useAuth();
+
   const navigate = useNavigate();
   const signin = async () => {
-    await client.signin(credentials);
+    const response = await client.signin(credentials);
+    login(response)
     navigate("/profile");
   };
   return (
@@ -25,7 +29,7 @@ export function Login() {
               htmlFor="email"
               className="block text-sm font-medium leading-6 green-text"
             >
-              Email address
+              Username
             </label>
             <div className="mt-2">
               <input
@@ -65,7 +69,7 @@ export function Login() {
 
           <div>
             <button
-              type="submit"
+              type="button"
               className="flex w-full mt-12 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
               style={{backgroundColor:"#6B4A60"}}
               onClick={signin}

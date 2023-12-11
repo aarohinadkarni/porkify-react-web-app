@@ -37,7 +37,7 @@ export function Profile() {
     const favorites = [{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"}]
     const recentReviews = [{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"}]
     // get reviews
-    if (!user) {
+    if (user) {
         return (
             <div class="">
                 <div class = "row profile d-flex align-content-center">
@@ -47,20 +47,20 @@ export function Profile() {
                     <div class="col-9">
                         <div class = "list-group account">
                             <div class="list-group-item green-text">
-                            <font class="font-semibold" size="5">Aarohi Nadkarni</font>
-                                {/* <font size="5">{account.first_name} {account.last_name}</font> */}
+                            {/* <font class="font-semibold" size="5">Aarohi Nadkarni</font> */}
+                                <font size="5">{account.first_name} {account.last_name}</font>
                             </div>
                             <div class="list-group-item green-text">
-                                7/23/2003
-                                {/* {account.dob} */}
+                                {/* 7/23/2003 */}
+                                {account.dob}
                             </div>
                             <div class="list-group-item green-text">
-                                nadkarni.aa@northeastern.edu
-                                {/* {account.email} */}
+                                {/* nadkarni.aa@northeastern.edu */}
+                                {account.email}
                             </div>
                             <div class="list-group-item green-text">
-                                blah blah blah
-                                {/* {account.biography} */}
+                                {/* blah blah blah */}
+                                {account.biography}
                             </div>
                             <div class="list-group-item green-text">
                                 <Link to="/profile/edit"

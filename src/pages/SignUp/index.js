@@ -65,7 +65,24 @@ export function Signup() {
               />
             </div>
           </div>
-
+          <div>
+            <label
+              htmlFor="username"
+              className="block text-sm font-medium leading-6 green-text"
+            >
+              Username
+            </label>
+            <div className="mt-2">
+              <input
+                id="username"
+                name="username"
+                type="username"
+                autoComplete="username"
+                required
+                className="block w-full rounded-md border-0 py-2 bg-slate-200 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
           <div>
             <div className="flex items-center justify-between">
               <label
