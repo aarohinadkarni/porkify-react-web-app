@@ -19,8 +19,7 @@ export async function getToken() {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization:
-        "Basic " +
-        Buffer.from(client_id + ":" + client_secret).toString("base64"),
+        "Basic BQChozzbFzDMj_oQfKETovF6bW_nFyeGVFun3nmTLu4o5EcpbiKzE-bifHX_UloK0NcMZT0F1-pyloq00iEqSf8CSJO1YYf0zJRn_cDxK_lZZb0bMUQ",
     },
   });
 

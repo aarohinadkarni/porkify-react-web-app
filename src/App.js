@@ -40,16 +40,19 @@ const ProtectedRoute = ({ children }) => {
 };
 
 function App() {
-  useEffect(async () => {
-    const token = localStorage.getItem("token");
+  useEffect(() => {
+    async function fetchToken() {
+      const token = localStorage.getItem("token");
 
-    if (!token) {
-      const token = await getToken();
-      localStorage.setItem("token", JSON.stringify(token));
-    } else {
-      // refresh token if needed
-      const token = JSON.parse(localStorage.getItem("token"));
+      if (!token) {
+        const token = await getToken();
+        localStorage.setItem("token", JSON.stringify(token));
+      } else {
+        // refresh token if needed
+        const token = JSON.parse(localStorage.getItem("token"));
+      }
     }
+    fetchToken();
   }, []);
 
   return (
