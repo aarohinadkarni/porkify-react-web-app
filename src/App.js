@@ -17,6 +17,7 @@ import { Profile } from "./pages/Profile";
 import { Edit } from "./pages/Profile/edit";
 import Navigation from "./components/Navigation";
 import { Login } from "./pages/LogIn";
+import { Details } from "./pages/Details";
 import { Signup } from "./pages/SignUp";
 
 export const AuthLayout = () => {
@@ -50,6 +51,7 @@ function App() {
               <Route path="/search" element={<Search />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/profile/edit" element={<Edit />} />
+              <Route path="/details" element={<Details />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               {/* <Route

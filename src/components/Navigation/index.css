@@ -41,6 +41,7 @@ body {
   position: relative;
   font-weight: 505;
   font-family: "Roboto";
+  background-color: #333333;
 }
 
 .p-nav-bar .list-group-item:after {
@@ -64,5 +65,5 @@ body {
 
 .p-nav-bar .list-group-item.active {
   color: #eb8fcc;
-  background-color: white;
+  background-color: #333333;
 }
