@@ -25,7 +25,7 @@ export function Login() {
               htmlFor="email"
               className="block text-sm font-medium leading-6 green-text"
             >
-              Email address
+              Username
             </label>
             <div className="mt-2">
               <input
