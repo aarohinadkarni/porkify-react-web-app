@@ -15,14 +15,15 @@ export function Home() {
             </h1>
             <div className="mt-6 max-w-xl lg:mt-0  ">
               <p className="text-lg leading-8 green-text">
-                Want to share reviews of your current favorite (or least favorite) songs?
-                Give them a quick rating out of 5, add a comment with your thoughts if you have any, 
-                and slowly build a list of your favorites until you have the perfect playlist. Create 
-                an account to get started!
+                Want to share reviews of your current favorite (or least
+                favorite) songs? Give them a quick rating out of 5, add a
+                comment with your thoughts if you have any, and slowly build a
+                list of your favorites until you have the perfect playlist.
+                Create an account to get started!
               </p>
               <div className="mt-10 flex items-center gap-x-6">
                 <a
-                  href="signup"
+                  href="/signup"
                   className="rounded-md no-underline bg-indigo-600 get-started-button px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Get started →
