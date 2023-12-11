@@ -6,7 +6,7 @@ export const BASE_API = process.env.REACT_APP_BASE_API_URL;
 export const USERS_API = `https://porkify-node-server-app.onrender.com/api/users`;
 export const signin = async (credentials) => {
   const response = await request.post(
-    `https://porkify-node-server-app.onrender.com/api/users/signin`,
+    `https://porkify-node-server-app.onrender.com/api/users/login`,
     credentials
   );
   return response.data;
