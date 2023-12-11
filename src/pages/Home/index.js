@@ -10,15 +10,14 @@ export function Home() {
         />
         <div className="mx-auto max-w-7xl px-6 mt-10 sm:mt-28 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-6 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8">
-            <h1 className="max-w-2xl text-4xl font-bold tracking-tight  text-gray-900 sm:text-6xl lg:col-span-2 xl:col-auto">
+            <h1 className="max-w-2xl text-4xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
               Track your favorite music.
             </h1>
             <div className="mt-6 max-w-xl lg:mt-0  ">
-              <p className="text-lg leading-8 text-gray-600">
-                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-                lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-                fugiat aliqua. Anim aute id magna aliqua ad ad non deserunt
-                sunt. Qui irure qui lorem cupidatat commodo.
+              <p className="text-lg leading-8 green-text">
+                Want to share reviews of your current favorite (or least favorite) songs?
+                Simply post a review with a rating out of 5, adding a song to your favorites, 
+                and an optional comment about the song. Create an account to get started!
               </p>
               <div className="mt-10 flex items-center gap-x-6">
                 <a
@@ -29,7 +28,7 @@ export function Home() {
                 </a>
                 <a
                   href="#"
-                  className="text-sm font-semibold no-underline leading-6 green-text"
+                  className="text-sm font-semibold no-underline leading-6 pink-text"
                 >
                   Learn more <span aria-hidden="true">→</span>
                 </a>

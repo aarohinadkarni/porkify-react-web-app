@@ -8,7 +8,7 @@ export function Search() {
                     <input type="search" id="form1" class="form-control" placeholder="Search a song..." aria-label="Search"/>
                 </div>
                 <div class="col-1">
-                    <button type="submit" className="btn btn-secondary btn-md button-submit regular">
+                    <button type="submit" className="btn text-white btn-md button-submit regular">
                         Submit
                     </button>
                 </div>

@@ -50,34 +50,35 @@ export function Edit() {
                     </div>
                     <div class="col-9">
                         <div class = "list-group">
-                            <div class="list-group-item green-text">
+                            <div class="list-group-item green-text font-semibold">
                                 FIRST NAME: 
-                                <input className="form-control green-text" value="Aarohi" onChange={(e) => setAccount({ ...account, first_name: e.target.value }) } style={{ display:"inline"}}/>
+                                <input className="form-control" value="Aarohi" onChange={(e) => setAccount({ ...account, first_name: e.target.value }) } style={{ display:"inline"}}/>
                                 {/* <input className="form-control" value={account.first_name} onChange={(e) => setAccount({ ...account, name: e.target.value }) } style={{ display:"inline"}}/> */}
                             </div>
-                            <div class="list-group-item green-text">
+                            <div class="list-group-item green-text font-semibold">
                                 LAST NAME:
-                                <input className="form-control green-text" value="Nadkarni" onChange={(e) => setAccount({ ...account, last_name: e.target.value }) } style={{ display:"inline"}}/>
+                                <input className="form-control" value="Nadkarni" onChange={(e) => setAccount({ ...account, last_name: e.target.value }) } style={{ display:"inline"}}/>
                                 {/* <input className="form-control" value={account.last_name} onChange={(e) => setAccount({ ...account, name: e.target.value }) } style={{ display:"inline"}}/> */}
                             </div>
-                            <div class="list-group-item green-text">
+                            <div class="list-group-item green-text font-semibold">
                                 BIRTHDAY: 
-                                <input className="form-control green-text" type="date" onChange={(e) => setAccount({ ...account, dob: e.target.value }) } style={{ display:"inline"}}/>
+                                <input className="form-control" type="date" onChange={(e) => setAccount({ ...account, dob: e.target.value }) } style={{ display:"inline"}}/>
                                 {/* <input className="form-control" type="date" value={account.dob} onChange={(e) => setAccount({ ...account, dob: e.target.value }) } style={{ display:"inline"}}/> */}
                             </div>
-                            <div class="list-group-item green-text">
+                            <div class="list-group-item green-text font-semibold">
                                 EMAIL:
-                                <input className="form-control green-text" value="nadkarni.aa@northeastern.edu" onChange={(e) => setAccount({ ...account, email: e.target.value }) } style={{ display:"inline"}}/>
+                                <input className="form-control" value="nadkarni.aa@northeastern.edu" onChange={(e) => setAccount({ ...account, email: e.target.value }) } style={{ display:"inline"}}/>
                                 {/* <input className="form-control" value={account.email} onChange={(e) => setAccount({ ...account, email: e.target.value }) } style={{ display:"inline"}}/> */}
                             </div>
-                            <div class="list-group-item green-text">
+                            <div class="list-group-item green-text font-semibold">
                                 BIOGRAPHY:
-                                <textarea className="form-control green-text" value="blah blah blah" onChange={(e) => setAccount({ ...account, biography: e.target.value }) } style={{ display:"inline"}}/>
+                                <textarea className="form-control" value="blah blah blah" onChange={(e) => setAccount({ ...account, biography: e.target.value }) } style={{ display:"inline"}}/>
                                 {/* <textarea className="form-control" value={account.biography} onChange={(e) => setAccount({ ...account, bio: e.target.value }) } style={{ display:"inline"}}/> */}
                             </div>
                             <div class="list-group-item green-text">
                                 <Link to="/profile"
-                                className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                style={{color: "#333333"}}
                                 >
                                 SAVE PROFILE
                                 </Link>
@@ -105,7 +106,7 @@ export function Edit() {
                         <i class="fa fa-external-link-alt" aria-hidden="true"></i> */}
                 </div>
                 <div class="user-specific-account">
-                    <div class="favorite-songs green-text">
+                    <div class="favorite-songs green-text font-semibold">
                         <h4>FAVORITE SONGS</h4>
                         <div class="row">
                             {favorites.map((favorite, index) => (
@@ -115,7 +116,7 @@ export function Edit() {
                             ))}
                         </div>
                     </div>
-                    <div class="recent-reviews green-text">
+                    <div class="recent-reviews green-text font-semibold">
                         <h4>RECENT REVIEWS</h4>
                         <div class="row">
                             {recentReviews.map((recent, index) => (

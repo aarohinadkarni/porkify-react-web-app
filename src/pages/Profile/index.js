@@ -37,7 +37,7 @@ export function Profile() {
     const favorites = [{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"}]
     const recentReviews = [{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"}]
     // get reviews
-    if (user) {
+    if (!user) {
         return (
             <div class="">
                 <div class = "row profile d-flex align-content-center">
@@ -45,7 +45,7 @@ export function Profile() {
                         <FaUser size={150}/>
                     </div>
                     <div class="col-9">
-                        <div class = "list-group">
+                        <div class = "list-group account">
                             <div class="list-group-item green-text">
                             <font class="font-semibold" size="5">Aarohi Nadkarni</font>
                                 {/* <font size="5">{account.first_name} {account.last_name}</font> */}
@@ -64,7 +64,8 @@ export function Profile() {
                             </div>
                             <div class="list-group-item green-text">
                                 <Link to="/profile/edit"
-                                className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                style={{color: "#333333"}}
                                 >
                                 Edit profile
                                 </Link>
@@ -105,7 +106,7 @@ export function Profile() {
                         <FaUser size={150}/>
                     </div>
                     <div class="col-9">
-                        <div class = "list-group">
+                        <div class = "list-group account">
                             <div class="list-group-item green-text">
                             <font size="5">Aarohi Nadkarni</font>
                                 {/* <font size="5">{account.first_name} {account.last_name}</font> */}
