@@ -79,6 +79,7 @@ export function Edit() {
                                 <Link to="/profile"
                                 className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 style={{color: "#333333"}}
+                                onClick={save}
                                 >
                                 SAVE PROFILE
                                 </Link>

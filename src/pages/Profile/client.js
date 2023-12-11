@@ -3,10 +3,10 @@ const request = axios.create({
   withCredentials: true,
 });
 export const BASE_API = process.env.REACT_APP_BASE_API_URL;
-export const USERS_API = `https://kanbas-node-server-app-jphm.onrender.com/api/users`;
+export const USERS_API = `https://porkify-node-server-app.onrender.com/api/users`;
 export const signin = async (credentials) => {
   const response = await request.post(
-    `https://kanbas-node-server-app-jphm.onrender.com/api/users/signin`,
+    `https://porkify-node-server-app.onrender.com/api/users/signin`,
     credentials
   );
   return response.data;
