@@ -7,7 +7,7 @@ export function Login() {
   const navigate = useNavigate();
   const signin = async () => {
     await client.signin(credentials);
-    navigate("/project/account");
+    navigate("/profile");
   };
   return (
     <div className="flex flex-1 flex-col justify-center px-6 py-12 lg:px-8">
