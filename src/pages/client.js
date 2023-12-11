@@ -2,6 +2,8 @@ import axios from "axios";
 const request = axios.create({
   withCredentials: true,
 });
+const { login } = useAuth();
+
 export const BASE_API = process.env.REACT_APP_BASE_API_URL;
 export const USERS_API = `https://porkify-node-server-app.onrender.com/api/users`;
 export const signin = async (credentials) => {
@@ -9,6 +11,7 @@ export const signin = async (credentials) => {
     `https://porkify-node-server-app.onrender.com/api/users/signin`,
     credentials
   );
+  login(response);
   return response.data;
 };
 export const account = async () => {

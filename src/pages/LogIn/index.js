@@ -1,8 +1,10 @@
 import * as client from "../client";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 export function Login() {
+  const { login } = useAuth();
   const [credentials, setCredentials] = useState({ username: "", password: "" });
   const navigate = useNavigate();
   const signin = async () => {
