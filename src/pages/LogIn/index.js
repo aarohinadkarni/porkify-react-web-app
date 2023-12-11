@@ -1,4 +1,14 @@
+import * as client from "../client";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 export function Login() {
+  const [credentials, setCredentials] = useState({ username: "", password: "" });
+  const navigate = useNavigate();
+  const signin = async () => {
+    await client.signin(credentials);
+    navigate("/project/account");
+  };
   return (
     <div className="flex flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -21,10 +31,11 @@ export function Login() {
               <input
                 id="email"
                 name="email"
-                type="email"
-                autoComplete="email"
+                type="text"
                 required
                 className="block w-full rounded-md border-0 py-2 bg-slate-200 placeholder:text-gray-400  sm:text-sm sm:leading-6"
+                value={credentials.username} 
+                onChange={(e) => setCredentials({...credentials, username: e.target.value})}
               />
             </div>
           </div>
@@ -46,6 +57,8 @@ export function Login() {
                 autoComplete="current-password"
                 required
                 className="block w-full rounded-md border-0 py-2 bg-slate-200 text-gray-900   placeholder:text-gray-400  sm:text-sm sm:leading-6"
+                value={credentials.password} 
+                onChange={(e) => setCredentials({...credentials, password: e.target.value})}
               />
             </div>
           </div>
@@ -55,6 +68,7 @@ export function Login() {
               type="submit"
               className="flex w-full mt-12 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
               style={{backgroundColor:"#6B4A60"}}
+              onClick={signin}
             >
               Sign in
             </button>

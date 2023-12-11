@@ -1,5 +1,5 @@
 import "./index.css"
-import * as client from "./client";
+import * as client from "../client";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { Link, useNavigate, useParams } from "react-router-dom";
