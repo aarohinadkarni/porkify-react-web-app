@@ -52,28 +52,28 @@ export function Edit() {
                         <div class = "list-group">
                             <div class="list-group-item green-text font-semibold">
                                 FIRST NAME: 
-                                <input className="form-control" value="Aarohi" onChange={(e) => setAccount({ ...account, first_name: e.target.value }) } style={{ display:"inline"}}/>
-                                {/* <input className="form-control" value={account.first_name} onChange={(e) => setAccount({ ...account, name: e.target.value }) } style={{ display:"inline"}}/> */}
+                                {/* <input className="form-control" value="Aarohi" onChange={(e) => setAccount({ ...account, first_name: e.target.value }) } style={{ display:"inline"}}/> */}
+                                <input className="form-control" value={account.first_name} onChange={(e) => setAccount({ ...account, name: e.target.value }) } style={{ display:"inline"}}/>
                             </div>
                             <div class="list-group-item green-text font-semibold">
                                 LAST NAME:
-                                <input className="form-control" value="Nadkarni" onChange={(e) => setAccount({ ...account, last_name: e.target.value }) } style={{ display:"inline"}}/>
-                                {/* <input className="form-control" value={account.last_name} onChange={(e) => setAccount({ ...account, name: e.target.value }) } style={{ display:"inline"}}/> */}
+                                {/* <input className="form-control" value="Nadkarni" onChange={(e) => setAccount({ ...account, last_name: e.target.value }) } style={{ display:"inline"}}/> */}
+                                <input className="form-control" value={account.last_name} onChange={(e) => setAccount({ ...account, name: e.target.value }) } style={{ display:"inline"}}/>
                             </div>
                             <div class="list-group-item green-text font-semibold">
                                 BIRTHDAY: 
-                                <input className="form-control" type="date" onChange={(e) => setAccount({ ...account, dob: e.target.value }) } style={{ display:"inline"}}/>
-                                {/* <input className="form-control" type="date" value={account.dob} onChange={(e) => setAccount({ ...account, dob: e.target.value }) } style={{ display:"inline"}}/> */}
+                                {/* <input className="form-control" type="date" onChange={(e) => setAccount({ ...account, dob: e.target.value }) } style={{ display:"inline"}}/> */}
+                                <input className="form-control" type="date" value={account.dob} onChange={(e) => setAccount({ ...account, dob: e.target.value }) } style={{ display:"inline"}}/>
                             </div>
                             <div class="list-group-item green-text font-semibold">
                                 EMAIL:
-                                <input className="form-control" value="nadkarni.aa@northeastern.edu" onChange={(e) => setAccount({ ...account, email: e.target.value }) } style={{ display:"inline"}}/>
-                                {/* <input className="form-control" value={account.email} onChange={(e) => setAccount({ ...account, email: e.target.value }) } style={{ display:"inline"}}/> */}
+                                {/* <input className="form-control" value="nadkarni.aa@northeastern.edu" onChange={(e) => setAccount({ ...account, email: e.target.value }) } style={{ display:"inline"}}/> */}
+                                <input className="form-control" value={account.email} onChange={(e) => setAccount({ ...account, email: e.target.value }) } style={{ display:"inline"}}/>
                             </div>
                             <div class="list-group-item green-text font-semibold">
                                 BIOGRAPHY:
-                                <textarea className="form-control" value="blah blah blah" onChange={(e) => setAccount({ ...account, biography: e.target.value }) } style={{ display:"inline"}}/>
-                                {/* <textarea className="form-control" value={account.biography} onChange={(e) => setAccount({ ...account, bio: e.target.value }) } style={{ display:"inline"}}/> */}
+                                {/* <textarea className="form-control" value="blah blah blah" onChange={(e) => setAccount({ ...account, biography: e.target.value }) } style={{ display:"inline"}}/> */}
+                                <textarea className="form-control" value={account.biography} onChange={(e) => setAccount({ ...account, bio: e.target.value }) } style={{ display:"inline"}}/>
                             </div>
                             <div class="list-group-item green-text">
                                 <Link to="/profile"
