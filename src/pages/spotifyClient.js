@@ -7,9 +7,6 @@
  * https://developer.spotify.com/documentation/web-api/tutorials/client-credentials-flow
  */
 
-const client_id = "5b5f7d5833cc470f8fc1e065e5cc9df6";
-const client_secret = "0f50e7454cb64c9ba244867b94473e48";
-
 export async function getToken() {
   const response = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
@@ -18,8 +15,7 @@ export async function getToken() {
     }),
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authorization:
-        "Basic BQChozzbFzDMj_oQfKETovF6bW_nFyeGVFun3nmTLu4o5EcpbiKzE-bifHX_UloK0NcMZT0F1-pyloq00iEqSf8CSJO1YYf0zJRn_cDxK_lZZb0bMUQ",
+      Authorization: "Basic ",
     },
   });
 

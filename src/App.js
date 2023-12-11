@@ -67,6 +67,7 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/search" element={<Search />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/:id" element={<Profile />} />
               <Route path="/profile/edit" element={<Edit />} />
               <Route path="/details" element={<Details />} />
               <Route path="/login" element={<Login />} />
