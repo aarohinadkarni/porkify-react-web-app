@@ -71,7 +71,7 @@ export function Profile() {
     },
   ];
   // get reviews
-  if (user) {
+  if (user && account) {
     return (
       <div class="">
         <div class="row profile d-flex align-content-center">
@@ -83,20 +83,20 @@ export function Profile() {
               <div class="list-group-item green-text">
                 {/* <font class="font-semibold" size="5">Aarohi Nadkarni</font> */}
                 <font size="5">
-                  {user.first_name} {user.last_name}
+                  {account.first_name} {account.last_name}
                 </font>
               </div>
               <div class="list-group-item green-text">
                 {/* 7/23/2003 */}
-                {user.dob}
+                {account.dob}
               </div>
               <div class="list-group-item green-text">
                 {/* nadkarni.aa@northeastern.edu */}
-                {user.email}
+                {account.email}
               </div>
               <div class="list-group-item green-text">
                 {/* blah blah blah */}
-                {user.biography}
+                {account.biography}
               </div>
               <div class="list-group-item green-text">
                 <Link
