@@ -6,7 +6,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 
 export function Profile() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { id } = useParams();
   const [account, setAccount] = useState(null);
   const findUserById = async (id) => {
@@ -23,7 +23,8 @@ export function Profile() {
   };
   const signout = async () => {
     await client.signout();
-    navigate("/project/signin");
+    logout();
+    navigate("/home");
   };
   useEffect(() => {
     console.log("FETCHING ACCOUNT");
@@ -104,6 +105,14 @@ export function Profile() {
                   style={{ color: "#333333" }}
                 >
                   Edit profile
+                </Link>
+                <Link
+                  to="/home"
+                  className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  style={{ color: "#333333", marginLeft:"10px"}}
+                  onClick={signout}
+                >
+                  Signout
                 </Link>
               </div>
             </div>

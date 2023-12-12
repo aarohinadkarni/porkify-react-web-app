@@ -16,7 +16,6 @@ function Navigation() {
     { name: "HOME", route: "home" },
     { name: "LOG IN", route: "login" },
     { name: "CREATE ACCOUNT", route: "signup" },
-    { name: "PROFILE", route: "profile" },
     { name: "SEARCH", route: "search" },
   ];
   const { pathname } = useLocation();
