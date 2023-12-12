@@ -91,7 +91,7 @@ export function Profile() {
               {user._id === account._id && 
               <div class="list-group-item green-text">
                 {/* 7/23/2003 */}
-                {moment(account.dob).format("MMM DD, Y")}
+                {moment(account.dob).utc().format("MMM DD, Y")}
               </div>}
               {user._id === account._id && 
               <div class="list-group-item green-text">
