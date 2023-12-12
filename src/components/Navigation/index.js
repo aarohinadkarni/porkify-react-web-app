@@ -50,7 +50,7 @@ function Navigation() {
   function MobileNavLink({ children, to }) {
     return (
       <Link to={`/${to}`} className=" no-underline">
-        <Popover.Button className="block text-base py-2 leading-7 no-underline tracking-tight text-gray-700">
+        <Popover.Button className="block text-base py-2 leading-7 no-underline font-semibold tracking-tight" style={{color:"#EB8FCC"}}>
           {children}
         </Popover.Button>
       </Link>
@@ -131,6 +131,7 @@ function Navigation() {
                             transition: { duration: 0.2 },
                           }}
                           className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pb-6 pt-24 shadow-2xl shadow-gray-900/20"
+                          style={{backgroundColor:"#333333"}}
                         >
                           <div className="space-y-4">
                             {links_not_logged_in.map((link, index) => (

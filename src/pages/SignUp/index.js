@@ -11,7 +11,6 @@ export function Signup() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const signup = async () => {
-    console.log("hit")
     try {
       const response = await client.signup(credentials);
       login(response)
