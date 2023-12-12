@@ -6,6 +6,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 
 export function Edit() {
+    const { user, logout } = useAuth();
     const { id } = useParams();
     const [account, setAccount] = useState(null);
     const findUserById = async (id) => {
@@ -20,16 +21,12 @@ export function Edit() {
     const save = async () => {
         await client.updateUser(account);
     };
-    const signout = async () => {
-        await client.signout();
-        navigate("/project/signin");
-    };
     useEffect(() => {
-        if (id) {
+    if (id) {
         findUserById(id);
-        } else {
+    } else {
         fetchAccount();
-        }
+    }
     }, []);
     const favorites = [{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"},{image:"https://i.scdn.co/image/ab67616d0000b273b2592bea12d840fd096ef965"}]
     const recentReviews = [{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"},{image:"https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26"}]
@@ -50,31 +47,41 @@ export function Edit() {
                     </div>
                     <div class="col-9">
                         <div class = "list-group">
+                            {account && 
                             <div class="list-group-item green-text font-semibold">
                                 FIRST NAME: 
                                 {/* <input className="form-control" value="Aarohi" onChange={(e) => setAccount({ ...account, first_name: e.target.value }) } style={{ display:"inline"}}/> */}
-                                <input className="form-control" value={account.first_name} onChange={(e) => setAccount({ ...account, name: e.target.value }) } style={{ display:"inline"}}/>
-                            </div>
+                                <input className="form-control" value={account.first_name} onChange={(e) => setAccount({ ...account, first_name: e.target.value }) } style={{ display:"inline"}}/>
+                            </div> 
+                            }  
+                            {account &&                    
                             <div class="list-group-item green-text font-semibold">
                                 LAST NAME:
                                 {/* <input className="form-control" value="Nadkarni" onChange={(e) => setAccount({ ...account, last_name: e.target.value }) } style={{ display:"inline"}}/> */}
-                                <input className="form-control" value={account.last_name} onChange={(e) => setAccount({ ...account, name: e.target.value }) } style={{ display:"inline"}}/>
+                                <input className="form-control" value={account.last_name} onChange={(e) => setAccount({ ...account, last_name: e.target.value }) } style={{ display:"inline"}}/>
                             </div>
+                            }
+                            {account && 
                             <div class="list-group-item green-text font-semibold">
                                 BIRTHDAY: 
                                 {/* <input className="form-control" type="date" onChange={(e) => setAccount({ ...account, dob: e.target.value }) } style={{ display:"inline"}}/> */}
                                 <input className="form-control" type="date" value={account.dob} onChange={(e) => setAccount({ ...account, dob: e.target.value }) } style={{ display:"inline"}}/>
                             </div>
+                            }
+                            {account && 
                             <div class="list-group-item green-text font-semibold">
                                 EMAIL:
                                 {/* <input className="form-control" value="nadkarni.aa@northeastern.edu" onChange={(e) => setAccount({ ...account, email: e.target.value }) } style={{ display:"inline"}}/> */}
                                 <input className="form-control" value={account.email} onChange={(e) => setAccount({ ...account, email: e.target.value }) } style={{ display:"inline"}}/>
                             </div>
+                            }
+                            {account && 
                             <div class="list-group-item green-text font-semibold">
                                 BIOGRAPHY:
                                 {/* <textarea className="form-control" value="blah blah blah" onChange={(e) => setAccount({ ...account, biography: e.target.value }) } style={{ display:"inline"}}/> */}
-                                <textarea className="form-control" value={account.biography} onChange={(e) => setAccount({ ...account, bio: e.target.value }) } style={{ display:"inline"}}/>
+                                <textarea className="form-control" value={account.biography} onChange={(e) => setAccount({ ...account, biography: e.target.value }) } style={{ display:"inline"}}/>
                             </div>
+                            }                              
                             <div class="list-group-item green-text">
                                 <Link to="/profile"
                                 className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
+import moment from 'moment';
 
 export function Profile() {
   const { user, logout } = useAuth();
@@ -70,6 +71,7 @@ export function Profile() {
       image: "https://i.scdn.co/image/ab67616d0000b2739bc762efb2fc7252289b2a26",
     },
   ];
+  let birthday = new Date()
   // get reviews
   if (user && account) {
     return (
@@ -86,26 +88,30 @@ export function Profile() {
                   {account.first_name} {account.last_name}
                 </font>
               </div>
+              {user._id === account._id && 
               <div class="list-group-item green-text">
                 {/* 7/23/2003 */}
-                {account.dob}
-              </div>
+                {moment(account.dob).format("MMM DD, Y")}
+              </div>}
+              {user._id === account._id && 
               <div class="list-group-item green-text">
                 {/* nadkarni.aa@northeastern.edu */}
                 {account.email}
-              </div>
+              </div>}
               <div class="list-group-item green-text">
                 {/* blah blah blah */}
                 {account.biography}
               </div>
+              {user._id === account._id && 
               <div class="list-group-item green-text">
                 <Link
-                  to="/profile/edit"
+                  to={`/profile/edit/${account._id}`}
                   className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   style={{ color: "#333333" }}
                 >
                   Edit profile
                 </Link>
+
                 <Link
                   to="/home"
                   className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -114,7 +120,7 @@ export function Profile() {
                 >
                   Signout
                 </Link>
-              </div>
+              </div>}
             </div>
           </div>
         </div>

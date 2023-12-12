@@ -43,7 +43,7 @@ export function Signup() {
                 type="text"
                 autoComplete="text"
                 required
-                className="block w-full rounded-md border-0 py-2 bg-slate-200 text-gray-900   placeholder:text-gray-400  sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-2 bg-slate-200 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                 value={credentials.first_name}
                 onChange={(e) => setCredentials({...credentials, first_name: e.target.value })}
               />
@@ -63,7 +63,7 @@ export function Signup() {
                 type="text"
                 autoComplete="lastname"
                 required
-                className="block w-full rounded-md border-0 py-2 bg-slate-200 text-gray-900   placeholder:text-gray-400  sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-2 bg-slate-200 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                 value={credentials.last_name}
                 onChange={(e) => setCredentials({...credentials, last_name: e.target.value })}              
               />
