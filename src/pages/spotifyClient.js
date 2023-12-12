@@ -8,6 +8,15 @@
  */
 
 export async function getToken() {
+  var Buffer = require("buffer/").Buffer;
+
+  console.log(
+    process.env.SPOTIFY_CLIENT_ID,
+    process.env.SPOTIFY_CLIENT_SECRET,
+    process.env.REACT_APP_BASE_URL,
+    process.env
+  );
+
   const response = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
     body: new URLSearchParams({
@@ -15,8 +24,15 @@ export async function getToken() {
     }),
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
-      Authorization: "Basic ",
+      Authorization:
+        "Basic " +
+        Buffer.from(
+          "5b5f7d5833cc470f8fc1e065e5cc9df6" +
+            ":" +
+            "0f50e7454cb64c9ba244867b94473e48"
+        ).toString("base64"),
     },
+    json: true,
   });
 
   return await response.json();

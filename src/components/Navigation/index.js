@@ -59,7 +59,7 @@ function Navigation() {
 
   if (!user) {
     return (
-      <div class="container porkify-navigation">
+      <div className="container porkify-navigation">
         <div className="row">
           <div className="porkify-nav-heading h-0 sm:h-auto p-flex-row-container d-flex align-items-start col-md-6 col-12">
             <img

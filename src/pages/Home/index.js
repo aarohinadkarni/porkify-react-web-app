@@ -23,7 +23,8 @@ export function Home() {
                 Create an account to get started!
               </p>
               <div className="mt-10 flex items-center gap-x-6">
-                <Link to="/signup"
+                <Link
+                  to="/signup"
                   className="rounded-md no-underline bg-indigo-600 get-started-button px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Get started →
@@ -47,12 +48,12 @@ export function Home() {
         <div className="sm:flex hidden flex-col gap-3 mt-32 mb-14 px-6 lg:px-8 sm:visible items-center">
           <div className="flex gap-3">
             {[...Array(5)].map((x, i) => (
-              <Card size={200} />
+              <Card key={i} size={200} />
             ))}
           </div>
           <div className="flex gap-3">
             {[...Array(5)].map((x, i) => (
-              <Card size={200} />
+              <Card key={i} size={200} />
             ))}
           </div>
         </div>
@@ -60,9 +61,9 @@ export function Home() {
         <div className="sm:hidden flex-col gap-3 mt-14 px-3 sm:px-10 lg:px-12 mb-14">
           <div className="flex flex-col gap-3 items-center">
             {[...Array(3)].map((x, i) => (
-              <div className="flex gap-3">
+              <div key={i} className="flex gap-3">
                 {[...Array(3)].map((x, i) => (
-                  <Card size={150} />
+                  <Card key={i} size={150} />
                 ))}
               </div>
             ))}
