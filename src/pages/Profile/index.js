@@ -2,7 +2,7 @@ import "./index.css";
 import * as client from "../client";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/useAuth";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import moment from 'moment';
 
@@ -73,6 +73,9 @@ export function Profile() {
   ];
   let birthday = new Date()
   // get reviews
+  if (!user) {
+    return <Navigate to="/signup" replace />;
+  }
   if (user && account) {
     return (
       <div class="">
