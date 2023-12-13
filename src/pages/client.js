@@ -47,3 +47,7 @@ export const findSong = async (spotify_id) => {
   const response = await request.get(`${SONGS_API}/${spotify_id}`);
   return response.data;
 };
+export const findReviewsByUserId = async (user_id) => {
+  const response = await request.get(`${USERS_API}/${user_id}/reviews`);
+  return response.data;
+};
