@@ -1,6 +1,49 @@
 import "./index.css";
 import { Link } from "react-router-dom";
 
+const editorsPicks = ["2dSKFFNoNXKo3hPnlwUdPe", "62PaSfnXSMyLshYJrlTuL3",
+  "3z63V6OraICzWEyTCcbezn", "01lewSOj9ZaXplh9TpNKL4", "32OlwWuMpZ6b0aN2RZOeMS"]
+
+async function getEditorsTracksInfo() {
+  const test = localStorage.getItem("token");
+
+  const jsonString = JSON.parse(test);
+
+  var api_url = "https://api.spotify.com/v1/tracks?market=US&ids=";
+  for (let i = 0; i < editorsPicks.length; i++) {
+    api_url = api_url + editorsPicks[1]
+    if (i < editorsPicks.length - 1) {
+      api_url = api_url + "%2C";
+    }
+  }
+  console.log("HERE");
+  console.log(api_url);
+
+  try {
+    const response = await fetch(
+      //https://api.spotify.com/v1/tracks?market=US&ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B
+      `${api_url}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${jsonString.access_token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      return data;
+    } else {
+      console.error("Failed to fetch data");
+    }
+  } catch (error) {
+    console.error("Error occurred while fetching data:", error);
+  }
+}
+
+
 export function Home() {
   return (
     <div className=" items-center justify-center flex flex-col">
@@ -45,12 +88,13 @@ export function Home() {
           </div>
         </div>
 
+        <div className="mx-auto max-w-7xl px-6 mt-10 sm:mt-28 lg:px-8">
+          <h4 className="max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
+            Editors' picks:
+          </h4>
+        </div>
+
         <div className="sm:flex hidden flex-col gap-3 mt-32 mb-14 px-6 lg:px-8 sm:visible items-center">
-          <div className="flex gap-3">
-            {[...Array(5)].map((x, i) => (
-              <Card key={i} size={200} />
-            ))}
-          </div>
           <div className="flex gap-3">
             {[...Array(5)].map((x, i) => (
               <Card key={i} size={200} />
@@ -77,11 +121,16 @@ export function Home() {
 function Card(props) {
   return (
     <div className="">
-      <img
-        className="rounded-md hover:opacity-80 hover:cursor-pointer  "
-        width={props.size}
-        src="https://i.scdn.co/image/ab67616d00001e02ff9ca10b55ce82ae553c8228"
-      ></img>
+      <Link to={`/details`} onClick={getEditorsTracksInfo} >
+        {/* <Link to={`/details/${track.id}`} 
+         state={{ track: track }}> */}
+        <img
+          className="rounded-md hover:opacity-80 hover:cursor-pointer  "
+          width={props.size}
+          //src={track.images.url}
+          src="https://i1.sndcdn.com/artworks-9HEHEhiFEVpP-0-t500x500.jpg"
+        ></img>
+      </Link>
     </div>
   );
 }
