@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-// import * as client from "./client";
+import * as client from "../client";
 import album from "./album-cover.jpeg";
 import "./index.css";
 import { FaRegHeart } from "react-icons/fa";
@@ -9,9 +9,11 @@ import { FaStar } from "react-icons/fa";
 // import * as reviewsClient from "./reviews/client";
 
 export function Details() {
+  const { id } = useParams();
+  
   //   const [currentUser, setCurrentUser] = useState(null);
   //   const [album, setAlbum] = useState(null);
-  //   const [tracks, setTracks] = useState([]);
+    const [song, setSong] = useState([]);
   //   const { albumId } = useParams();
   //   const [likes, setLikes] = useState([]);
 
@@ -24,11 +26,10 @@ export function Details() {
   //     }
   //   };
 
-  //   const fetchAlbum = async () => {
-  //     const album = await client.findAlbumById(albumId);
-  //     setAlbum(album);
-  //   };
-
+    const findSongById = async () => {
+      const song = await client.findSong(id);
+      setSong(song);
+    };
   //   const fetchTracks = async () => {
   //     const tracks = await client.findTracksByAlbumId(albumId);
   //     setTracks(tracks);
@@ -53,7 +54,9 @@ export function Details() {
   //     fetchUser();
   //     fetchLikes();
   //   }, []);
-
+  useEffect(() => {
+      findSongById(id);
+  }, []);
   return (
     <div>
       <div className="song-details-header p-flex-row-container justify-content-center">
@@ -66,9 +69,12 @@ export function Details() {
         </div>
         <div>
           <div className="p-flex-row-container">
-            <h1 className="song-title">Let It Happen</h1>
-            <h2 className="song-year">2023</h2>
-            <h2 className="artist-name">By: Tame Impala</h2>
+            {/* <h1 className="song-title">Let It Happen</h1> */}
+            <h1 className="song-title">{song.title}</h1>
+            {/* <h2 className="song-year">2023</h2> */}
+            <h2 className="song-year">{song.release_date}</h2>
+            {/* <h2 className="artist-name">By: Tame Impala</h2> */}
+            <h2 className="artist-name">By: {song.artists}</h2>
           </div>
           <div className="details-under-song-title">
             <p>Details</p>
@@ -144,7 +150,11 @@ export function Details() {
             <label for="customRange1" class="form-label">
               Rate
             </label>
-            <input type="range" class="form-range" id="customRange1" />
+            <input type="range" class="form-range" id="customRange1" min="0" max="5" step="0.5" />
+            <div className="bottom-labels">
+                  <label class="float-left">0</label>
+                  <label class="float-right">5</label>
+                </div>
           </div>
           <div class="form-group">
             <label className="leave-a-comment" for="leaveAComment">

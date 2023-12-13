@@ -5,6 +5,8 @@ const request = axios.create({
 
 export const BASE_API = process.env.REACT_APP_BASE_API_URL;
 export const USERS_API = `${BASE_API}/api/users`;
+export const SONGS_API = `${BASE_API}/api/songs`;
+export const REVIEWS_API = `${BASE_API}/api/reviews`;
 export const signin = async (credentials) => {
   const response = await request.post(`${USERS_API}/signin`, credentials);
   return response.data;
@@ -39,5 +41,9 @@ export const signup = async (credentials) => {
 };
 export const signout = async () => {
   const response = await request.post(`${USERS_API}/signout`);
+  return response.data;
+};
+export const findSong = async (spotify_id) => {
+  const response = await request.get(`${SONGS_API}/${spotify_id}`);
   return response.data;
 };

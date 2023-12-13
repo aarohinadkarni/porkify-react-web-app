@@ -64,16 +64,15 @@ export function Search() {
                 </div>
             </div>
             <div>
-                
                 {/* Display search results */}
                 {searchResults.map((track) => (
-                    <div key={track.id}>
+                    <div key={track.id} style={{marginTop:20, marginBottom:20}}>
                                         <Link
-                  to={`/details/${track.id}`}
-                  className="rounded-md no-underline bg-indigo-600 get-started-button px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  {track.name}
-                </Link>
+                                            to={`/details/${track.id}`}
+                                            className="rounded-md no-underline bg-indigo-600 get-started-button px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                            >
+                                            {track.name}
+                                        </Link>
                     </div>
                 ))}
             </div>
