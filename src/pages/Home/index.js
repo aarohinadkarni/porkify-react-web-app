@@ -1,50 +1,52 @@
+import { useEffect, useState } from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
 
-const editorsPicks = ["2dSKFFNoNXKo3hPnlwUdPe", "62PaSfnXSMyLshYJrlTuL3",
-  "3z63V6OraICzWEyTCcbezn", "01lewSOj9ZaXplh9TpNKL4", "32OlwWuMpZ6b0aN2RZOeMS"]
+const editorsPicks = [
+  "2dSKFFNoNXKo3hPnlwUdPe",
+  "62PaSfnXSMyLshYJrlTuL3",
+  "3z63V6OraICzWEyTCcbezn",
+  "01lewSOj9ZaXplh9TpNKL4",
+  "32OlwWuMpZ6b0aN2RZOeMS",
+];
 
-async function getEditorsTracksInfo() {
-  const test = localStorage.getItem("token");
+export function Home() {
+  const [tracks, setTracks] = useState(null);
 
-  const jsonString = JSON.parse(test);
+  const getEditorsTracksInfo = async () => {
+    const jsonString = JSON.parse(localStorage.getItem("token"));
 
-  var api_url = "https://api.spotify.com/v1/tracks?market=US&ids=";
-  for (let i = 0; i < editorsPicks.length; i++) {
-    api_url = api_url + editorsPicks[1]
-    if (i < editorsPicks.length - 1) {
-      api_url = api_url + "%2C";
+    var api_url = "https://api.spotify.com/v1/tracks?market=US&ids=";
+    for (let i = 0; i < editorsPicks.length; i++) {
+      api_url = api_url + editorsPicks[i];
+      if (i < editorsPicks.length - 1) {
+        api_url = api_url + "%2C";
+      }
     }
-  }
-  console.log("HERE");
-  console.log(api_url);
 
-  try {
-    const response = await fetch(
-      //https://api.spotify.com/v1/tracks?market=US&ids=7ouMYWpwJ422jRcDASZB7P%2C4VqPOruhp5EdPBeR92t6lQ%2C2takcwOaAZWiXQijPHIx7B
-      `${api_url}`,
-      {
+    try {
+      const response = await fetch(`${api_url}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${jsonString.access_token}`,
           "Content-Type": "application/json",
         },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setTracks(data.tracks);
+      } else {
+        console.error("Failed to fetch data");
       }
-    );
-
-    if (response.ok) {
-      const data = await response.json();
-      return data;
-    } else {
-      console.error("Failed to fetch data");
+    } catch (error) {
+      console.error("Error occurred while fetching data:", error);
     }
-  } catch (error) {
-    console.error("Error occurred while fetching data:", error);
-  }
-}
+  };
 
+  useEffect(() => {
+    getEditorsTracksInfo();
+  }, []);
 
-export function Home() {
   return (
     <div className=" items-center justify-center flex flex-col">
       <div className="">
@@ -95,42 +97,49 @@ export function Home() {
         </div>
 
         <div className="sm:flex hidden flex-col gap-3 mt-32 mb-14 px-6 lg:px-8 sm:visible items-center">
-          <div className="flex gap-3">
-            {[...Array(5)].map((x, i) => (
-              <Card key={i} size={200} />
-            ))}
-          </div>
+          {tracks && (
+            <div className="flex gap-3">
+              {[...Array(5)].map((x, i) => (
+                <Card track={tracks[i]} key={i} size={200} />
+              ))}
+            </div>
+          )}
         </div>
 
         <div className="sm:hidden flex-col gap-3 mt-14 px-3 sm:px-10 lg:px-12 mb-14">
-          <div className="flex flex-col gap-3 items-center">
-            {[...Array(3)].map((x, i) => (
-              <div key={i} className="flex gap-3">
-                {[...Array(3)].map((x, i) => (
-                  <Card key={i} size={150} />
-                ))}
-              </div>
-            ))}
-          </div>
+          {tracks && (
+            <div className="flex flex-col gap-3 items-center">
+              {[...Array(3)].map((x, i) => (
+                <div key={i} className="flex gap-3">
+                  {[...Array(3)].map((x, i) => (
+                    <Card track={tracks[i]} key={i} size={150} />
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-function Card(props) {
+function Card({ track, size }) {
   return (
-    <div className="">
-      <Link to={`/details`} onClick={getEditorsTracksInfo} >
-        {/* <Link to={`/details/${track.id}`} 
-         state={{ track: track }}> */}
-        <img
-          className="rounded-md hover:opacity-80 hover:cursor-pointer  "
-          width={props.size}
-          //src={track.images.url}
-          src="https://i1.sndcdn.com/artworks-9HEHEhiFEVpP-0-t500x500.jpg"
-        ></img>
-      </Link>
+    <div>
+      {track && (
+        <div className="">
+          {/* <Link to={`/details`}> */}
+          <Link to={`/details/${track.id}`} state={{ track: track }}>
+            <img
+              className="rounded-md hover:opacity-80 hover:cursor-pointer  "
+              width={size}
+              src={track.album.images[0].url}
+              // src="https://i1.sndcdn.com/artworks-9HEHEhiFEVpP-0-t500x500.jpg"
+            ></img>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }
