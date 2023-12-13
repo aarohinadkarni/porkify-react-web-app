@@ -94,62 +94,62 @@ export function Profile() {
 
   if (account) {
     return (
-      <div class="">
-        <div class="row profile d-flex align-content-center">
-          <div class="col-3">
-            <FaUser size={150} />
-          </div>
-          <div class="col-9">
-            <div class="list-group account">
-              <div class="list-group-item green-text">
-                {/* <font class="font-semibold" size="5">Aarohi Nadkarni</font> */}
-                <font size="5">
-                  {account.first_name} {account.last_name}
-                </font>
-              </div>
-              {user._id === account._id && (
-                <div class="list-group-item green-text">
-                  {/* 7/23/2003 */}
-                  {moment(account.dob).utc().format("MMM DD, Y")}
+      <div class="flex flex-col mx-4 my-4">
+        <div class="sm:row sm:profile sm:d-flex sm:flex-row sm:align-content-center flex">
+          <div class="grow flex-1">
+            <div class="account text-[#c0eb8f] flex gap-3 items-center text-sm sm:text-base">
+              <FaUser className="" size={150} />
+              <div className="flex flex-col gap-2 ">
+                <div class=" green-text ">
+                  {/* <font class="font-semibold" size="5">Aarohi Nadkarni</font> */}
+                  <font size="5">
+                    {account.first_name} {account.last_name}
+                  </font>
                 </div>
-              )}
-              {user._id === account._id && (
-                <div class="list-group-item green-text">
-                  {/* nadkarni.aa@northeastern.edu */}
-                  {account.email}
+                {user._id === account._id && (
+                  <div class=" green-text">
+                    {/* 7/23/2003 */}
+                    {moment(account.dob).utc().format("MMM DD, Y")}
+                  </div>
+                )}
+                {user._id === account._id && (
+                  <div class=" green-text">
+                    {/* nadkarni.aa@northeastern.edu */}
+                    {account.email}
+                  </div>
+                )}
+                <div class=" green-text">
+                  {/* blah blah blah */}
+                  {account.biography}
                 </div>
-              )}
-              <div class="list-group-item green-text">
-                {/* blah blah blah */}
-                {account.biography}
-              </div>
-              {user._id === account._id && (
-                <div class="list-group-item green-text">
-                  <Link
-                    to={`/profile/edit/${account._id}`}
-                    className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    style={{ color: "#333333" }}
-                  >
-                    Edit profile
-                  </Link>
+                {user._id === account._id && (
+                  <div class=" green-text my-3">
+                    <Link
+                      to={`/profile/edit/${account._id}`}
+                      className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      style={{ color: "#333333" }}
+                    >
+                      Edit
+                    </Link>
 
-                  <Link
-                    to="/home"
-                    className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    style={{ color: "#333333", marginLeft: "10px" }}
-                    onClick={signout}
-                  >
-                    Signout
-                  </Link>
-                </div>
-              )}
+                    <Link
+                      to="/home"
+                      className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      style={{ color: "#333333", marginLeft: "10px" }}
+                      onClick={signout}
+                    >
+                      Signout
+                    </Link>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
         <div class="user-specific-account">
           <div class="favorite-songs green-text">
             <h4>FAVORITE SONGS</h4>
-            <div class="row">
+            <div class="row gap-2">
               {favorites.map((favorite, index) => (
                 <div key={index} class="col-auto">
                   <img src={favorite.image} alt="..." width="150" />

@@ -1,56 +1,57 @@
 .profile svg {
-    color: #EB8FCC;
+  color: #eb8fcc;
 }
 
 .profile {
-    padding-top: 50px;
-    font-family: "Roboto";
+  padding-top: 50px;
+  font-family: "Roboto";
 }
 
 .profile .list-group-item {
-    border: none;
+  border: none;
+  background-color: #333333;
 }
 
-.profile .list-group-item.green-text{
-    color: #C0EB8F;
+.profile .list-group-item.green-text {
+  color: #c0eb8f;
 }
 
-.profile .form-control.green-text{
-    color: #C0EB8F;
+.profile .form-control.green-text {
+  color: #c0eb8f;
 }
 
 .user-specific-account {
-    padding-top: 20px;
-    padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .favorite-songs {
-    padding-top: 20px;
-    padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .green-text {
-    color: #C0EB8F;
+  color: #c0eb8f;
 }
 
 .edit-profile-button {
-    background-color: #C0EB8F!important;
+  background-color: #c0eb8f !important;
 }
 
 .profile .list-group-item {
-    background-color: #333333;
+  background-color: #333333;
 }
 
 .account {
-    border: 2px solid #c0eb8f;
-    border-radius: 10px;
-    padding: 15px;
+  border: 2px solid #c0eb8f;
+  border-radius: 10px;
+  padding: 15px;
 }
 
 .account-image {
-    padding-bottom: 5px;
+  padding-bottom: 5px;
 }
 
 .img {
-    padding: 5px;
+  padding: 5px;
 }

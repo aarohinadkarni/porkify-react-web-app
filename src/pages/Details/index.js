@@ -64,7 +64,7 @@ export function Details() {
   return (
     <div className="">
       {track && (
-        <div className="mt-10 song-details-header p-flex-row-container justify-content-center">
+        <div className="mt-10 song-details-header p-flex-row-container flex justify-content-center">
           <div>
             <img
               src={track.album.images[1].url}

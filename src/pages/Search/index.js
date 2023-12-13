@@ -51,8 +51,8 @@ export function Search() {
 
   return (
     <div className="form-outline align-middle cursor">
-      <div className="row">
-        <div className="col-11">
+      <div className="flex gap-3">
+        <div className="grow">
           <input
             type="search"
             id="form1"
@@ -63,7 +63,7 @@ export function Search() {
             onChange={handleInputChange}
           />
         </div>
-        <div className="col-1">
+        <div className="">
           <button
             type="button" // Change to type="button" to prevent form submission
             className="btn text-white btn-md button-submit regular"

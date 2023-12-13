@@ -50,7 +50,10 @@ function Navigation() {
   function MobileNavLink({ children, to }) {
     return (
       <Link to={`/${to}`} className=" no-underline">
-        <Popover.Button className="block text-base py-2 leading-7 no-underline font-semibold tracking-tight" style={{color:"#EB8FCC"}}>
+        <Popover.Button
+          className="block text-base py-2 leading-7 no-underline font-semibold tracking-tight"
+          style={{ color: "#EB8FCC" }}
+        >
           {children}
         </Popover.Button>
       </Link>
@@ -61,7 +64,7 @@ function Navigation() {
     return (
       <div className="container porkify-navigation">
         <div className="row">
-          <div className="porkify-nav-heading h-0 sm:h-auto p-flex-row-container d-flex align-items-start col-md-6 col-12">
+          <div className=" porkify-nav-heading h-0 lg:h-auto p-flex-row-container d-flex align-items-start col-md-6 col-12">
             <img
               className="d-none d-md-block"
               src={porkify}
@@ -131,7 +134,7 @@ function Navigation() {
                             transition: { duration: 0.2 },
                           }}
                           className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pb-6 pt-24 shadow-2xl shadow-gray-900/20"
-                          style={{backgroundColor:"#333333"}}
+                          style={{ backgroundColor: "#333333" }}
                         >
                           <div className="space-y-4">
                             {links_not_logged_in.map((link, index) => (
@@ -155,7 +158,7 @@ function Navigation() {
     return (
       <div class="container porkify-navigation">
         <div className="row">
-          <div className=" md:block porkify-nav-heading p-flex-row-container d-flex align-items-start col-md-6 col-12">
+          <div className="porkify-nav-heading h-0 lg:h-auto p-flex-row-container d-flex align-items-start col-md-6 col-12">
             <img
               className="d-none d-md-block"
               src={porkify}
