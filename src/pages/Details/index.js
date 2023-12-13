@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import * as client from "../client";
 import album from "./album-cover.jpeg";
 import "./index.css";
@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 export function Details() {
   const { id } = useParams();
   const location = useLocation();
-  const { track } = location.state;
+  const track = location.state && location.state.track;
 
   //   const [currentUser, setCurrentUser] = useState(null);
   //   const [album, setAlbum] = useState(null);
@@ -57,125 +57,161 @@ export function Details() {
     console.log(location.state);
   }, []);
 
+  if (!track) {
+    return <Navigate to="/home" replace />;
+  }
+
   return (
-    <div className="song-details-header p-flex-row-container justify-content-center">
-      <div>
-        <img
-          src={track.album.images[1].url}
-          style={{ width: 300, height: 300 }}
-          alt="album cover"
-        />
-      </div>
-      <div>
-        <div className="p-flex-row-container">
-          {/* <h1 className="song-title">Let It Happen</h1> */}
-          <h1 className="song-title">{track.name}</h1>
-          {/* <h2 className="song-year">2023</h2> */}
-          <h2 className="song-year">{track.album.release_date}</h2>
-          {/* <h2 className="artist-name">By: Tame Impala</h2> */}
-          <h2 className="artist-name">By: {track.artists[0].name}</h2>
-        </div>
-        <div className="details-under-song-title">
-          <p>Details</p>
-          <hr></hr>
-          <ul>
-            <li>
-              <label htmlFor="customRange1" className="form-label">
-                Popularity
-              </label>
-              <input type="range" className="form-range" id="customRange1" />
-              <div className="bottom-labels">
-                <label className="float-left">Playing at bars</label>
-                <label className="float-right">World Tour</label>
-              </div>
-            </li>
-            <br></br>
-            <li>
-              <label htmlFor="customRange1" className="form-label">
-                Energy
-              </label>
-              <input type="range" className="form-range" id="customRange1" />
-              <div className="bottom-labels">
-                <label className="float-left">Playing at bars</label>
-                <label className="float-right">World Tour</label>
-              </div>
-            </li>
-            <br></br>
-            <li>
-              <label htmlFor="customRange1" className="form-label">
-                Vocals
-              </label>
-              <input type="range" className="form-range" id="customRange1" />
-            </li>
-            <br></br>
-            <li>
-              <label htmlFor="customRange1" className="form-label">
-                Tempo
-              </label>
-              <input type="range" className="form-range" id="customRange1" />
-            </li>
-            <br></br>
-            <li>
-              <label htmlFor="customRange1" className="form-label">
-                Danceable
-              </label>
-              <input type="range" className="form-range" id="customRange1" />
-            </li>
-            <br></br>
-            <li>
-              <label htmlFor="customRange1" className="form-label">
-                Mood
-              </label>
-              <input type="range" className="form-range" id="customRange1" />
-            </li>
-            <br></br>
-            <li>
-              <label htmlFor="customRange1" className="form-label">
-                Acoustics
-              </label>
-              <input type="range" className="form-range" id="customRange1" />
-            </li>
-          </ul>
-        </div>
-      </div>
-      <form className="review">
-        <div className="form-group like-button">
-          <button>
-            <FaRegHeart className="like-heart" />
-          </button>
-          <h3 className="like-title">Favorite</h3>
-        </div>
-        <div className="form-group rate-range">
-          <label htmlFor="customRange1" className="form-label">
-            Rate
-          </label>
-          <input
-            type="range"
-            className="form-range"
-            id="customRange1"
-            min="0"
-            max="5"
-            step="0.5"
-          />
-          <div className="bottom-labels">
-            <label className="float-left">0</label>
-            <label className="float-right">5</label>
+    <div className="">
+      {track && (
+        <div className="mt-10 song-details-header p-flex-row-container justify-content-center">
+          <div>
+            <img
+              src={track.album.images[1].url}
+              style={{ width: 300, height: 300 }}
+              alt="album cover"
+            />
           </div>
+          <div>
+            <div className="p-flex-row-container">
+              {/* <h1 className="song-title">Let It Happen</h1> */}
+              <h1 className="song-title">{track.name}</h1>
+              {/* <h2 className="song-year">2023</h2> */}
+              <h2 className="song-year">{track.album.release_date}</h2>
+              {/* <h2 className="artist-name">By: Tame Impala</h2> */}
+              <h2 className="artist-name">By: {track.artists[0].name}</h2>
+            </div>
+            <div className="details-under-song-title">
+              <p>Details</p>
+              <hr></hr>
+              <ul>
+                <li>
+                  <label htmlFor="customRange1" className="form-label">
+                    Popularity
+                  </label>
+                  <input
+                    type="range"
+                    className="form-range"
+                    id="customRange1"
+                  />
+                  <div className="bottom-labels">
+                    <label className="float-left">Playing at bars</label>
+                    <label className="float-right">World Tour</label>
+                  </div>
+                </li>
+                <br></br>
+                <li>
+                  <label htmlFor="customRange1" className="form-label">
+                    Energy
+                  </label>
+                  <input
+                    type="range"
+                    className="form-range"
+                    id="customRange1"
+                  />
+                  <div className="bottom-labels">
+                    <label className="float-left">Playing at bars</label>
+                    <label className="float-right">World Tour</label>
+                  </div>
+                </li>
+                <br></br>
+                <li>
+                  <label htmlFor="customRange1" className="form-label">
+                    Vocals
+                  </label>
+                  <input
+                    type="range"
+                    className="form-range"
+                    id="customRange1"
+                  />
+                </li>
+                <br></br>
+                <li>
+                  <label htmlFor="customRange1" className="form-label">
+                    Tempo
+                  </label>
+                  <input
+                    type="range"
+                    className="form-range"
+                    id="customRange1"
+                  />
+                </li>
+                <br></br>
+                <li>
+                  <label htmlFor="customRange1" className="form-label">
+                    Danceable
+                  </label>
+                  <input
+                    type="range"
+                    className="form-range"
+                    id="customRange1"
+                  />
+                </li>
+                <br></br>
+                <li>
+                  <label htmlFor="customRange1" className="form-label">
+                    Mood
+                  </label>
+                  <input
+                    type="range"
+                    className="form-range"
+                    id="customRange1"
+                  />
+                </li>
+                <br></br>
+                <li>
+                  <label htmlFor="customRange1" className="form-label">
+                    Acoustics
+                  </label>
+                  <input
+                    type="range"
+                    className="form-range"
+                    id="customRange1"
+                  />
+                </li>
+              </ul>
+            </div>
+          </div>
+          <form className="review">
+            <div className="form-group like-button">
+              <button>
+                <FaRegHeart className="like-heart" />
+              </button>
+              <h3 className="like-title">Favorite</h3>
+            </div>
+            <div className="form-group rate-range">
+              <label htmlFor="customRange1" className="form-label">
+                Rate
+              </label>
+              <input
+                type="range"
+                className="form-range"
+                id="customRange1"
+                min="0"
+                max="5"
+                step="0.5"
+              />
+              <div className="bottom-labels">
+                <label className="float-left">0</label>
+                <label className="float-right">5</label>
+              </div>
+            </div>
+            <div className="form-group">
+              <label className="leave-a-comment" htmlFor="leaveAComment">
+                Leave a comment
+              </label>
+              <textarea
+                className="form-control"
+                id="leaveAComment"
+                rows="4"
+              ></textarea>
+            </div>
+            <div className="form-group">
+              <button className="btn submit-button">SUBMIT</button>
+            </div>
+          </form>
         </div>
-        <div className="form-group">
-          <label className="leave-a-comment" htmlFor="leaveAComment">
-            Leave a comment
-          </label>
-          <textarea
-            className="form-control"
-            id="leaveAComment"
-            rows="4"
-          ></textarea>
-        </div>
-        <div className="form-group">
-          <button className="btn submit-button">SUBMIT</button>
-        </div>
-      </form>
+      )}
     </div>
 
     // <div>
