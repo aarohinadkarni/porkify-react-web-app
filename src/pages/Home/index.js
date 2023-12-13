@@ -24,9 +24,6 @@ export function Home() {
       }
     }
 
-    console.log("HERE");
-    console.log(api_url);
-
     try {
       const response = await fetch(`${api_url}`, {
         method: "GET",
@@ -37,7 +34,6 @@ export function Home() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         setTracks(data.tracks);
       } else {
         console.error("Failed to fetch data");
@@ -50,9 +46,6 @@ export function Home() {
   useEffect(() => {
     getEditorsTracksInfo();
   }, []);
-
-  console.log("!!!!!!!!!!");
-  console.log(tracks);
 
   return (
     <div className=" items-center justify-center flex flex-col">
@@ -132,9 +125,6 @@ export function Home() {
 }
 
 function Card({ track, size }) {
-  //console.log('--------------');
-  console.log(track, "GOT ");
-
   return (
     <div>
       {track && (
