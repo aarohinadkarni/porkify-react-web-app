@@ -39,6 +39,7 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
+
 function App() {
   useEffect(() => {
     async function fetchToken() {

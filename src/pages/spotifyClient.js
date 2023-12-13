@@ -50,6 +50,7 @@ export async function getTrackInfo(access_token) {
   return await response.json();
 }
 
+
 getToken().then((response) => {
   getTrackInfo(response.access_token).then((profile) => {
     console.log(profile);
