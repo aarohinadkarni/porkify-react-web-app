@@ -6,11 +6,10 @@ body {
 
 .song-title {
   font-family: "Roboto";
-  padding-left: 50px;
   padding-right: 10px;
   font-weight: 505;
   color: #c0eb8f;
-  font-size: 2.8em;
+  font-size: 2.4em;
 }
 
 .song-details-header {
@@ -20,7 +19,7 @@ body {
 .song-year {
   font-family: "Roboto";
   font-size: 1.2em;
-  padding-top: 23px;
+  padding-top: 20px;
   padding-left: 5px;
   color: #c0eb8f;
 }
@@ -28,7 +27,7 @@ body {
 .artist-name {
   font-family: "Roboto";
   font-size: 1.2em;
-  padding-top: 23px;
+  padding-top: 20px;
   padding-left: 10px;
   color: #c0eb8f;
 }
@@ -39,12 +38,19 @@ body {
 }
 
 .like-button .like-title {
-  font-size: 0.9em;
+  font-size: 1em;
+  padding-top: 5px;
   font-family: "Roboto";
 }
 
 .like-heart {
   font-size: 1.9em;
+  margin-left: 13px;
+}
+
+.like-heart-favorited {
+  font-size: 1.9em;
+  margin-left: 17px;
 }
 
 .rate-range {
@@ -92,4 +98,29 @@ hr {
   margin-top: -10px;
   font-size: 0.85em;
   margin-bottom: 10px;
+}
+
+.ratings-title {
+  color: #c0eb8f;
+  font-size: 1.3em;
+  padding-top: 10px;
+}
+
+.green-line {
+ color: #c0eb8f;
+}
+
+input[type="range"].disabled.range-thumb {
+  color: #c0eb8f;
+}
+
+ul li {
+  /* margin-left: -10px; */
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-left: 50px;
 }

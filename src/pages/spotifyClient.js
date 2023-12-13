@@ -50,7 +50,18 @@ export async function getTrackInfo(access_token) {
   return await response.json();
 }
 
-
+export async function getTrackAudioFeatures(access_token, trackId) {
+  const response = await fetch(
+    "https://api.spotify.com/v1/audio-features/" + trackId,
+    {
+      method: "GET",
+      headers: { Authorization: "Bearer " + access_token },
+    }
+    );
+  
+    return await response.json();
+  }
+  
 getToken().then((response) => {
   getTrackInfo(response.access_token).then((profile) => {
     console.log(profile);

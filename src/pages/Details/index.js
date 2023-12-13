@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import * as client from "../client";
-import album from "./album-cover.jpeg";
+import * as client from "../spotifyClient";
 import "./index.css";
 import { FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 
@@ -14,48 +14,26 @@ export function Details() {
   const { id } = useParams();
   const location = useLocation();
   const track = location.state && location.state.track;
-
-  //   const [currentUser, setCurrentUser] = useState(null);
-  //   const [album, setAlbum] = useState(null);
   const [song, setSong] = useState([]);
-  //   const { albumId } = useParams();
-  //   const [likes, setLikes] = useState([]);
 
-  //   const fetchUser = async () => {
-  //     try {
-  //       const user = await userClient.account();
-  //       setCurrentUser(user);
-  //     } catch (error) {
-  //       setCurrentUser(null);
-  //     }
-  //   };
-  //   const fetchTracks = async () => {
-  //     const tracks = await client.findTracksByAlbumId(albumId);
-  //     setTracks(tracks);
-  //   };
-
-  //   const fetchLikes = async () => {
-  //     const likes = await likesClient.findUsersThatLikeAlbum(albumId);
-  //     setLikes(likes);
-  //   };
-
-  //   const currenUserLikesAlbum = async () => {
-  //     const _likes = await likesClient.createUserLikesAlbum(
-  //       currentUser._id,
-  //       albumId
-  //     );
-  //     setLikes([_likes, ...likes]);
-  //   };
-
-  //   useEffect(() => {
-  //     fetchAlbum();
-  //     fetchTracks();
-  //     fetchUser();
-  //     fetchLikes();
-  //   }, []);
+  const [isClicked, setIsClicked] = useState(false);
+  const fetchSong = async () => {
+    const test = localStorage.getItem("token");
+    const jsonString = JSON.parse(test);
+    const song_song = await client.getTrackAudioFeatures(
+      jsonString.access_token,
+      track.id
+    );
+    setSong(song_song);
+  };
+  const handleClick = () => {
+    setIsClicked(!isClicked);
+  };
+  
   useEffect(() => {
     console.log(location.state);
-  }, []);
+    fetchSong();
+  }, [track]);
 
   if (!track) {
     return <Navigate to="/home" replace />;
@@ -71,191 +49,195 @@ export function Details() {
               style={{ width: 300, height: 300 }}
               alt="album cover"
             />
+            <h3 className="ratings-title">Ratings</h3>
+            <hr className="green-line"></hr>
+            <h3 className="ratings-title">Average Rating: </h3>
           </div>
           <div>
-            <div className="p-flex-row-container">
-              {/* <h1 className="song-title">Let It Happen</h1> */}
-              <h1 className="song-title">{track.name}</h1>
-              {/* <h2 className="song-year">2023</h2> */}
-              <h2 className="song-year">{track.album.release_date}</h2>
-              {/* <h2 className="artist-name">By: Tame Impala</h2> */}
-              <h2 className="artist-name">By: {track.artists[0].name}</h2>
+              <div className="flex-container">
+              <span className="float-left">
+                <h1 className="song-title float-left">{track.name}</h1>
+              </span>
+              <span className="float-right">
+                <h2 className="artist-name float-right">
+                  By: {track.artists[0].name}
+                </h2>
+                <h2 className="song-year float-right">
+                  {track.album.release_date}
+                </h2>
+              </span>
             </div>
+      
+            <br></br>
+            <br></br>
             <div className="details-under-song-title">
               <p>Details</p>
               <hr></hr>
-              <ul>
-                <li>
-                  <label htmlFor="customRange1" className="form-label">
-                    Popularity
-                  </label>
-                  <input
-                    type="range"
-                    className="form-range"
-                    id="customRange1"
-                  />
-                  <div className="bottom-labels">
-                    <label className="float-left">Playing at bars</label>
-                    <label className="float-right">World Tour</label>
-                  </div>
-                </li>
-                <br></br>
-                <li>
-                  <label htmlFor="customRange1" className="form-label">
-                    Energy
-                  </label>
-                  <input
-                    type="range"
-                    className="form-range"
-                    id="customRange1"
-                  />
-                  <div className="bottom-labels">
-                    <label className="float-left">Playing at bars</label>
-                    <label className="float-right">World Tour</label>
-                  </div>
-                </li>
-                <br></br>
-                <li>
-                  <label htmlFor="customRange1" className="form-label">
-                    Vocals
-                  </label>
-                  <input
-                    type="range"
-                    className="form-range"
-                    id="customRange1"
-                  />
-                </li>
-                <br></br>
-                <li>
-                  <label htmlFor="customRange1" className="form-label">
-                    Tempo
-                  </label>
-                  <input
-                    type="range"
-                    className="form-range"
-                    id="customRange1"
-                  />
-                </li>
-                <br></br>
-                <li>
-                  <label htmlFor="customRange1" className="form-label">
-                    Danceable
-                  </label>
-                  <input
-                    type="range"
-                    className="form-range"
-                    id="customRange1"
-                  />
-                </li>
-                <br></br>
-                <li>
-                  <label htmlFor="customRange1" className="form-label">
-                    Mood
-                  </label>
-                  <input
-                    type="range"
-                    className="form-range"
-                    id="customRange1"
-                  />
-                </li>
-                <br></br>
-                <li>
-                  <label htmlFor="customRange1" className="form-label">
-                    Acoustics
-                  </label>
-                  <input
-                    type="range"
-                    className="form-range"
-                    id="customRange1"
-                  />
-                </li>
-              </ul>
-            </div>
-          </div>
-          <form className="review">
-            <div className="form-group like-button">
-              <button>
-                <FaRegHeart className="like-heart" />
-              </button>
-              <h3 className="like-title">Favorite</h3>
-            </div>
-            <div className="form-group rate-range">
-              <label htmlFor="customRange1" className="form-label">
-                Rate
-              </label>
-              <input
-                type="range"
-                className="form-range"
-                id="customRange1"
-                min="0"
-                max="5"
-                step="0.5"
-              />
-              <div className="bottom-labels">
-                <label className="float-left">0</label>
-                <label className="float-right">5</label>
               </div>
+              {song && (
+                <div className="p-flex-row-container">
+                  <ul>
+                    <li>
+                      <label htmlFor="customRange1" className="form-label" style={{color:"#C0EB8F"}}>
+                        Energy
+                      </label>
+                      <input
+                        type="range"
+                        className="form-range "
+                        id="customRange1"
+                        disabled
+                        value={song.energy}
+                        min="0"
+                        max="1"
+                        step="0.1"
+                      />
+                      <div className="bottom-labels">
+                        <label className="float-left" style={{color:"#C0EB8F"}}>No chill</label>
+                        <label className="float-right" style={{color:"#C0EB8F"}}>Chill</label>
+                      </div>
+                    </li>
+                    <br></br>
+                    <li>
+                      <label htmlFor="customRange1" className="form-label" style={{color:"#C0EB8F"}}>
+                        Instrumentalness
+                      </label>
+                      <input
+                        type="range"
+                        className="form-range range-thumb"
+                        id="customRange1"
+                        disabled
+                        value={song.instrumentalness}
+                        min="0"
+                        max="1"
+                        step="0.1"
+                      />
+                      <div className="bottom-labels">
+                        <label className="float-left" style={{color:"#C0EB8F"}}>None</label>
+                        <label className="float-right" style={{color:"#C0EB8F"}}>A ton</label>
+                      </div>
+                    </li>
+                    <br></br>
+                    <li>
+                      <label htmlFor="customRange1" className="form-label" style={{color:"#C0EB8F"}}>
+                        Loudness
+                      </label>
+                      <input
+                        type="range"
+                        className="form-range"
+                        id="customRange1"
+                        disabled
+                        value={song.loudness}
+                        min="-60"
+                        max="0"
+                        step="1"
+                      />
+                      <div className="bottom-labels">
+                        <label className="float-left" style={{color:"#C0EB8F"}}>Quiet</label>
+                        <label className="float-right" style={{color:"#C0EB8F"}}>Loud</label>
+                      </div>
+                    </li>
+                    <br></br>
+                    <li>
+                      <label htmlFor="customRange1" className="form-label" style={{color:"#C0EB8F"}}>
+                        Danceable
+                      </label>
+                      <input
+                        type="range"
+                        className="form-range"
+                        id="customRange1"
+                        disabled
+                        value={song.danceability}
+                        min="0"
+                        max="1"
+                        step="0.1"
+                      />
+                      <div className="bottom-labels">
+                        <label className="float-left" style={{color:"#C0EB8F"}}>Not at all</label>
+                        <label className="float-right" style={{color:"#C0EB8F"}}>Disco</label>
+                      </div>
+                    </li>
+                    <br></br>
+                    <li>
+                      <label htmlFor="customRange1" className="form-label" style={{color:"#C0EB8F"}}>
+                        Acoustics
+                      </label>
+                      <input
+                        type="range"
+                        className="form-range"
+                        id="customRange1"
+                        disabled
+                        value={song.acousticness}
+                        min="0"
+                        max="1"
+                        step="0.1"
+                        style={{
+                          color: "#d3d3d3",
+                        }}
+                      />
+                      <div className="bottom-labels">
+                        <label className="float-left" style={{color:"#C0EB8F"}}>All digital</label>
+                        <label className="float-right" style={{color:"#C0EB8F"}}>All analog</label>
+                      </div>
+                    </li>
+                  </ul>
+                 
+                <form className="review">
+                <div className="form-group like-button">
+                  <button onClick={handleClick} type="button">
+                    {isClicked ? (
+                      <FaHeart className="like-heart-favorited" />
+                    ) : (
+                      <FaRegHeart className="like-heart" />
+                    )}
+                    {isClicked ? (
+                      <h3 className="like-title">Favorited</h3>
+                    ) : (
+                      <h3 className="like-title">Favorite</h3>
+                    )}
+                  </button>
+                </div>
+                <div className="form-group rate-range">
+                  <label htmlFor="customRange1" className="form-label">
+                    Rate
+                  </label>
+                  <input
+                    type="range"
+                    className="form-range"
+                    id="customRange1"
+                    min="0"
+                    max="5"
+                    step="0.5"
+                  />
+                  <div className="bottom-labels">
+                    <label className="float-left">0</label>
+                    <label className="float-right">5</label>
+                  </div>
+                </div>
+                <div className="form-group">
+                  <label className="leave-a-comment" htmlFor="leaveAComment">
+                    Leave a comment
+                  </label>
+                  <textarea
+                    className="form-control"
+                    id="leaveAComment"
+                    rows="4"
+                  ></textarea>
+                </div>
+                <div className="form-group">
+                  <button className="btn submit-button">SUBMIT</button>
+                </div>
+              </form>
             </div>
-            <div className="form-group">
-              <label className="leave-a-comment" htmlFor="leaveAComment">
-                Leave a comment
-              </label>
-              <textarea
-                className="form-control"
-                id="leaveAComment"
-                rows="4"
-              ></textarea>
-            </div>
-            <div className="form-group">
-              <button className="btn submit-button">SUBMIT</button>
-            </div>
-          </form>
-        </div>
-      )}
-    </div>
-
-    // <div>
-    //   {album && (
-    //     <div>
-    //       {currentUser && (
-    //         <button
-    //           onClick={currenUserLikesAlbum}
-    //           className="btn btn-warning float-end"
-    //         >
-    //           Like
-    //         </button>
-    //       )}
-    //       <h1>{album.name}</h1>
-    //       <img
-    //         src={`https://api.napster.com/imageserver/v2/albums/${album.id}/images/300x300.jpg`}
-    //         alt={album.name}
-    //       />
-    //       <h2>Likes</h2>
-    //       <ul className="list-group">
-    //         {likes.map((like, index) => (
-    //           <li key={index} className="list-group-item">
-    //             {like.user.firstName} {like.user.lastName}
-    //             <Link to={`/project/users/${like.user._id}`}>
-    //               @{like.user.username}
-    //             </Link>
-    //           </li>
-    //         ))}
-    //       </ul>
-
-    //       <h2>Tracks</h2>
-    //       <ul className="list-group">
-    //         {tracks.map((track, index) => (
-    //           <li key={index} className="list-group-item">
-    //             <h3>{track.name}</h3>
-    //             <audio controls>
-    //               <source src={track.previewURL} type="audio/mpeg" />
-    //             </audio>
-    //           </li>
-    //         ))}
-    //       </ul>
-    //       <pre>{JSON.stringify(tracks, null, 2)}</pre>
-    //     </div>
-    //   )}
-    // </div>
+          )}
+          
+          </div>
+         
+          </div>
+  )}
+          </div>
+         
   );
+      
+       
+       
 }
