@@ -12,6 +12,7 @@ export function Profile() {
   const { id } = useParams();
   const [account, setAccount] = useState(null);
   const [reviews, setReviews] = useState(null);
+  const [favorited_reviews, setFavoritedReviews] = useState(null);
 
   const findUserById = async (id) => {
     const user = await client.findUserById(id);
@@ -38,7 +39,14 @@ export function Profile() {
     const reviews = await client.findReviewsByUserId(id);
     console.log(reviews, "FOUND REVIEWS");
     setReviews(reviews);
+    setFavoritedReviews(reviews.filter(review => review.review.favorited));
+    console.log(favorited_reviews)
   };
+
+  // const findFavoritedReviewsByUserId = async (id) => {
+  //   const favoritedReviews = reviews.map((review) => (review.favorited === true));
+  //   setFavoritedReviews(favoritedReviews);
+  // };
 
   useEffect(() => {
     console.log("FETCHING ACCOUNT", id);
@@ -158,11 +166,19 @@ export function Profile() {
           <div class="favorite-songs green-text">
             <h4>FAVORITE SONGS</h4>
             <div class="row gap-2">
-              {favorites.map((favorite, index) => (
-                <div key={index} class="col-auto">
-                  <img src={favorite.image} alt="..." width="150" />
+            {favorited_reviews && favorited_reviews.length !== 0 && (
+              <div className="flex gap-5 flex-col">
+                <div className="flex gap-3">
+                  {[...Array(5)].map((x, i) => (
+                    <Card track={favorited_reviews[i]} key={i} size={200} />
+                  ))}
                 </div>
-              ))}
+              </div>)}
+              {favorited_reviews && favorited_reviews.length === 0 && 
+                <div>
+                  <h6>{account.first_name} {account.last_name} has not favorited any songs yet!</h6>
+                </div>
+              }
             </div>
           </div>
           <div class="recent-reviews green-text">
@@ -178,4 +194,24 @@ export function Profile() {
       </div>
     );
   }
+}
+
+function Card({ track, size }) {
+  return (
+    <div>
+      {track && (
+        <div className="">
+          {/* <Link to={`/details`}> */}
+          <Link to={`/details/${track.review.song_id}`} state={{ track: track.song }}>
+            <img
+              className="rounded-md hover:opacity-80 hover:cursor-pointer  "
+              width={size}
+              src={track.review.album_art_url}
+              // src="https://i1.sndcdn.com/artworks-9HEHEhiFEVpP-0-t500x500.jpg"
+            ></img>
+          </Link>
+        </div>
+      )}
+    </div>
+  );
 }
