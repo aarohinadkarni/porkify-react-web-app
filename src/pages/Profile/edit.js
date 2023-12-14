@@ -82,7 +82,7 @@ export function Edit() {
     <div class="">
       <div class="row profile d-flex align-content-center">
         <div class="col-3">
-          <FaUser className="w-50 h-50 mt-5" />
+          <FaUser size={150} />
         </div>
         <div class="col-9">
           <div class="list-group">
