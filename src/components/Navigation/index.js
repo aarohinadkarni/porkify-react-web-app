@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { FaHome, FaSearch, FaUserCircle, FaSignInAlt } from "react-icons/fa";
 import { useAuth } from "../../hooks/useAuth";
-import porkify from "./porkify-dark-mode.png";
+import porkify from "./porkify-logo-light-headphones.png";
 import "./index.css";
 import { Popover } from "@headlessui/react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -65,12 +65,14 @@ function Navigation() {
       <div className="container porkify-navigation">
         <div className="row">
           <div className=" porkify-nav-heading h-0 lg:h-auto p-flex-row-container d-flex align-items-start col-md-6 col-12">
-            <img
-              className="d-none d-md-block"
-              src={porkify}
-              style={{ width: 40 }}
-              alt="porkify logo"
-            />
+            <Link to={`/Home`}>
+              <img
+                className="d-none d-md-block"
+                src={porkify}
+                style={{ width: 40 }}
+                alt="porkify logo"
+              />
+            </Link>
             &nbsp;
             <Link to={`/Home`} className="d-none d-md-block">
               <h1>PORKIFY</h1>
@@ -91,12 +93,14 @@ function Navigation() {
             ))}
           </div>
           <div className="lg:hidden flex justify-between align-middle">
-            <img
-              className=""
-              src={porkify}
-              style={{ width: 40 }}
-              alt="porkify logo"
-            />
+            <Link to={`/Home`}>
+              <img
+                className=""
+                src={porkify}
+                style={{ width: 40 }}
+                alt="porkify logo"
+              />
+            </Link>
             <Popover className="mr-2 justify-center items-center flex">
               {({ open }) => (
                 <>
@@ -106,9 +110,9 @@ function Navigation() {
                   >
                     {({ open }) =>
                       open ? (
-                        <ChevronUpIcon className="h-6 w-6" />
+                        <ChevronUpIcon className="h-6 w-6 stroke-amber-50" />
                       ) : (
-                        <MenuIcon className="h-6 w-6" />
+                        <MenuIcon className="h-6 w-6 stroke-amber-50" />
                       )
                     }
                   </Popover.Button>
@@ -159,12 +163,14 @@ function Navigation() {
       <div class="container porkify-navigation">
         <div className="row">
           <div className="porkify-nav-heading h-0 lg:h-auto p-flex-row-container d-flex align-items-start col-md-6 col-12">
-            <img
-              className="d-none d-md-block"
-              src={porkify}
-              style={{ width: 40 }}
-              alt="porkify logo"
-            />
+            <Link to={`/Home`}>
+              <img
+                className="d-none d-md-block"
+                src={porkify}
+                style={{ width: 40 }}
+                alt="porkify logo"
+              />
+            </Link>
             &nbsp;
             <Link to={`/Home`} className="d-none d-md-block">
               <h1>PORKIFY</h1>
@@ -185,12 +191,14 @@ function Navigation() {
             ))}
           </div>
           <div className="lg:hidden flex justify-between align-middle">
-            <img
-              className=""
-              src={porkify}
-              style={{ width: 40 }}
-              alt="porkify logo"
-            />
+            <Link to={`/Home`}>
+              <img
+                className=""
+                src={porkify}
+                style={{ width: 40 }}
+                alt="porkify logo"
+              />
+            </Link>
             <Popover className="mr-2 justify-center items-center flex">
               {({ open }) => (
                 <>
@@ -200,9 +208,9 @@ function Navigation() {
                   >
                     {({ open }) =>
                       open ? (
-                        <ChevronUpIcon className="h-6 w-6 text-green" />
+                        <ChevronUpIcon className="h-6 w-6 stroke-amber-50" />
                       ) : (
-                        <MenuIcon className="h-6 w-6 text-green" />
+                        <MenuIcon className="h-6 w-6 stroke-amber-50" />
                       )
                     }
                   </Popover.Button>

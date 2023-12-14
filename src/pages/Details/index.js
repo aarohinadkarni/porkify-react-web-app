@@ -131,7 +131,7 @@ export function Details() {
                 ))}
             </div>
           </div>
-          <div className="text-green flex flex-col sm:ml-9 grow basis-5/6">
+          <div className="text-green flex flex-col sm:ml-9 grow basis-5/6 mr-2">
             <div className="flex flex-col">
               <div className="">
                 <div className="font-bold text-4xl text-pink-text mb-2">
