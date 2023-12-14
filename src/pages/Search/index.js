@@ -76,13 +76,29 @@ export function Search() {
       <div>
         {/* Display search results */}
         {searchResults.map((track) => (
-          <div key={track.id} style={{ marginTop: 20, marginBottom: 20 }}>
+          <div key={track.id}>
             <Link
               to={`/details/${track.id}`}
               state={{ track: track }}
-              className="rounded-md no-underline bg-indigo-600 get-started-button px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="rounded-md no-underline text-sm font-semibold text-white"
             >
-              {track.name}
+              <hr />
+              <div className="flex display-inline text-xl gap-4">
+                <img
+                  className="rounded-md hover:opacity-80 hover:cursor-pointer  "
+                  width={100}
+                  src={track.album.images[0].url}
+                ></img>
+                <div className="flex" style={{align:"left", alignItems: "center"}}>
+                  <div className="flex display-inline text-xl row">
+                    <h5>{track.name}</h5>
+                    <h6>{track.artists[0].name}</h6>
+                  </div>
+                  {/* <div className="flex display-inline row" style={{ paddingTop:30, fontSize: 6}}>
+                    <h6>{track.artists[0].name}</h6>
+                  </div> */}
+                </div>
+              </div>
             </Link>
           </div>
         ))}
