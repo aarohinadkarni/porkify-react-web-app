@@ -6,9 +6,10 @@ import "./index.css";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useAuth } from "../../hooks/useAuth";
+
 
 // import * as userClient from "./users/client";
 // import * as reviewsClient from "./reviews/client";
@@ -23,9 +24,8 @@ export function Details() {
 
   const [isClicked, setIsClicked] = useState(false);
 
-  const [review, setReview] = useState({
-    user_id: user._id, song_id: track._id, favorited: false, rating: 5.0, body: "", is_taken_down: false, reason_for_taken_down: ""
-  });
+  const [review, setReview] = useState(null);
+  const navigate = useNavigate();
 
   const fetchSong = async () => {
     const test = localStorage.getItem("token");
@@ -338,6 +338,9 @@ loudness: 0.5
                     <button className="btn submit-button"
                       //TODO CREATE REVIEW API CALL using the review object
                       onClick={() => {
+                        if (!user) {
+                          navigate("/signup")
+                        }
                         console.log("CLICKED ONCLICK")
                         our_client.createReview(review, track)
                       }
