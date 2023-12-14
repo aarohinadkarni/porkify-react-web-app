@@ -75,8 +75,8 @@ export function Details() {
   return (
     <div className="">
       {track && (
-        <div className="flex mt-5">
-          <div className="flex flex-col items-center text-green">
+        <div className="flex mt-5 gap-4 sm:gap-0">
+          <div className="flex flex-col items-center text-green basis-1/6">
             <img
               src={track.album_art_url}
               style={{ width: 200, height: 200 }}
@@ -96,45 +96,47 @@ export function Details() {
               </div>
             </div>
             <div className="border-green w-full border-1  mt-2 mb-1 "></div>
-            <div className="text-lg font-bold mt-2">Recent Reviews:</div>
-            <div>
+            <div className="text-lg font-bold mt-2 mb-2">Recent Reviews:</div>
+            <div className="flex flex-col gap-3 ">
               {reviews &&
                 reviews.map((review, index) => (
                   <div
                     key={review.user_id}
-                    className="relative sm:space-x-3  cursor-pointer flex flex-col sm:flex-row gap-3 justify-between rounded-lg border-2 border-[#C0EB8F] px-4 py-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-pink-text"
+                    className="relative sm:space-x-3   cursor-pointer flex flex-col sm:flex-row justify-between rounded-lg border border-[#C0EB8F] px-3 py-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 "
                   >
-                    <div className="flex gap-4 items-center">
-                      <img
+                    <div className="flex flex-col gap-4 items-center">
+                      {/* <img
                         src={review.album_art_url}
                         width={100}
                         className=" rounded-md"
-                      ></img>
-                      <div className=" gap-3 flex flex-col">
+                      ></img> */}
+                      <div className=" flex flex-col gap-2">
                         <div className="text-lg font-bold">
                           <span className="text-base font-normal">
                             Review by
                           </span>{" "}
                           <Link
-                            className="no-underline text-[#c0eb8f] hover:text-pink-text"
+                            className="no-underline text-pink-text hover:text-purple"
                             to={`/profile/${review.user_id}`}
                           >
                             {user.username}
                           </Link>
                         </div>
-                        <div className="truncate text-base">{review.body}</div>
+                        <div className=" text-xs w-30 break-normal ">
+                          {review.body}
+                        </div>
+                        <Rating
+                          defaultValue={review.rating}
+                          readOnly={true}
+                          activeColor="#eb8fcc"
+                        />
                       </div>
                     </div>
-                    <Rating
-                      defaultValue={review.rating}
-                      readOnly={true}
-                      activeColor="#eb8fcc"
-                    />
                   </div>
                 ))}
             </div>
           </div>
-          <div className="text-green flex flex-col ml-9 grow">
+          <div className="text-green flex flex-col sm:ml-9 grow basis-5/6">
             <div className="flex flex-col">
               <div className="">
                 <div className="font-bold text-4xl text-pink-text mb-2">
@@ -154,7 +156,7 @@ export function Details() {
             </div>
 
             {song && (
-              <div className="flex grow gap-5 mt-1">
+              <div className="flex flex-col sm:flex-row grow gap-5 mt-1">
                 <div className="text-green basis-2/3 flex flex-col gap-3 grow">
                   <SongSlider
                     name="Energy"
