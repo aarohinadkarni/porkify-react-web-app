@@ -14,6 +14,7 @@ import { useAuth } from "./hooks/useAuth";
 import { Home } from "./pages/Home";
 import { Search } from "./pages/Search";
 import { Profile } from "./pages/Profile";
+import { UserTable } from "./pages/UserTable";
 import { Edit } from "./pages/Profile/edit";
 import Navigation from "./components/Navigation";
 import { Login } from "./pages/LogIn";
@@ -73,6 +74,7 @@ function App() {
               <Route path="/details/:id" element={<Details />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/admin" element={<UserTable />} />
               {/* <Route
                 path="/"
                 element={<Navigate to="/project/napster-search" />}
