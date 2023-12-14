@@ -127,7 +127,10 @@ export function Home() {
 
         <div className="sm:hidden flex-col gap-3 mt-14 px-3 sm:px-10 lg:px-12 mb-14">
           {tracks && (
-            <div className="flex flex-col gap-3 items-center">
+            <div
+              className="flex flex-col gap-3 items-center"
+              style={{ marginTop: 10 }}
+            >
               {[...Array(3)].map((x, i) => (
                 <div key={i} className="flex gap-3">
                   {[...Array(3)].map((x, j) => (

@@ -9,6 +9,7 @@ export function Login() {
 
   const navigate = useNavigate();
   const signin = async () => {
+    //TODO SIGN IN ON NETLIFY IS NOT WORKING
     const response = await client.signin(credentials);
     login(response)
     navigate("/profile");
@@ -23,7 +24,7 @@ export function Login() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-xl">
-        <form className="space-y-4" action="#" method="POST">
+        <div className="space-y-4" action="#" method="POST">
           <div>
             <label
               htmlFor="email"
@@ -77,7 +78,7 @@ export function Login() {
               Sign in
             </button>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
