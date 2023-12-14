@@ -183,11 +183,16 @@ export function Profile() {
           <div class="recent-reviews green-text">
             <h4 className="font-bold mb-4 mt-4">RECENT REVIEWS</h4>
             <div class="flex flex-col gap-4">
-              {reviews &&
+              {reviews && favorited_reviews.length !== 0 && (
                 reviews.map((recent, index) => (
                   <Review key={index} data={recent} />
-                ))}
+                )))}
             </div>
+            {reviews && reviews.length === 0 && 
+                <div>
+                  <h6>{account.first_name} {account.last_name} has not reviewed any songs yet!</h6>
+                </div>
+              }
           </div>
         </div>
       </div>
