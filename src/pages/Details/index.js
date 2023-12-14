@@ -13,6 +13,7 @@ import { Rating } from "react-custom-rating-component";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import { GoDotFill } from "react-icons/go";
+import { Review } from "../../components/Review";
 
 // import * as userClient from "./users/client";
 // import * as reviewsClient from "./reviews/client";
@@ -96,6 +97,42 @@ export function Details() {
             </div>
             <div className="border-green w-full border-1  mt-2 mb-1 "></div>
             <div className="text-lg font-bold mt-2">Recent Reviews:</div>
+            <div>
+              {reviews &&
+                reviews.map((review, index) => (
+                  <div
+                    key={review.user_id}
+                    className="relative sm:space-x-3  cursor-pointer flex flex-col sm:flex-row gap-3 justify-between rounded-lg border-2 border-[#C0EB8F] px-4 py-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-pink-text"
+                  >
+                    <div className="flex gap-4 items-center">
+                      <img
+                        src={song.album_art_url}
+                        width={100}
+                        className=" rounded-md"
+                      ></img>
+                      <div className=" gap-3 flex flex-col">
+                        <div className="text-lg font-bold">
+                          <span className="text-base font-normal">
+                            Review by
+                          </span>{" "}
+                          <Link
+                            className="no-underline text-[#c0eb8f] hover:text-pink-text"
+                            to={`/profile/${review.user_id}`}
+                          >
+                            {user.username}
+                          </Link>
+                        </div>
+                        <div className="truncate text-base">{review.body}</div>
+                      </div>
+                    </div>
+                    <Rating
+                      defaultValue={review.rating}
+                      readOnly={true}
+                      activeColor="#eb8fcc"
+                    />
+                  </div>
+                ))}
+            </div>
           </div>
           <div className="text-green flex flex-col ml-9 grow">
             <div className="flex flex-col">
@@ -187,6 +224,9 @@ export function Details() {
                     <textarea
                       id="message"
                       rows="4"
+                      onChange={(e) =>
+                        setReview({ ...review, body: e.target.value })
+                      }
                       class="block p-2.5 w-full text-sm text-gray-900 bg-amber-50 rounded-lg border  focus:ring-amber-50 focus:border-amber-50 dark:bg-amber-50 dark:border-amber-50 dark:placeholder-grey-600 dark:text-grey-600 dark:focus:ring-amber-50 dark:focus:border-amber-50"
                       placeholder="Leave a comment..."
                     ></textarea>
