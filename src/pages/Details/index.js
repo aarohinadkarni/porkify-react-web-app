@@ -17,7 +17,6 @@ export function Details() {
   const { id } = useParams();
   const location = useLocation();
   const track = location.state && location.state.track;
-  console.log(track, "TESTSz");
   const [song, setSong] = useState([]);
   const [average_review, setAverageReview] = useState([]);
   const { user, logout } = useAuth();
@@ -25,12 +24,13 @@ export function Details() {
   const [isClicked, setIsClicked] = useState(false);
 
   const [review, setReview] = useState({
-    //TODO how to get the current user's ID?
-    user_id: user.id, song_id: id, favorited: false, rating:0.0, body: "", is_taken_down: false, reason_for_taken_down: ""});
+    user_id: user._id, song_id: id, favorited: false, rating: 0.0, body: "", is_taken_down: false, reason_for_taken_down: ""
+  });
 
   const fetchSong = async () => {
     const test = localStorage.getItem("token");
     const jsonString = JSON.parse(test);
+    if (!track) {return <Navigate to="/home" replace />;}
     const idToUse = track.id ? track.id : id;
     const song_song = await client.getTrackAudioFeatures(
       jsonString.access_token,
@@ -51,7 +51,6 @@ export function Details() {
     fetchSong();
     getAverageRating(id);
   }, [track]);
-
   if (!track) {
     return <Navigate to="/home" replace />;
   }
@@ -324,8 +323,8 @@ export function Details() {
                   </div>
                   <div className="form-group">
                     <button className="btn submit-button"
-                    //TODO CREATE REVIEW API CALL using the review object
-                    onClick={() => our_client.createReview(review)}
+                      //TODO CREATE REVIEW API CALL using the review object
+                      onClick={() => our_client.createReview(review)}
                     >SUBMIT</button>
                   </div>
                 </form>
