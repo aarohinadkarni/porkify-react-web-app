@@ -192,7 +192,6 @@ export function Profile() {
             </h4>
             <div class="flex flex-col gap-4">
               {reviews &&
-                favorited_reviews.length !== 0 &&
                 reviews.map((recent, index) => (
                   <Review key={index} data={recent} />
                 ))}

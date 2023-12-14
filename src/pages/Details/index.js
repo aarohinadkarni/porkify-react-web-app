@@ -119,7 +119,7 @@ export function Details() {
                             className="no-underline text-pink-text hover:text-purple"
                             to={`/profile/${review.user_id}`}
                           >
-                            {user.username}
+                            {review.username}
                           </Link>
                         </div>
                         <div className=" text-xs w-30 break-normal ">
@@ -284,6 +284,7 @@ export function Details() {
                           album_art_url: track.album_art_url,
                           song_id: track.id,
                           user_id: user._id,
+                          username : user.username,
                           ...review,
                         };
 
