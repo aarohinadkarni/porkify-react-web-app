@@ -28,7 +28,7 @@ export function Review({ data: { song, review, user } }) {
               <div className="text-lg font-bold">
                 <span className="text-base font-normal">Review by</span>{" "}
                 <Link
-                  className="no-underline text-[#c0eb8f] hover:text-pink-text"
+                  className="no-underline  text-pink-text hover:text-purple"
                   to={`/profile/${review.user_id}`}
                 >
                   {user.username}

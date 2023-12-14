@@ -176,8 +176,8 @@ export function Details() {
                   ></SongSlider>
                   <SongSlider
                     name="Loudness"
-                    min={0}
-                    max={100}
+                    min={-60}
+                    max={0}
                     step={1}
                     value={song.loudness}
                     left_label="Quiet"

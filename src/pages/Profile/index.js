@@ -109,7 +109,7 @@ export function Profile() {
         <div class="sm:row sm:profile sm:d-flex sm:flex-row sm:align-content-center flex">
           <div class="grow flex-1">
             <div class="mt-4 account text-[#c0eb8f] flex gap-3 items-center text-sm sm:text-base">
-              <FaUser className="mr-3 ml-3" size={150} />
+              <FaUser className="mr-3 ml-3 text-pink-text" size={150} />
               <div className="flex flex-col gap-2 ">
                 <div class="  mt-3 font-bold text-pink-text">
                   <font size="5">
@@ -163,7 +163,9 @@ export function Profile() {
         </div>
         <div class="user-specific-account">
           <div class="favorite-songs green-text">
-            <h4 className="font-bold mb-4 mt-4 ">FAVORITE SONGS</h4>
+            <h4 className="font-bold mb-4 mt-4 text-pink-text">
+              FAVORITE SONGS
+            </h4>
             <div class="row gap-2">
               {favorited_reviews && favorited_reviews.length !== 0 && (
                 <div className="flex gap-5 flex-col">
@@ -185,7 +187,9 @@ export function Profile() {
             </div>
           </div>
           <div class="recent-reviews green-text">
-            <h4 className="font-bold mb-4 mt-4">RECENT REVIEWS</h4>
+            <h4 className="font-bold mb-4 mt-4 text-pink-text">
+              RECENT REVIEWS
+            </h4>
             <div class="flex flex-col gap-4">
               {reviews &&
                 favorited_reviews.length !== 0 &&
