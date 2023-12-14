@@ -26,7 +26,7 @@ export function Review({ data: { song, review, user } }) {
             ></img>
             <div className="gap-3 flex flex-col">
               <div className="text-sm font-medium" style={{color:"white"}}>
-                <Link className="no-underline text-[#c0eb8f] hover:text-gray-400" to={`/profile/${review.user_id}`}>
+                <Link className="no-underline text-[#c0eb8f] hover:text-pink-text" to={`/profile/${review.user_id}`}>
                   {user.username}
                 </Link>
               </div>
