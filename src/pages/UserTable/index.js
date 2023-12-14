@@ -3,7 +3,7 @@ import { Link, Navigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { BsTrash3Fill } from "react-icons/bs";
 import * as client from "../client";
-import "./index.css"
+import "./index.css";
 export function UserTable() {
   const { user } = useAuth();
   const [users, setUsers] = useState([]);
@@ -30,22 +30,29 @@ export function UserTable() {
   return (
     <div>
       <h1 className="all-users-title users-table">All Users</h1>
-      <table className="table users-table">
-        <thead>
-          <tr style={{border:"none"}}>
-            <th className="headers" style={{border:"none"}}>USERNAME </th>
-            <th className="headers" style={{border:"none"}}>FIRST NAME</th>
-            <th className="headers" style={{border:"none"}}>LAST NAME</th>
-            <th className="headers" style={{border:"none"}}>EMAIL</th>
+      <table
+        className="table users-table border"
+        style={{ borderColor: "#EB8FCC" }}
+      >
+        <thead className="border" style={{ borderColor: "#EB8FCC" }}>
+          <tr>
+            <th className="headers">USERNAME </th>
+            <th className="headers">FIRST NAME</th>
+            <th className="headers">LAST NAME</th>
+            <th className="headers">EMAIL</th>
           </tr>
         </thead>
         <tbody>
           {users.map((user) => (
             <tr key={user._id}>
               <td className="users-table">
-                <Link className="users-table" to={`/profile/${user._id}`}>{user.username}</Link>
+                <Link className="users-table" to={`/profile/${user._id}`}>
+                  {user.username}
+                </Link>
               </td>
-              <td className="users-table" style={{color:"#C0EB8F"}}>{user.first_name}</td>
+              <td className="users-table" style={{ color: "#C0EB8F" }}>
+                {user.first_name}
+              </td>
               <td className=" users-table">{user.last_name}</td>
               <td className=" users-table">{user.email}</td>
               <td className="text-nowrap users-table d-flex justify-content-center align-items-center">

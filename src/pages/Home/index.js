@@ -103,7 +103,7 @@ export function Home() {
         <div>
           <div className="mx-auto max-w-7xl px-6 mt-10 sm:mt-28 lg:px-8">
             <h4 className="max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
-              Editors' picks
+              Editors' picks.
             </h4>
           </div>
 
