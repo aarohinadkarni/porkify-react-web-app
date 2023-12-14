@@ -16,7 +16,7 @@ export function Review({ data: { song, review, user } }) {
       >
         <div
           key={review.user_id}
-          className="relative sm:space-x-3 cursor-pointer flex flex-col sm:flex-row gap-3 justify-between rounded-lg border-2 border-[#C0EB8F] px-4 py-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400"
+          className="relative sm:space-x-3  cursor-pointer flex flex-col sm:flex-row gap-3 justify-between rounded-lg border-2 border-[#C0EB8F] px-4 py-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-white"
         >
           <div className="flex gap-3 items-center">
             <img
