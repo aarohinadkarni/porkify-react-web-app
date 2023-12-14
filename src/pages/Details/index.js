@@ -24,7 +24,7 @@ export function Details() {
   const [isClicked, setIsClicked] = useState(false);
 
   const [review, setReview] = useState({
-    user_id: user._id, song_id: id, favorited: false, rating: 0.0, body: "", is_taken_down: false, reason_for_taken_down: ""
+    user_id: user._id, song_id: track._id, favorited: false, rating: 5.0, body: "", is_taken_down: false, reason_for_taken_down: ""
   });
 
   const fetchSong = async () => {
@@ -49,11 +49,24 @@ export function Details() {
 
   useEffect(() => {
     fetchSong();
-    getAverageRating(id);
+    getAverageRating(track._id);
   }, [track]);
   if (!track) {
     return <Navigate to="/home" replace />;
   }
+
+  const steveSong = {spotify_id : "IDK",
+title : "IDK", 
+artists: ["IDK", "PLS"],
+album_name : "IDK",
+release_date : "2014-11-10",
+album_art_url : "https://i.scdn.co/image/ab67616d0000b273e419ccba0baa8bd3f3d7abf2",
+acousticness: 0.5,
+danceability: 0.5,
+energy: 0.5,
+instrumentalness: 0.5,
+loudness: 0.5
+}
 
   return (
     <div className="">
@@ -270,7 +283,7 @@ export function Details() {
                   </li>
                 </ul>
 
-                <form className="review">
+                <div className="review">
                   <div className="form-group like-button">
                     <button onClick={handleClick} type="button">
                       {isClicked ? (
@@ -324,10 +337,14 @@ export function Details() {
                   <div className="form-group">
                     <button className="btn submit-button"
                       //TODO CREATE REVIEW API CALL using the review object
-                      onClick={() => our_client.createReview(review)}
+                      onClick={() => {
+                        console.log("CLICKED ONCLICK")
+                        our_client.createReview(review, track)
+                      }
+                    }
                     >SUBMIT</button>
                   </div>
-                </form>
+                </div>
               </div>
             )}
           </div>

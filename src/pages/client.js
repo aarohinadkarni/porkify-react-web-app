@@ -8,9 +8,36 @@ export const USERS_API = `${BASE_API}/api/users`;
 export const SONGS_API = `${BASE_API}/api/songs`;
 export const REVIEWS_API = `${BASE_API}/api/reviews`;
 
-export const createReview = async (review) => {
-  const response = await request.post(`${REVIEWS_API}`, review);
-  return response.data;
+export const createSong = async (song) => {
+  try {
+    const response = await request.post(`${SONGS_API}`, song);
+
+    return response.data;
+  } catch (error) {
+    console.log("SONG ERRROR")
+    console.log(error)
+  }
+
+}
+
+export const createReview = async (review, song) => {
+
+  try {
+    let created_song;
+    if (song.spotify_id) {
+      created_song = await createSong(song);
+    } else {
+      created_song = await createSong({...song, spotify_id: song.id });
+    }
+    console.log(created_song, "BLERNER", review, song);
+    const response = await request.post(`${REVIEWS_API}`, { ...review, song_id: created_song._id, album_art_url: created_song.album_art_url});
+
+    return response.data;
+  } catch (error) {
+    console.log("MATTHIAS")
+    console.log(error)
+  }
+
 };
 
 

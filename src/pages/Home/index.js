@@ -46,9 +46,9 @@ export function Home() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(data.tracks);
+        // console.log(data.tracks);
         const formattedData = formatData(data.tracks);
-        console.log(formattedData, "DATA");
+        // console.log(formattedData, "DATA");
         setTracks(formattedData);
       } else {
         console.error("Failed to fetch data");
@@ -67,6 +67,7 @@ export function Home() {
   useEffect(() => {
     getEditorsTracksInfo();
     if (user) {
+      console.log(user._id, "FINDINGF USER");
       findReviewsByUserId(user._id);
     }
   }, []);
