@@ -113,28 +113,6 @@ export function Edit() {
                         <a href="https://www.youtube.com/@WebDevTV">YouTube</a>
                         <i class="fa fa-external-link-alt" aria-hidden="true"></i> */}
                 </div>
-                <div class="user-specific-account">
-                    <div class="favorite-songs green-text font-semibold">
-                        <h4>FAVORITE SONGS</h4>
-                        <div class="row">
-                            {favorites.map((favorite, index) => (
-                                <div key={index} class="col-auto">
-                                    <img src={favorite.image} alt="..." width="150" />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    <div class="recent-reviews green-text font-semibold">
-                        <h4>RECENT REVIEWS</h4>
-                        <div class="row">
-                            {recentReviews.map((recent, index) => (
-                                <div key={index} class="col-auto">
-                                    <img src={recent.image} alt="..." width="150" />
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
             </div>
     ); 
 }

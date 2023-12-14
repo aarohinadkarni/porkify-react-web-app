@@ -20,8 +20,8 @@ import Navigation from "./components/Navigation";
 import { Login } from "./pages/LogIn";
 import { Details } from "./pages/Details";
 import { Signup } from "./pages/SignUp";
-import { useEffect } from "react";
 import { getToken } from "./pages/spotifyClient";
+import { useState, useEffect } from "react";
 
 export const AuthLayout = () => {
   const outlet = useOutlet();
@@ -40,19 +40,50 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
+const ONE_HOUR_IN_SECONDS = 3600;
+
 function App() {
+  // useEffect(() => {
+  //   async function fetchToken() {
+  //     const token = localStorage.getItem("token");
+
+  //     if (!token) {
+  //       const token = await getToken();
+  //       localStorage.setItem("token", JSON.stringify(token));
+  //     } else {
+  //       // refresh token if needed
+  //       const token = JSON.parse(localStorage.getItem("token"));
+  //     }
+  //   }
+  //   fetchToken();
+  // }, []);
+  const [token, setToken] = useState(null);
+
   useEffect(() => {
     async function fetchToken() {
-      const token = localStorage.getItem("token");
+      const storedToken = localStorage.getItem("token");
 
-      if (!token) {
-        const token = await getToken();
-        localStorage.setItem("token", JSON.stringify(token));
+      if (!storedToken) {
+        const newToken = await getToken();
+        setToken(newToken);
+        localStorage.setItem("token", JSON.stringify(newToken));
       } else {
-        // refresh token if needed
-        const token = JSON.parse(localStorage.getItem("token"));
+        const parsedToken = JSON.parse(storedToken);
+        const expirationTime = parsedToken.expiresIn; // Assuming expiresIn is in seconds
+
+        // Check if the token is expired
+        if (Date.now() / 1000 >= expirationTime) {
+          // Token is expired, refresh it
+          const newToken = await getToken();
+          setToken(newToken);
+          localStorage.setItem("token", JSON.stringify(newToken));
+        } else {
+          // Token is still valid, use it
+          setToken(parsedToken);
+        }
       }
     }
+
     fetchToken();
   }, []);
 

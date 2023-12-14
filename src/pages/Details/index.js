@@ -8,6 +8,7 @@ import { FaHeart } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { useLocation } from "react-router-dom";
 import moment from "moment";
+import { useAuth } from "../../hooks/useAuth";
 
 // import * as userClient from "./users/client";
 // import * as reviewsClient from "./reviews/client";
@@ -19,25 +20,33 @@ export function Details() {
   console.log(track, "TESTSz");
   const [song, setSong] = useState([]);
   const [average_review, setAverageReview] = useState([]);
+  const { user, logout } = useAuth();
 
   const [isClicked, setIsClicked] = useState(false);
+
+  const [review, setReview] = useState({
+    //TODO how to get the current user's ID?
+    user_id: user.id, song_id: id, favorited: false, rating:0.0, body: "", is_taken_down: false, reason_for_taken_down: ""});
+
   const fetchSong = async () => {
     const test = localStorage.getItem("token");
     const jsonString = JSON.parse(test);
+    const idToUse = track.id ? track.id : id;
     const song_song = await client.getTrackAudioFeatures(
       jsonString.access_token,
-      track.id
+      idToUse
     );
     setSong(song_song);
   };
   const handleClick = () => {
+    setReview({ ...review, favorited: !isClicked });
     setIsClicked(!isClicked);
   };
   const getAverageRating = async (song_id) => {
     const rating = await our_client.findAverageReview(song_id);
     setAverageReview(rating);
   };
-  
+
   useEffect(() => {
     fetchSong();
     getAverageRating(id);
@@ -50,17 +59,19 @@ export function Details() {
   return (
     <div className="">
       {track && (
-        <div className="mt-10 song-details-header p-flex-row-container flex justify-content-center">
+        <div className="flex">
           <div>
             <img
               src={track.album_art_url}
-              style={{ width: 300, height: 300 }}
+              style={{ width: 200, height: 200 }}
               alt="album cover"
             />
-            <h3 className="ratings-title">Average Rating: {average_review} / 5</h3>
-         
+            <div className="ratings-title">
+              Average Rating: {average_review} / 5
+            </div>
+
             <hr className="green-line"></hr>
-            <h3 className="ratings-title">Ratings</h3>
+            <h3 className="ratings-title">Recent reviews:</h3>
           </div>
           <div>
             <div className="flex-container">
@@ -286,6 +297,12 @@ export function Details() {
                       min="0"
                       max="5"
                       step="0.5"
+                      onChange={(e) =>
+                        setReview({
+                          ...review,
+                          rating: parseFloat(e.target.value),
+                        })
+                      }
                     />
                     <div className="bottom-labels">
                       <label className="float-left">0</label>
@@ -300,10 +317,16 @@ export function Details() {
                       className="form-control"
                       id="leaveAComment"
                       rows="4"
+                      onChange={(e) =>
+                        setReview({ ...review, body: e.target.value })
+                      }
                     ></textarea>
                   </div>
                   <div className="form-group">
-                    <button className="btn submit-button">SUBMIT</button>
+                    <button className="btn submit-button"
+                    //TODO CREATE REVIEW API CALL using the review object
+                    onClick={() => our_client.createReview(review)}
+                    >SUBMIT</button>
                   </div>
                 </form>
               </div>

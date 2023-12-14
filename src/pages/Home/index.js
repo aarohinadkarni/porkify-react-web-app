@@ -72,7 +72,7 @@ export function Home() {
   }, []);
 
   return (
-    <div className=" items-center justify-center flex flex-col">
+    <div className=" justify-center flex flex-col">
       <div className="">
         <div
           className="absolute inset-y-0 -z-10 origin-top-right skew-x-[-30deg] bg-white "
@@ -84,7 +84,7 @@ export function Home() {
               Track your favorite music.
             </h1>
             <div className="mt-6 max-w-xl lg:mt-0  ">
-              <p className="text-lg leading-8 green-text">
+              <p className="text-lg leading-8 green-text ">
                 Want to share reviews of your current favorite (or least
                 favorite) songs? Give them a quick rating out of 5, add a
                 comment with your thoughts if you have any, and slowly build a
@@ -93,36 +93,25 @@ export function Home() {
               </p>
               <div className="mt-10 flex items-center gap-x-6">
                 <Link
-                  to="/signup"
+                  to={user ? "/search" : "/signup"}
                   className="rounded-md no-underline bg-indigo-600 get-started-button px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
-                  Get started →
+                  {user ? "Search" : "Get Started"} →
                 </Link>
-                {/* <a
-                  href="#"
-                  className="text-sm font-semibold no-underline leading-6 pink-text"
-                >
-                  Learn more <span aria-hidden="true">→</span>
-                </a> */}
               </div>
             </div>
-            {/* <img
-              src="https://images.unsplash.com/photo-1567532900872-f4e906cbf06a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1280&q=80"
-              alt=""
-              className="aspect-[6/5] w-full max-w-lg rounded-2xl object-cover lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-36"
-            /> */}
           </div>
         </div>
         <div>
           <div className="mx-auto max-w-7xl px-6 mt-10 sm:mt-28 lg:px-8">
-            <h4 className="max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
+            <div className="max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
               Editors' picks.
-            </h4>
+            </div>
           </div>
 
-          <div className="sm:flex hidden flex-col gap-3 mt-10 mb-14 px-6 lg:px-8 sm:visible items-center">
+          <div className="sm:flex hidden flex-col gap-3 mt-10 mb-14 px-6 lg:px-8 sm:visible">
             {tracks && (
-              <div className="flex gap-5 flex-col">
+              <div className="flex gap-5 flex-col ">
                 <div className="flex gap-3">
                   {[...Array(5)].map((x, i) => (
                     <Card track={tracks[i]} key={i} size={200} />
@@ -158,7 +147,7 @@ export function Home() {
         {user && (
           <div className="mx-auto max-w-7xl px-6 mt-10  lg:px-8">
             <h4 className="max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
-              Reviews
+              Your reviews.
             </h4>
             <div className="sm:flex hidden flex-col gap-3 mt-10 mb-14 sm:visible ">
               {reviews &&

@@ -106,33 +106,28 @@ export function Profile() {
       <div class="flex flex-col mx-4 my-4">
         <div class="sm:row sm:profile sm:d-flex sm:flex-row sm:align-content-center flex">
           <div class="grow flex-1">
-            <div class="account text-[#c0eb8f] flex gap-3 items-center text-sm sm:text-base">
-              <FaUser className="" size={150} />
+            <div class="mt-4 account text-[#c0eb8f] flex gap-3 items-center text-sm sm:text-base">
+              <FaUser className="mr-3 ml-3" size={150} />
               <div className="flex flex-col gap-2 ">
-                <div class=" green-text ">
-                  {/* <font class="font-semibold" size="5">Aarohi Nadkarni</font> */}
+                <div class=" green-text mt-3">
                   <font size="5">
                     {account.first_name} {account.last_name}
                   </font>
                 </div>
                 {user._id === account._id && (
                   <div class=" green-text">
-                    {/* 7/23/2003 */}
                     {moment(account.dob).utc().format("MMM DD, Y")}
                   </div>
                 )}
                 {user._id === account._id && (
                   <div class=" green-text">{account.email}</div>
                 )}
-                <div class=" green-text">
-                  {/* blah blah blah */}
-                  {account.biography}
-                </div>
+                <div class=" green-text">{account.biography}</div>
                 {user._id === account._id && (
                   <div class=" green-text my-3">
                     <Link
                       to={`/profile/edit/${account._id}`}
-                      className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      className="rounded-md no-underline hover:bg-white bg-green px-3.5 py-2.5 text-sm font-semibold shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       style={{ color: "#333333" }}
                     >
                       Edit
@@ -140,8 +135,12 @@ export function Profile() {
 
                     <Link
                       to="/home"
-                      className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                      style={{ color: "#333333", marginLeft: "10px" }}
+                      className=" rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      style={{
+                        marginBotton: "3px",
+                        color: "#333333",
+                        marginLeft: "10px",
+                      }}
                       onClick={signout}
                     >
                       Signout
@@ -150,7 +149,7 @@ export function Profile() {
                     {user.is_moderator && (
                       <Link
                         to="/admin"
-                        className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="rounded-md no-underline hover:bg-white bg-[#c0eb8f] px-3.5 py-2.5 text-sm font-semibold shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         style={{ color: "#333333", marginLeft: "10px" }}
                       >
                         Admin
@@ -164,7 +163,7 @@ export function Profile() {
         </div>
         <div class="user-specific-account">
           <div class="favorite-songs green-text">
-            <h4>FAVORITE SONGS</h4>
+            <h4 className="font-bold mb-4 mt-4 ">FAVORITE SONGS</h4>
             <div class="row gap-2">
             {favorited_reviews && favorited_reviews.length !== 0 && (
               <div className="flex gap-5 flex-col">
@@ -182,7 +181,7 @@ export function Profile() {
             </div>
           </div>
           <div class="recent-reviews green-text">
-            <h4>RECENT REVIEWS</h4>
+            <h4 className="font-bold mb-4 mt-4">RECENT REVIEWS</h4>
             <div class="flex flex-col gap-4">
               {reviews &&
                 reviews.map((recent, index) => (

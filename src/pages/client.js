@@ -7,6 +7,13 @@ export const BASE_API = process.env.REACT_APP_BASE_API_URL;
 export const USERS_API = `${BASE_API}/api/users`;
 export const SONGS_API = `${BASE_API}/api/songs`;
 export const REVIEWS_API = `${BASE_API}/api/reviews`;
+
+export const createReview = async (review) => {
+  const response = await request.post(`${REVIEWS_API}`, review);
+  return response.data;
+};
+
+
 export const signin = async (credentials) => {
   const response = await request.post(`${USERS_API}/signin`, credentials);
   return response.data;
