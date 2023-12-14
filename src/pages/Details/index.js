@@ -9,6 +9,10 @@ import { FaStar } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useAuth } from "../../hooks/useAuth";
+import { Rating } from "react-custom-rating-component";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
+import { GoDotFill } from "react-icons/go";
 
 // import * as userClient from "./users/client";
 // import * as reviewsClient from "./reviews/client";
@@ -18,10 +22,10 @@ export function Details() {
   const location = useLocation();
   const track = location.state && location.state.track;
   const [song, setSong] = useState([]);
-  const [average_review, setAverageReview] = useState([]);
+  const [average_review, setAverageReview] = useState(0);
   const { user, logout } = useAuth();
 
-  const [reviews, setReviews] = useState(null)
+  const [reviews, setReviews] = useState(null);
 
   const [isClicked, setIsClicked] = useState(false);
 
@@ -57,266 +61,112 @@ export function Details() {
     //TODO make route for recent reviews by SPOTIFY ID, not SONG ID
     const reviews = await our_client.findReviewsBySpotifyId(spotify_id);
     setReviews(reviews);
-  }
+  };
 
   useEffect(() => {
     fetchSong();
     getAverageRating(track.spotify_id);
     getRecentReviews(track.spotify_id);
   }, [track]);
+
   if (!track) {
     return <Navigate to="/home" replace />;
   }
-
-  const steveSong = {
-    spotify_id: "IDK",
-    title: "IDK",
-    artists: ["IDK", "PLS"],
-    album_name: "IDK",
-    release_date: "2014-11-10",
-    album_art_url:
-      "https://i.scdn.co/image/ab67616d0000b273e419ccba0baa8bd3f3d7abf2",
-    acousticness: 0.5,
-    danceability: 0.5,
-    energy: 0.5,
-    instrumentalness: 0.5,
-    loudness: 0.5,
-  };
-
   return (
     <div className="">
       {track && (
-        <div className="flex">
-          <div>
+        <div className="flex mt-5">
+          <div className="flex flex-col items-center text-green">
             <img
               src={track.album_art_url}
               style={{ width: 200, height: 200 }}
               alt="album cover"
+              className="h-auto max-w-full rounded-md"
             />
-            <div className="ratings-title">
-              Average Rating: {average_review} / 5
+            <div className="text-lg mt-6">
+              <div className=" flex items-center flex-col gap-2 font-bold mb-2">
+                Average Rating
+                <Rating
+                  defaultValue={average_review}
+                  readOnly={true}
+                  activeColor="#eb8fcc"
+                />
+              </div>
             </div>
-
-            <hr className="green-line"></hr>
-            <h3 className="ratings-title">Recent reviews:</h3>
+            <div className="border-green w-full border-1  mt-2 mb-1 "></div>
+            <div className="text-lg font-bold mt-2">Recent Reviews:</div>
           </div>
-          <div>
-            <div className="flex-container">
-              <span className="float-left">
-                <h1 className="song-title float-left">{track.title}</h1>
-              </span>
-              <span className="float-right">
-                <h2 className="artist-name float-right">
-                  By: {track.artists[0]}
-                </h2>
-                <h2 className="song-year float-right">
+          <div className="text-green flex flex-col ml-9 grow">
+            <div className="flex flex-col">
+              <div className="">
+                <div className="font-bold text-4xl text-pink-text mb-2">
+                  {track.title}
+                </div>
+              </div>
+              <div className="flex gap-2 items-center">
+                <div className="">{track.artists[0]}</div>
+                <GoDotFill />
+                <div className="">
                   {moment(track.release_date).utc().format("MMM DD, Y")}
-                </h2>
-              </span>
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <div className="border-beige w-full border-1 my-4"></div>
+              </div>
             </div>
 
-            <br></br>
-            <br></br>
-            <div className="details-under-song-title">
-              <p>Details</p>
-              <hr></hr>
-            </div>
             {song && (
-              <div className="p-flex-row-container">
-                <ul>
-                  <li>
-                    <label
-                      htmlFor="customRange1"
-                      className="form-label"
-                      style={{ color: "#C0EB8F" }}
-                    >
-                      Energy
-                    </label>
-                    <input
-                      type="range"
-                      className="form-range "
-                      id="customRange1"
-                      disabled
-                      value={song.energy}
-                      min="0"
-                      max="1"
-                      step="0.1"
-                    />
-                    <div className="bottom-labels">
-                      <label
-                        className="float-left"
-                        style={{ color: "#C0EB8F" }}
-                      >
-                        No chill
-                      </label>
-                      <label
-                        className="float-right"
-                        style={{ color: "#C0EB8F" }}
-                      >
-                        Chill
-                      </label>
-                    </div>
-                  </li>
-                  <br></br>
-                  <li>
-                    <label
-                      htmlFor="customRange1"
-                      className="form-label"
-                      style={{ color: "#C0EB8F" }}
-                    >
-                      Instrumentalness
-                    </label>
-                    <input
-                      type="range"
-                      className="form-range range-thumb"
-                      id="customRange1"
-                      disabled
-                      value={song.instrumentalness}
-                      min="0"
-                      max="1"
-                      step="0.1"
-                    />
-                    <div className="bottom-labels">
-                      <label
-                        className="float-left"
-                        style={{ color: "#C0EB8F" }}
-                      >
-                        None
-                      </label>
-                      <label
-                        className="float-right"
-                        style={{ color: "#C0EB8F" }}
-                      >
-                        A ton
-                      </label>
-                    </div>
-                  </li>
-                  <br></br>
-                  <li>
-                    <label
-                      htmlFor="customRange1"
-                      className="form-label"
-                      style={{ color: "#C0EB8F" }}
-                    >
-                      Loudness
-                    </label>
-                    <input
-                      type="range"
-                      className="form-range"
-                      id="customRange1"
-                      disabled
-                      value={song.loudness}
-                      min="-60"
-                      max="0"
-                      step="1"
-                    />
-                    <div className="bottom-labels">
-                      <label
-                        className="float-left"
-                        style={{ color: "#C0EB8F" }}
-                      >
-                        Quiet
-                      </label>
-                      <label
-                        className="float-right"
-                        style={{ color: "#C0EB8F" }}
-                      >
-                        Loud
-                      </label>
-                    </div>
-                  </li>
-                  <br></br>
-                  <li>
-                    <label
-                      htmlFor="customRange1"
-                      className="form-label"
-                      style={{ color: "#C0EB8F" }}
-                    >
-                      Danceable
-                    </label>
-                    <input
-                      type="range"
-                      className="form-range"
-                      id="customRange1"
-                      disabled
-                      value={song.danceability}
-                      min="0"
-                      max="1"
-                      step="0.1"
-                    />
-                    <div className="bottom-labels">
-                      <label
-                        className="float-left"
-                        style={{ color: "#C0EB8F" }}
-                      >
-                        Not at all
-                      </label>
-                      <label
-                        className="float-right"
-                        style={{ color: "#C0EB8F" }}
-                      >
-                        Disco
-                      </label>
-                    </div>
-                  </li>
-                  <br></br>
-                  <li>
-                    <label
-                      htmlFor="customRange1"
-                      className="form-label"
-                      style={{ color: "#C0EB8F" }}
-                    >
-                      Acoustics
-                    </label>
-                    <input
-                      type="range"
-                      className="form-range"
-                      id="customRange1"
-                      disabled
-                      value={song.acousticness}
-                      min="0"
-                      max="1"
-                      step="0.1"
-                      style={{
-                        color: "#d3d3d3",
-                      }}
-                    />
-                    <div className="bottom-labels">
-                      <label
-                        className="float-left"
-                        style={{ color: "#C0EB8F" }}
-                      >
-                        All digital
-                      </label>
-                      <label
-                        className="float-right"
-                        style={{ color: "#C0EB8F" }}
-                      >
-                        All analog
-                      </label>
-                    </div>
-                  </li>
-                </ul>
+              <div className="flex grow gap-5 mt-1">
+                <div className="text-green basis-2/3 flex flex-col gap-3 grow">
+                  <SongSlider
+                    name="Energy"
+                    min={0}
+                    max={100}
+                    step={1}
+                    value={song.energy}
+                    left_label="No chill"
+                    right_label="Chill"
+                  ></SongSlider>
+                  <SongSlider
+                    name="Instrumentalness"
+                    min={0}
+                    max={100}
+                    step={1}
+                    value={song.instrumentalness}
+                    left_label="None"
+                    right_label="A ton"
+                  ></SongSlider>
+                  <SongSlider
+                    name="Loudness"
+                    min={0}
+                    max={100}
+                    step={1}
+                    value={song.loudness}
+                    left_label="Quiet"
+                    right_label="Loud"
+                  ></SongSlider>
+                  <SongSlider
+                    name="Danceable"
+                    min={0}
+                    max={100}
+                    step={1}
+                    value={song.danceability}
+                    left_label="Not at all"
+                    right_label="Disco"
+                  ></SongSlider>
+                  <SongSlider
+                    name="Acoustics"
+                    min={0}
+                    max={100}
+                    step={1}
+                    value={song.acousticness}
+                    left_label="All digital"
+                    right_label="All analog"
+                  ></SongSlider>
+                </div>
 
-                <div className="review">
-                  <div className="form-group like-button">
-                    <button onClick={handleClick} type="button">
-                      {isClicked ? (
-                        <FaHeart className="like-heart-favorited" />
-                      ) : (
-                        <FaRegHeart className="like-heart" />
-                      )}
-                      {isClicked ? (
-                        <h3 className="like-title">Favorited</h3>
-                      ) : (
-                        <h3 className="like-title">Favorite</h3>
-                      )}
-                    </button>
-                  </div>
-                  <div className="form-group rate-range">
-                    <label htmlFor="customRange1" className="form-label">
-                      Rate
-                    </label>
+                <div className="flex flex-col basis-1/3 items-center gap-3 ">
+                  {/* <div className="">
                     <input
                       type="range"
                       className="form-range"
@@ -331,27 +181,52 @@ export function Details() {
                         })
                       }
                     />
-                    <div className="bottom-labels">
-                      <label className="float-left">0</label>
-                      <label className="float-right">5</label>
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label className="leave-a-comment" htmlFor="leaveAComment">
-                      Leave a comment
-                    </label>
+                  </div> */}
+                  <div className=" w-full ">
                     <textarea
-                      className="form-control"
-                      id="leaveAComment"
+                      id="message"
                       rows="4"
+                      class="block p-2.5 w-full text-sm text-gray-900 bg-amber-50 rounded-lg border  focus:ring-amber-50 focus:border-amber-50 dark:bg-amber-50 dark:border-amber-50 dark:placeholder-grey-600 dark:text-grey-600 dark:focus:ring-amber-50 dark:focus:border-amber-50"
+                      placeholder="Leave a comment..."
+                    ></textarea>
+                    {/* <textarea
+                      className="rounded-md bg-amber-5 mt-4 text-gray-700"
+                      id="leaveAComment"
+                      rows={8}
                       onChange={(e) =>
                         setReview({ ...review, body: e.target.value })
                       }
-                    ></textarea>
+                    ></textarea> */}
                   </div>
-                  <div className="form-group">
+                  <div className="flex justify-between  w-full">
+                    <div>
+                      <Rating
+                        defaultValue={
+                          review && review.rating ? review.rating : 0
+                        }
+                        precision={0.5}
+                        activeColor="#eb8fcc"
+                        onChange={(newRating) =>
+                          setReview({
+                            ...review,
+                            rating: parseFloat(newRating),
+                          })
+                        }
+                      />
+                    </div>
+                    <div>
+                      <button onClick={handleClick} type="button">
+                        {isClicked ? (
+                          <FaHeart className="w-6 h-6" />
+                        ) : (
+                          <FaRegHeart className="w-6 h-6" />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                  <div className="">
                     <button
-                      className="btn submit-button"
+                      className="bg-purple hover:bg-pink-text mt-2 rounded-md no-underline text-base get-started-button px-3.5 py-2.5 font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       //TODO CREATE REVIEW API CALL using the review object
                       onClick={() => {
                         if (!user) {
@@ -375,13 +250,31 @@ export function Details() {
                     >
                       SUBMIT
                     </button>
-o                  </div>
+                  </div>
                 </div>
               </div>
             )}
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+function SongSlider({ value, min, max, step, left_label, right_label, name }) {
+  return (
+    <div>
+      <label
+        htmlFor="customRange1"
+        className="text-base mt-1 mb-2 font-bold text-pink-text"
+      >
+        {name}:
+      </label>
+      <Slider min={min} max={max} step={step} value={value * 100} />
+      <div className="bottom-labels mb-4 mt-1 font-roboto">
+        <label className="float-left">{left_label}</label>
+        <label className="float-right">{right_label}</label>
+      </div>
     </div>
   );
 }

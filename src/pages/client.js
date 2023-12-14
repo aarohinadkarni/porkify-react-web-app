@@ -14,32 +14,32 @@ export const createSong = async (song) => {
 
     return response.data;
   } catch (error) {
-    console.log("SONG ERRROR")
-    console.log(error)
+    console.log("SONG ERRROR");
+    console.log(error);
   }
-
-}
+};
 
 export const createReview = async (review, song) => {
-
   try {
     let created_song;
     if (song.spotify_id) {
       created_song = await createSong(song);
     } else {
-      created_song = await createSong({...song, spotify_id: song.id });
+      created_song = await createSong({ ...song, spotify_id: song.id });
     }
     console.log(created_song, "BLERNER", review, song);
-    const response = await request.post(`${REVIEWS_API}`, { ...review, song_id: created_song._id, album_art_url: created_song.album_art_url});
+    const response = await request.post(`${REVIEWS_API}`, {
+      ...review,
+      song_id: created_song._id,
+      album_art_url: created_song.album_art_url,
+    });
 
     return response.data;
   } catch (error) {
-    console.log("MATTHIAS")
-    console.log(error)
+    console.log("MATTHIAS");
+    console.log(error);
   }
-
 };
-
 
 export const signin = async (credentials) => {
   const response = await request.post(`${USERS_API}/signin`, credentials);
@@ -86,7 +86,9 @@ export const findReviewsByUserId = async (user_id) => {
   return response.data;
 };
 export const findAverageReview = async (spotify_id) => {
-  const response = await request.get(`${SONGS_API}/${spotify_id}/spotify/avgRating`);
+  const response = await request.get(
+    `${SONGS_API}/${spotify_id}/spotify/avgRating`
+  );
   return response.data;
 };
 export const findReviewsBySongId = async (song_id) => {
@@ -95,6 +97,8 @@ export const findReviewsBySongId = async (song_id) => {
 };
 
 export const findReviewsBySpotifyId = async (spotify_id) => {
-  const response = await request.get(`${SONGS_API}/${spotify_id}/spotify/reviews`);
+  const response = await request.get(
+    `${SONGS_API}/${spotify_id}/spotify/reviews`
+  );
   return response.data;
 };
