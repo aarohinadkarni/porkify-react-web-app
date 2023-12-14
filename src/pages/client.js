@@ -51,3 +51,7 @@ export const findReviewsByUserId = async (user_id) => {
   const response = await request.get(`${USERS_API}/${user_id}/reviews`);
   return response.data;
 };
+export const findAverageReview = async (song_id) => {
+  const response = await request.get(`${SONGS_API}/${song_id}/avgRating`);
+  return response.data;
+};

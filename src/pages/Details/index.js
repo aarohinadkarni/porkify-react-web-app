@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import * as client from "../spotifyClient";
+import * as our_client from "../client";
 import "./index.css";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
@@ -15,6 +16,7 @@ export function Details() {
   const location = useLocation();
   const track = location.state && location.state.track;
   const [song, setSong] = useState([]);
+  const [average_review, setAverageReview] = useState([]);
 
   const [isClicked, setIsClicked] = useState(false);
   const fetchSong = async () => {
@@ -29,10 +31,15 @@ export function Details() {
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
+  const getAverageRating = async (song_id) => {
+    const rating = await our_client.findAverageReview(song_id);
+    setAverageReview(rating);
+  };
   
   useEffect(() => {
     console.log(location.state);
     fetchSong();
+    getAverageRating(id);
   }, [track]);
 
   if (!track) {
@@ -49,9 +56,10 @@ export function Details() {
               style={{ width: 300, height: 300 }}
               alt="album cover"
             />
-            <h3 className="ratings-title">Ratings</h3>
+            <h3 className="ratings-title">Average Rating:    {average_review} / 5</h3>
+         
             <hr className="green-line"></hr>
-            <h3 className="ratings-title">Average Rating: </h3>
+            <h3 className="ratings-title">Ratings</h3>
           </div>
           <div>
               <div className="flex-container">
@@ -92,8 +100,8 @@ export function Details() {
                         step="0.1"
                       />
                       <div className="bottom-labels">
-                        <label className="float-left" style={{color:"#C0EB8F"}}>No chill</label>
-                        <label className="float-right" style={{color:"#C0EB8F"}}>Chill</label>
+                        <label className="float-right" style={{color:"#C0EB8F"}}>No chill</label>
+                        <label className="float-left" style={{color:"#C0EB8F"}}>Chill</label>
                       </div>
                     </li>
                     <br></br>
