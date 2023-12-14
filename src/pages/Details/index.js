@@ -13,6 +13,7 @@ import moment from "moment";
 // import * as reviewsClient from "./reviews/client";
 
 export function Details() {
+
   const { id } = useParams();
   const location = useLocation();
   const track = location.state && location.state.track;
@@ -21,6 +22,11 @@ export function Details() {
   const [average_review, setAverageReview] = useState([]);
 
   const [isClicked, setIsClicked] = useState(false);
+
+  const [review, setReview] = useState({
+    //TODO how to get the current user's ID?
+    user_id: "", song_id: id, favorited: false, rating:0.0, body: "", is_taken_down: false, reason_for_taken_down: ""});
+
   const fetchSong = async () => {
     const test = localStorage.getItem("token");
     const jsonString = JSON.parse(test);
@@ -32,7 +38,9 @@ export function Details() {
     setSong(song_song);
   };
   const handleClick = () => {
+    setReview({ ...review, favorited: !isClicked})
     setIsClicked(!isClicked);
+
   };
   const getAverageRating = async (song_id) => {
     const rating = await our_client.findAverageReview(song_id);
@@ -289,6 +297,7 @@ export function Details() {
                       min="0"
                       max="5"
                       step="0.5"
+                      onChange={(e) => setReview({ ...review, rating: parseFloat(e.target.value)})}
                     />
                     <div className="bottom-labels">
                       <label className="float-left">0</label>
@@ -303,10 +312,14 @@ export function Details() {
                       className="form-control"
                       id="leaveAComment"
                       rows="4"
+                      onChange={(e) => setReview({ ...review, body: e.target.value})}
                     ></textarea>
                   </div>
                   <div className="form-group">
-                    <button className="btn submit-button">SUBMIT</button>
+                    <button className="btn submit-button"
+                    //TODO CREATE REVIEW API CALL
+                    onClick={our_client.createReview(review)}
+                    >SUBMIT</button>
                   </div>
                 </form>
               </div>
