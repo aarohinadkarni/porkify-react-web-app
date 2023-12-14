@@ -22,7 +22,7 @@ export function Details() {
   const location = useLocation();
   const track = location.state && location.state.track;
   const [song, setSong] = useState([]);
-  const [average_review, setAverageReview] = useState([]);
+  const [average_review, setAverageReview] = useState(0);
   const { user, logout } = useAuth();
 
   const [reviews, setReviews] = useState(null);
@@ -83,7 +83,7 @@ export function Details() {
               <div className=" flex items-center flex-col gap-2 font-bold mb-2">
                 Average Rating
                 <Rating
-                  defaultValue={2.3}
+                  defaultValue={average_review}
                   readOnly={true}
                   activeColor="#eb8fcc"
                 />
@@ -197,10 +197,15 @@ export function Details() {
                   <div className="flex justify-between  w-full">
                     <div>
                       <Rating
-                        onChange={(e) =>
+                        defaultValue={
+                          review && review.rating ? review.rating : 0
+                        }
+                        precision={0.5}
+                        activeColor="#eb8fcc"
+                        onChange={(newRating) =>
                           setReview({
                             ...review,
-                            rating: parseFloat(e.target.value),
+                            rating: parseFloat(newRating),
                           })
                         }
                       />
