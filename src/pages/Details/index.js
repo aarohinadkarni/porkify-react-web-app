@@ -24,9 +24,10 @@ export function Details() {
   const fetchSong = async () => {
     const test = localStorage.getItem("token");
     const jsonString = JSON.parse(test);
+    const idToUse = track.id ? track.id : id;
     const song_song = await client.getTrackAudioFeatures(
       jsonString.access_token,
-      track.id
+      idToUse
     );
     setSong(song_song);
   };
@@ -37,7 +38,7 @@ export function Details() {
     const rating = await our_client.findAverageReview(song_id);
     setAverageReview(rating);
   };
-  
+
   useEffect(() => {
     fetchSong();
     getAverageRating(id);
@@ -57,8 +58,10 @@ export function Details() {
               style={{ width: 300, height: 300 }}
               alt="album cover"
             />
-            <h3 className="ratings-title">Average Rating: {average_review} / 5</h3>
-         
+            <h3 className="ratings-title">
+              Average Rating: {average_review} / 5
+            </h3>
+
             <hr className="green-line"></hr>
             <h3 className="ratings-title">Ratings</h3>
           </div>
