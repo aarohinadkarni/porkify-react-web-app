@@ -24,7 +24,7 @@ export function Signup() {
   return (
     <div className="font flex flex-1 flex-col justify-center px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-        <h2 className="mt-20  mb-10 text-center text-4xl font-bold leading-9 tracking-tight green-text">
+        <h2 className="mt-20  mb-10 text-center text-4xl font-bold leading-9 tracking-tight text-pink-text">
           Sign up for an account
         </h2>
       </div>
@@ -34,7 +34,7 @@ export function Signup() {
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium leading-6 green-text"
+              className="block text-sm font-bold leading-6 green-text"
             >
               First name
             </label>
@@ -56,7 +56,7 @@ export function Signup() {
           <div>
             <label
               htmlFor="name"
-              className="block text-sm font-medium leading-6 green-text"
+              className="block text-sm font-bold leading-6 green-text"
             >
               Last name
             </label>
@@ -78,7 +78,7 @@ export function Signup() {
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium leading-6 green-text"
+              className="block text-sm  leading-6 green-text font-bold"
             >
               Email address
             </label>
@@ -100,7 +100,7 @@ export function Signup() {
           <div>
             <label
               htmlFor="username"
-              className="block text-sm font-medium leading-6 green-text"
+              className="block text-sm  leading-6 green-text font-bold"
             >
               Username
             </label>
@@ -122,7 +122,7 @@ export function Signup() {
           <div>
             <label
               htmlFor="role"
-              className="block text-sm font-medium leading-6 green-text"
+              className="block text-sm leading-6 green-text font-bold"
             >
               Role
             </label>
@@ -146,7 +146,7 @@ export function Signup() {
                   />
                   &nbsp; &nbsp;
                   <label
-                    className="form-check-label green-text"
+                    className="form-check-label green-text text-bae"
                     htmlFor="user-role"
                   >
                     Reviewer
@@ -158,7 +158,7 @@ export function Signup() {
                     name="role"
                     type="radio"
                     autoComplete="role"
-                    className=" form-check-input block w-full rounded-md border-0 py-2 bg-amber-50 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6"
+                    className=" checked:bg-purple form-check-input block w-full rounded-md border-0 py-2 bg-amber-50 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6"
                     value="Admin"
                     onChange={(e) =>
                       setCredentials({
@@ -182,7 +182,7 @@ export function Signup() {
             <div className="flex items-center justify-between">
               <label
                 htmlFor="password"
-                className="block text-sm font-medium leading-6 text-gray-900 green-text"
+                className="block text-sm font-bold leading-6 text-gray-900 green-text"
               >
                 Password
               </label>
@@ -206,8 +206,7 @@ export function Signup() {
           <div>
             <button
               type="button"
-              className="sign-up-button flex w-full mt-12 justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-              style={{ backgroundColor: "#6B4A60" }}
+              className="sign-up-button flex w-full mt-12 justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 bg-purple hover:bg-pink-text focus-visible:outline-offset-2"
               onClick={signup}
             >
               Sign Up

@@ -109,7 +109,7 @@ export function Profile() {
             <div class="mt-4 account text-[#c0eb8f] flex gap-3 items-center text-sm sm:text-base">
               <FaUser className="mr-3 ml-3" size={150} />
               <div className="flex flex-col gap-2 ">
-                <div class=" green-text mt-3">
+                <div class="  mt-3 font-bold green-text">
                   <font size="5">
                     {account.first_name} {account.last_name}
                   </font>
@@ -127,18 +127,16 @@ export function Profile() {
                   <div class=" green-text my-3">
                     <Link
                       to={`/profile/edit/${account._id}`}
-                      className="rounded-md no-underline hover:bg-white bg-green px-3.5 py-2.5 text-sm font-semibold shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                      style={{ color: "#333333" }}
+                      className="rounded-md no-underline hover:bg-white text-white bg-purple px-3.5 py-2.5 text-sm font-semibold shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                       Edit
                     </Link>
 
                     <Link
                       to="/home"
-                      className=" rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      className=" rounded-md no-underline text-white bg-purple edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       style={{
-                        marginBotton: "3px",
-                        color: "#333333",
+                        marginBottom: "3px",
                         marginLeft: "10px",
                       }}
                       onClick={signout}
@@ -149,8 +147,8 @@ export function Profile() {
                     {user.is_moderator && (
                       <Link
                         to="/admin"
-                        className="rounded-md no-underline hover:bg-white bg-[#c0eb8f] px-3.5 py-2.5 text-sm font-semibold shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                        style={{ color: "#333333", marginLeft: "10px" }}
+                        className="bg-purple text-white rounded-md no-underline hover:bg-white  px-3.5 py-2.5 text-sm font-semibold shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        style={{ marginLeft: "10px" }}
                       >
                         Admin
                       </Link>

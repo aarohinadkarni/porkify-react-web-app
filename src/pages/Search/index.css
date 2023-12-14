@@ -1,10 +1,9 @@
 .cursor {
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 20px;
 }
 
-.button-submit {
-    background-color:#6B4A60!important;
-    outline-color: #6B4A60!important;
+.form-control {
+  background-color: beige !important;
 }

@@ -53,24 +53,32 @@ export function Search() {
     setSearchTerm(event.target.value);
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleSearch(searchTerm);
+    }
+  };
+
   return (
-    <div className="form-outline align-middle cursor sm:px-6 lg:px-8">
-      <div className="flex gap-3">
-        <div className="grow">
+    <div className="form-outline align-middle cursor sm:px-6 lg:px-8 ">
+      <div className="flex gap-3 mt-2">
+        <div className="grow ">
           <input
             type="search"
             id="form1"
-            className="form-control"
+            className="form-control bg-amber-50 active:text-pink  focus:outline-none"
             placeholder="Search a song..."
             aria-label="Search"
             value={searchTerm}
             onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
           />
         </div>
         <div className="">
           <button
             type="button" // Change to type="button" to prevent form submission
-            className="btn text-white btn-md button-submit regular"
+            className=" text-white rounded-md pl-4 pr-4 pt-2 pb-2 no-underline text-base btn-md button-submit regular bg-purple hover:bg-pink-text"
             onClick={() => handleSearch(searchTerm)}
           >
             Submit
@@ -86,8 +94,7 @@ export function Search() {
               state={{ track: track }}
               className="rounded-md no-underline text-sm font-semibold text-white"
             >
-              <hr />
-              <div className="flex display-inline text-xl gap-4">
+              <div className="flex display-inline text-xl gap-4 p-2 mt-2 rounded-md hover:bg-purple/50">
                 <img
                   className="rounded-md hover:opacity-80 hover:cursor-pointer  "
                   width={100}
@@ -98,8 +105,12 @@ export function Search() {
                   style={{ align: "left", alignItems: "center" }}
                 >
                   <div className="flex display-inline text-xl row">
-                    <h5>{track.title}</h5>
-                    <h6>{track.artists[0]}</h6>
+                    <h5 className=" font-bold text-pink-text text-xl">
+                      {track.title}
+                    </h5>
+                    <h6 className="text-sm text-green">
+                      By: {track.artists[0]}
+                    </h6>
                   </div>
                   {/* <div className="flex display-inline row" style={{ paddingTop:30, fontSize: 6}}>
                     <h6>{track.artists[0].name}</h6>

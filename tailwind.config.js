@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         "pink-text": "#eb8fcc",
         green: "#c0eb8f",
+        purple: "#6B4A60",
       },
     },
   },

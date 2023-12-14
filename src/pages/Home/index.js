@@ -85,17 +85,17 @@ export function Home() {
               Track your favorite music.
             </h1>
             <div className="mt-6 max-w-xl lg:mt-0  ">
-              <p className="text-lg leading-8 green-text ">
+              <p className="text-lg leading-8 green-text font-roboto">
                 Want to share reviews of your current favorite (or least
                 favorite) songs? Give them a quick rating out of 5, add a
                 comment with your thoughts if you have any, and slowly build a
                 list of your favorites until you have the perfect playlist.
                 Create an account to get started!
               </p>
-              <div className="mt-10 flex items-center gap-x-6">
+              <div className="mt-8 flex items-center gap-x-6">
                 <Link
                   to={user ? "/search" : "/signup"}
-                  className="rounded-md no-underline bg-indigo-600 get-started-button px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  className="bg-purple hover:bg-pink-text rounded-md no-underline text-base get-started-button px-3.5 py-2.5 font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   {user ? "Search" : "Get Started"} →
                 </Link>
@@ -112,15 +112,15 @@ export function Home() {
 
           <div className="sm:flex hidden flex-col gap-3 mt-10 mb-14 px-6 lg:px-8 sm:visible">
             {tracks && (
-              <div className="flex gap-5 flex-col ">
-                <div className="flex gap-3">
+              <div className="flex gap-4 flex-col ">
+                <div className="flex gap-4">
                   {[...Array(5)].map((x, i) => (
-                    <Card track={tracks[i]} key={i} size={200} />
+                    <Card track={tracks[i]} key={i} size={300} />
                   ))}
                 </div>
-                <div className="flex gap-3">
+                <div className="flex gap-4">
                   {[...Array(5)].map((x, i) => (
-                    <Card track={tracks[i + 5]} key={i} size={200} />
+                    <Card track={tracks[i + 5]} key={i} size={300} />
                   ))}
                 </div>
               </div>
@@ -147,7 +147,7 @@ export function Home() {
 
         {user && (
           <div className="mx-auto max-w-7xl px-6 mt-10  lg:px-8">
-            <h4 className="max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
+            <h4 className=" max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
               Your reviews.
             </h4>
             <div className="sm:flex hidden flex-col gap-3 mt-10 mb-14 sm:visible ">
