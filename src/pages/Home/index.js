@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import "./index.css";
+import * as client from "../client";
+
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { formatData } from "../spotifyClient";
+import { Review } from "../../components/Review";
 
 const editorsPicks = [
   "2dSKFFNoNXKo3hPnlwUdPe",
@@ -19,6 +22,7 @@ const editorsPicks = [
 
 export function Home() {
   const [tracks, setTracks] = useState(null);
+  const [reviews, setReviews] = useState(null);
   const { user } = useAuth();
 
   const getEditorsTracksInfo = async () => {
@@ -54,8 +58,17 @@ export function Home() {
     }
   };
 
+  const findReviewsByUserId = async (id) => {
+    const reviews = await client.findReviewsByUserId(id);
+    console.log(reviews, "FOUND REVIEWS");
+    setReviews(reviews);
+  };
+
   useEffect(() => {
     getEditorsTracksInfo();
+    if (user) {
+      findReviewsByUserId(user._id);
+    }
   }, []);
 
   return (
@@ -147,7 +160,12 @@ export function Home() {
             <h4 className="max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
               Reviews
             </h4>
-            <div className="sm:flex hidden flex-col gap-3 mt-10 mb-14 px-6 lg:px-8 sm:visible items-center"></div>
+            <div className="sm:flex hidden flex-col gap-3 mt-10 mb-14 sm:visible ">
+              {reviews &&
+                reviews.map((recent, index) => (
+                  <Review key={index} data={recent} />
+                ))}
+            </div>
           </div>
         )}
       </div>
