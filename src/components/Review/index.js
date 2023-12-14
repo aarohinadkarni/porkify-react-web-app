@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Rating } from "react-custom-rating-component";
 import { Link } from "react-router-dom";
 export function Review({ data: { song, review, user } }) {
@@ -11,7 +12,7 @@ export function Review({ data: { song, review, user } }) {
       <Link
         className="no-underline text-[#c0eb8f]"
         state={{ track: song }}
-        to={`/details/${review.song_id}`}
+        to={`/details/${song.spotify_id}`}
       >
         <div
           key={review.user_id}

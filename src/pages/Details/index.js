@@ -24,9 +24,10 @@ export function Details() {
   const fetchSong = async () => {
     const test = localStorage.getItem("token");
     const jsonString = JSON.parse(test);
+    const idToUse = track.id ? track.id : id;
     const song_song = await client.getTrackAudioFeatures(
       jsonString.access_token,
-      track.id
+      idToUse
     );
     setSong(song_song);
   };
