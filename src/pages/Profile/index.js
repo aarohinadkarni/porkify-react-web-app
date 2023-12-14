@@ -99,10 +99,9 @@ export function Profile() {
         <div class="sm:row sm:profile sm:d-flex sm:flex-row sm:align-content-center flex">
           <div class="grow flex-1">
             <div class="account text-[#c0eb8f] flex gap-3 items-center text-sm sm:text-base">
-              <FaUser className="" size={150} />
+              <FaUser className="" size={150} style={{color:"#EB8FCC"}}/>
               <div className="flex flex-col gap-2 ">
                 <div class=" green-text ">
-                  {/* <font class="font-semibold" size="5">Aarohi Nadkarni</font> */}
                   <font size="5">
                     {account.first_name} {account.last_name}
                   </font>

@@ -158,7 +158,7 @@ export function Home() {
         {user && (
           <div className="mx-auto max-w-7xl px-6 mt-10  lg:px-8">
             <h4 className="max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
-              Reviews
+              Your reviews.
             </h4>
             <div className="sm:flex hidden flex-col gap-3 mt-10 mb-14 sm:visible ">
               {reviews &&
