@@ -1,17 +1,25 @@
 import { useEffect, useState } from "react";
 import "./index.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
+import { formatData } from "../spotifyClient";
 
 const editorsPicks = [
   "2dSKFFNoNXKo3hPnlwUdPe",
   "62PaSfnXSMyLshYJrlTuL3",
   "3z63V6OraICzWEyTCcbezn",
-  "01lewSOj9ZaXplh9TpNKL4",
+  "526fD9LiAEi3KKvhhYfWmm",
   "32OlwWuMpZ6b0aN2RZOeMS",
+  "2oRn0QuaWQ1hragGQ7XZ9s",
+  "2wGSgTmgSF3xjRrHkTc25R",
+  "6ur7NoA7h7ohK25GI2IJva",
+  "01lewSOj9ZaXplh9TpNKL4",
+  "0XgRWgcs0Pcr9PSIdFWD4N",
 ];
 
 export function Home() {
   const [tracks, setTracks] = useState(null);
+  const { user } = useAuth();
 
   const getEditorsTracksInfo = async () => {
     const jsonString = JSON.parse(localStorage.getItem("token"));
@@ -34,7 +42,10 @@ export function Home() {
       });
       if (response.ok) {
         const data = await response.json();
-        setTracks(data.tracks);
+        console.log(data.tracks);
+        const formattedData = formatData(data.tracks);
+        console.log(formattedData, "DATA");
+        setTracks(formattedData);
       } else {
         console.error("Failed to fetch data");
       }
@@ -89,21 +100,29 @@ export function Home() {
             /> */}
           </div>
         </div>
+        <div>
+          <div className="mx-auto max-w-7xl px-6 mt-10 sm:mt-28 lg:px-8">
+            <h4 className="max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
+              Editors' picks
+            </h4>
+          </div>
 
-        <div className="mx-auto max-w-7xl px-6 mt-10 sm:mt-28 lg:px-8">
-          <h4 className="max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
-            Editors' picks:
-          </h4>
-        </div>
-
-        <div className="sm:flex hidden flex-col gap-3 mt-32 mb-14 px-6 lg:px-8 sm:visible items-center">
-          {tracks && (
-            <div className="flex gap-3">
-              {[...Array(5)].map((x, i) => (
-                <Card track={tracks[i]} key={i} size={200} />
-              ))}
-            </div>
-          )}
+          <div className="sm:flex hidden flex-col gap-3 mt-10 mb-14 px-6 lg:px-8 sm:visible items-center">
+            {tracks && (
+              <div className="flex gap-5 flex-col">
+                <div className="flex gap-3">
+                  {[...Array(5)].map((x, i) => (
+                    <Card track={tracks[i]} key={i} size={200} />
+                  ))}
+                </div>
+                <div className="flex gap-3">
+                  {[...Array(5)].map((x, i) => (
+                    <Card track={tracks[i + 5]} key={i} size={200} />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="sm:hidden flex-col gap-3 mt-14 px-3 sm:px-10 lg:px-12 mb-14">
@@ -111,14 +130,23 @@ export function Home() {
             <div className="flex flex-col gap-3 items-center">
               {[...Array(3)].map((x, i) => (
                 <div key={i} className="flex gap-3">
-                  {[...Array(3)].map((x, i) => (
-                    <Card track={tracks[i]} key={i} size={150} />
+                  {[...Array(3)].map((x, j) => (
+                    <Card track={tracks[i * 3 + j]} key={i} size={150} />
                   ))}
                 </div>
               ))}
             </div>
           )}
         </div>
+
+        {user && (
+          <div className="mx-auto max-w-7xl px-6 mt-10  lg:px-8">
+            <h4 className="max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
+              Reviews
+            </h4>
+            <div className="sm:flex hidden flex-col gap-3 mt-10 mb-14 px-6 lg:px-8 sm:visible items-center"></div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -134,7 +162,7 @@ function Card({ track, size }) {
             <img
               className="rounded-md hover:opacity-80 hover:cursor-pointer  "
               width={size}
-              src={track.album.images[0].url}
+              src={track.album_art_url}
               // src="https://i1.sndcdn.com/artworks-9HEHEhiFEVpP-0-t500x500.jpg"
             ></img>
           </Link>

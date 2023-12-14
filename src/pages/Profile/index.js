@@ -36,6 +36,7 @@ export function Profile() {
 
   const findReviewsByUserId = async (id) => {
     const reviews = await client.findReviewsByUserId(id);
+    console.log(reviews, "FOUND REVIEWS");
     setReviews(reviews);
   };
 
@@ -162,7 +163,7 @@ export function Profile() {
             <div class="flex flex-col gap-4">
               {reviews &&
                 reviews.map((recent, index) => (
-                  <Review key={index} review={recent} />
+                  <Review key={index} data={recent} />
                 ))}
             </div>
           </div>

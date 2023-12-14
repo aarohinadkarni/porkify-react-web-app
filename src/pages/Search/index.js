@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./index.css";
 import { Link, useSearchParams } from "react-router-dom";
+import { formatData } from "../spotifyClient";
 
 export function Search() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,7 +27,10 @@ export function Search() {
 
       if (response.ok) {
         const data = await response.json();
-        setSearchResults(data.tracks.items); // Assuming the track items are in data.tracks.items
+        console.log(data, "DATA");
+        const formattedData = formatData(data.tracks.items);
+        console.log(formattedData, "DATA");
+        setSearchResults(formattedData); // Assuming the track items are in data.tracks.items
         setSearchParams({ term: searchTerm });
       } else {
         console.error("Failed to fetch data");
@@ -50,7 +54,7 @@ export function Search() {
   };
 
   return (
-    <div className="form-outline align-middle cursor">
+    <div className="form-outline align-middle cursor sm:px-6 lg:px-8">
       <div className="flex gap-3">
         <div className="grow">
           <input
@@ -82,7 +86,7 @@ export function Search() {
               state={{ track: track }}
               className="rounded-md no-underline bg-indigo-600 get-started-button px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
-              {track.name}
+              {track.title}
             </Link>
           </div>
         ))}
