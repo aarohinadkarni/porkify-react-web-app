@@ -98,19 +98,8 @@ export function Home() {
                 >
                   {user ? "Search" : "Get Started"} →
                 </Link>
-                {/* <a
-                  href="#"
-                  className="text-sm font-semibold no-underline leading-6 pink-text"
-                >
-                  Learn more <span aria-hidden="true">→</span>
-                </a> */}
               </div>
             </div>
-            {/* <img
-              src="https://images.unsplash.com/photo-1567532900872-f4e906cbf06a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1280&q=80"
-              alt=""
-              className="aspect-[6/5] w-full max-w-lg rounded-2xl object-cover lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-36"
-            /> */}
           </div>
         </div>
         <div>
