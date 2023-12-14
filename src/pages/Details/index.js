@@ -56,7 +56,7 @@ export function Details() {
               style={{ width: 300, height: 300 }}
               alt="album cover"
             />
-            <h3 className="ratings-title">Average Rating:    {average_review} / 5</h3>
+            <h3 className="ratings-title">Average Rating: {average_review} / 5</h3>
          
             <hr className="green-line"></hr>
             <h3 className="ratings-title">Ratings</h3>
