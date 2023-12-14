@@ -55,9 +55,11 @@ export function Profile() {
       console.log("MADE IT TO ID");
       findUserById(id);
       findReviewsByUserId(id);
+      console.log("favorited reviews", favorited_reviews);
     } else if (user) {
       fetchAccount();
       findReviewsByUserId(user._id);
+      console.log("favorited reviews", favorited_reviews);
     }
   }, [id]);
   // get favorites
@@ -219,7 +221,7 @@ function Card({ track, size }) {
             <img
               className="rounded-md hover:opacity-50 hover:cursor-pointer  "
               width={size}
-              src={track.review.album_art_url}
+              src={track.song.album_art_url}
               // src="https://i1.sndcdn.com/artworks-9HEHEhiFEVpP-0-t500x500.jpg"
             ></img>
           </Link>

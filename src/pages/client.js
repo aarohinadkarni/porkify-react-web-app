@@ -85,11 +85,20 @@ export const findReviewsByUserId = async (user_id) => {
   const response = await request.get(`${USERS_API}/${user_id}/reviews`);
   return response.data;
 };
-export const findAverageReview = async (song_id) => {
-  const response = await request.get(`${SONGS_API}/${song_id}/avgRating`);
+export const findAverageReview = async (spotify_id) => {
+  const response = await request.get(
+    `${SONGS_API}/${spotify_id}/spotify/avgRating`
+  );
   return response.data;
 };
 export const findReviewsBySongId = async (song_id) => {
   const response = await request.get(`${SONGS_API}/${song_id}/reviews`);
+  return response.data;
+};
+
+export const findReviewsBySpotifyId = async (spotify_id) => {
+  const response = await request.get(
+    `${SONGS_API}/${spotify_id}/spotify/reviews`
+  );
   return response.data;
 };

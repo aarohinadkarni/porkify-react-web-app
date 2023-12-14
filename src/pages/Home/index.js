@@ -104,7 +104,7 @@ export function Home() {
           </div>
         </div>
         <div>
-          <div className="mx-auto max-w-7xl px-6 mt-10 sm:mt-28 lg:px-8">
+          <div className="mx-auto max-w-7xl px-6 mt-10 sm:mt-28 lg:px-8" style={{ marginTop: 50 }}>
             <div className="max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
               Editors' picks.
             </div>
@@ -150,7 +150,7 @@ export function Home() {
             <h4 className=" max-w-2xl text-xl font-bold tracking-tight pink-text sm:text-6xl lg:col-span-2 xl:col-auto">
               Your reviews.
             </h4>
-            <div className="sm:flex hidden flex-col gap-3 mt-10 mb-14 sm:visible ">
+            <div className="flex flex-col gap-3 mt-10 mb-14 ">
               {reviews &&
                 reviews.map((recent, index) => (
                   <Review key={index} data={recent} />
@@ -169,12 +169,12 @@ function Card({ track, size }) {
       {track && (
         <div className="">
           {/* <Link to={`/details`}> */}
-          <Link to={`/details/${track.id}`} state={{ track: track }}>
+          <Link to={`/details/${track.spotify_id}`} state={{ track: track }}>
             <img
               className="rounded-md hover:opacity-80 hover:cursor-pointer  "
               width={size}
               src={track.album_art_url}
-              // src="https://i1.sndcdn.com/artworks-9HEHEhiFEVpP-0-t500x500.jpg"
+            // src="https://i1.sndcdn.com/artworks-9HEHEhiFEVpP-0-t500x500.jpg"
             ></img>
           </Link>
         </div>

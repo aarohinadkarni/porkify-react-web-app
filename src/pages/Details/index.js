@@ -29,7 +29,10 @@ export function Details() {
 
   const [isClicked, setIsClicked] = useState(false);
 
-  const [review, setReview] = useState(null);
+  const [review, setReview] = useState({
+    favorited: false,
+    rating: 5,
+  });
   const navigate = useNavigate();
 
   const fetchSong = async () => {
@@ -49,20 +52,21 @@ export function Details() {
     setReview({ ...review, favorited: !isClicked });
     setIsClicked(!isClicked);
   };
-  const getAverageRating = async (song_id) => {
-    const rating = await our_client.findAverageReview(song_id);
+  const getAverageRating = async (spotify_id) => {
+    //TODO make average review by SPOTIFY ID, not SONG ID
+    const rating = await our_client.findAverageReview(spotify_id);
     setAverageReview(rating);
   };
-
-  const getRecentReviews = async (song_id) => {
-    const reviews = await our_client.findReviewsBySongId(song_id);
+  const getRecentReviews = async (spotify_id) => {
+    //TODO make route for recent reviews by SPOTIFY ID, not SONG ID
+    const reviews = await our_client.findReviewsBySpotifyId(spotify_id);
     setReviews(reviews);
   };
 
   useEffect(() => {
     fetchSong();
-    getAverageRating(track._id);
-    getRecentReviews(track._id);
+    getAverageRating(track.spotify_id);
+    getRecentReviews(track.spotify_id);
   }, [track]);
 
   if (!track) {
@@ -228,8 +232,20 @@ export function Details() {
                         if (!user) {
                           navigate("/signup");
                         }
-                        console.log("CLICKED ONCLICK");
-                        our_client.createReview(review, track);
+
+                        const new_review = {
+                          title: track.title,
+                          artists: track.artists,
+                          album_name: track.album,
+                          release_date: track.release_date,
+                          album_art_url: track.album_art_url,
+                          song_id: track.id,
+                          user_id: user._id,
+                          ...review,
+                        };
+
+                        console.log("CLICKED ONCLICK", new_review);
+                        our_client.createReview(new_review, track);
                       }}
                     >
                       SUBMIT
