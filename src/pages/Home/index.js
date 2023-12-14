@@ -147,7 +147,7 @@ export function Home() {
               {[...Array(3)].map((x, i) => (
                 <div key={i} className="flex gap-3">
                   {[...Array(3)].map((x, j) => (
-                    <Card track={tracks[i * 3 + j]} key={i} size={150} />
+                    <Card track={tracks[i * 3 + j]} key={i + j} size={150} />
                   ))}
                 </div>
               ))}

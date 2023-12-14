@@ -47,7 +47,7 @@ export function Profile() {
       console.log("MADE IT TO ID");
       findUserById(id);
       findReviewsByUserId(id);
-    } else {
+    } else if (user) {
       fetchAccount();
       findReviewsByUserId(user._id);
     }
@@ -114,9 +114,7 @@ export function Profile() {
                   </div>
                 )}
                 {user._id === account._id && (
-                  <div class=" green-text">
-                    {account.email}
-                  </div>
+                  <div class=" green-text">{account.email}</div>
                 )}
                 <div class=" green-text">
                   {/* blah blah blah */}
@@ -142,13 +140,13 @@ export function Profile() {
                     </Link>
 
                     {user.is_moderator && (
-                    <Link
-                      to="/admin"
-                      className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                      style={{ color: "#333333", marginLeft: "10px" }}
-                    >
-                      Admin
-                    </Link>
+                      <Link
+                        to="/admin"
+                        className="rounded-md no-underline bg-indigo-600 edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        style={{ color: "#333333", marginLeft: "10px" }}
+                      >
+                        Admin
+                      </Link>
                     )}
                   </div>
                 )}
