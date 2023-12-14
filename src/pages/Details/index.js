@@ -10,7 +10,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { useAuth } from "../../hooks/useAuth";
 
-
 // import * as userClient from "./users/client";
 // import * as reviewsClient from "./reviews/client";
 
@@ -24,13 +23,18 @@ export function Details() {
 
   const [isClicked, setIsClicked] = useState(false);
 
-  const [review, setReview] = useState(null);
+  const [review, setReview] = useState({
+    favorited: false,
+    rating: 5,
+  });
   const navigate = useNavigate();
 
   const fetchSong = async () => {
     const test = localStorage.getItem("token");
     const jsonString = JSON.parse(test);
-    if (!track) {return <Navigate to="/home" replace />;}
+    if (!track) {
+      return <Navigate to="/home" replace />;
+    }
     const idToUse = track.id ? track.id : id;
     const song_song = await client.getTrackAudioFeatures(
       jsonString.access_token,
@@ -55,18 +59,20 @@ export function Details() {
     return <Navigate to="/home" replace />;
   }
 
-  const steveSong = {spotify_id : "IDK",
-title : "IDK", 
-artists: ["IDK", "PLS"],
-album_name : "IDK",
-release_date : "2014-11-10",
-album_art_url : "https://i.scdn.co/image/ab67616d0000b273e419ccba0baa8bd3f3d7abf2",
-acousticness: 0.5,
-danceability: 0.5,
-energy: 0.5,
-instrumentalness: 0.5,
-loudness: 0.5
-}
+  const steveSong = {
+    spotify_id: "IDK",
+    title: "IDK",
+    artists: ["IDK", "PLS"],
+    album_name: "IDK",
+    release_date: "2014-11-10",
+    album_art_url:
+      "https://i.scdn.co/image/ab67616d0000b273e419ccba0baa8bd3f3d7abf2",
+    acousticness: 0.5,
+    danceability: 0.5,
+    energy: 0.5,
+    instrumentalness: 0.5,
+    loudness: 0.5,
+  };
 
   return (
     <div className="">
@@ -335,17 +341,31 @@ loudness: 0.5
                     ></textarea>
                   </div>
                   <div className="form-group">
-                    <button className="btn submit-button"
+                    <button
+                      className="btn submit-button"
                       //TODO CREATE REVIEW API CALL using the review object
                       onClick={() => {
                         if (!user) {
-                          navigate("/signup")
+                          navigate("/signup");
                         }
-                        console.log("CLICKED ONCLICK")
-                        our_client.createReview(review, track)
-                      }
-                    }
-                    >SUBMIT</button>
+
+                        const new_review = {
+                          title: track.title,
+                          artists: track.artists,
+                          album_name: track.album,
+                          release_date: track.release_date,
+                          album_art_url: track.album_art_url,
+                          song_id: track.id,
+                          user_id: user._id,
+                          ...review,
+                        };
+
+                        console.log("CLICKED ONCLICK", new_review);
+                        our_client.createReview(new_review, track);
+                      }}
+                    >
+                      SUBMIT
+                    </button>
                   </div>
                 </div>
               </div>
