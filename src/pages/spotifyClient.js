@@ -74,7 +74,8 @@ export function formatData(data) {
       return artist.name;
     });
     return {
-      id: track.id,
+      //TODO we need a spotify_id and (song)_id for the purposes of getting avgRating
+      spotify_id: track.id,
       album_name: track.album.name,
       title: track.name,
       album_art_url: track.album.images[0].url,

@@ -21,6 +21,8 @@ export function Details() {
   const [average_review, setAverageReview] = useState([]);
   const { user, logout } = useAuth();
 
+  const [reviews, setReviews] = useState(null)
+
   const [isClicked, setIsClicked] = useState(false);
 
   const [review, setReview] = useState({
@@ -46,14 +48,21 @@ export function Details() {
     setReview({ ...review, favorited: !isClicked });
     setIsClicked(!isClicked);
   };
-  const getAverageRating = async (song_id) => {
-    const rating = await our_client.findAverageReview(song_id);
+  const getAverageRating = async (spotify_id) => {
+    //TODO make average review by SPOTIFY ID, not SONG ID
+    const rating = await our_client.findAverageReview(spotify_id);
     setAverageReview(rating);
   };
+  const getRecentReviews = async (spotify_id) => {
+    //TODO make route for recent reviews by SPOTIFY ID, not SONG ID
+    const reviews = await our_client.findReviewsBySpotifyId(spotify_id);
+    setReviews(reviews);
+  }
 
   useEffect(() => {
     fetchSong();
-    getAverageRating(track._id);
+    getAverageRating(track.spotify_id);
+    getRecentReviews(track.spotify_id);
   }, [track]);
   if (!track) {
     return <Navigate to="/home" replace />;
@@ -366,7 +375,7 @@ export function Details() {
                     >
                       SUBMIT
                     </button>
-                  </div>
+o                  </div>
                 </div>
               </div>
             )}

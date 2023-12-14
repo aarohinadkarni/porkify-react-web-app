@@ -169,7 +169,7 @@ function Card({ track, size }) {
       {track && (
         <div className="">
           {/* <Link to={`/details`}> */}
-          <Link to={`/details/${track.id}`} state={{ track: track }}>
+          <Link to={`/details/${track.spotify_id}`} state={{ track: track }}>
             <img
               className="rounded-md hover:opacity-80 hover:cursor-pointer  "
               width={size}
