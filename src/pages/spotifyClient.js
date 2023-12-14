@@ -57,13 +57,34 @@ export async function getTrackAudioFeatures(access_token, trackId) {
       method: "GET",
       headers: { Authorization: "Bearer " + access_token },
     }
-    );
-  
-    return await response.json();
-  }
-  
+  );
+
+  return await response.json();
+}
+
 getToken().then((response) => {
   getTrackInfo(response.access_token).then((profile) => {
     console.log(profile);
   });
 });
+
+export function formatData(data) {
+  const formattedData = data.map((track) => {
+    const formattedArtists = track.artists.map((artist) => {
+      return artist.name;
+    });
+    return {
+      id: track.id,
+      album_name: track.album.name,
+      title: track.name,
+      album_art_url: track.album.images[0].url,
+      artists: formattedArtists,
+      album: track.album.name,
+      release_date: track.album.release_date,
+      duration: track.duration_ms,
+      preview_url: track.preview_url,
+    };
+  });
+
+  return formattedData;
+}

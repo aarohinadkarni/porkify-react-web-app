@@ -61,7 +61,7 @@ function App() {
       <Provider store={store}>
         <AuthProvider>
           <Navigation />
-          <div className="mx-auto max-w-7xl ">
+          <div className="mx-auto max-w-7xl container">
             {/* <div className="col-3 bg-black"><Navigation /></div> */}
             <Routes>
               <Route path="/" element={<Home />} />
