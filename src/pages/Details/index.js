@@ -106,7 +106,7 @@ export function Details() {
                   >
                     <div className="flex gap-4 items-center">
                       <img
-                        src={song.album_art_url}
+                        src={review.album_art_url}
                         width={100}
                         className=" rounded-md"
                       ></img>
