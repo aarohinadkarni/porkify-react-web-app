@@ -22,7 +22,7 @@ export function Details() {
   const location = useLocation();
   const track = location.state && location.state.track;
   const [song, setSong] = useState([]);
-  const [average_review, setAverageReview] = useState(0);
+  const [average_review, setAverageReview] = useState(null);
   const { user, logout } = useAuth();
 
   const [reviews, setReviews] = useState(null);
@@ -35,16 +35,15 @@ export function Details() {
   });
   const navigate = useNavigate();
 
-  const fetchSong = async () => {
+  const fetchSong = async (spotify_id) => {
     const test = localStorage.getItem("token");
     const jsonString = JSON.parse(test);
     if (!track) {
       return <Navigate to="/home" replace />;
     }
-    const idToUse = track.id ? track.id : id;
     const song_song = await client.getTrackAudioFeatures(
       jsonString.access_token,
-      idToUse
+      spotify_id
     );
     setSong(song_song);
   };
@@ -64,7 +63,7 @@ export function Details() {
   };
 
   useEffect(() => {
-    fetchSong();
+    fetchSong(track.spotify_id);
     getAverageRating(track.spotify_id);
     getRecentReviews(track.spotify_id);
   }, [track]);
@@ -86,11 +85,13 @@ export function Details() {
             <div className="text-lg mt-6">
               <div className=" flex items-center flex-col gap-2 font-bold mb-2">
                 Average Rating
-                <Rating
-                  defaultValue={average_review}
-                  readOnly={true}
-                  activeColor="#eb8fcc"
-                />
+                {average_review && (
+                  <Rating
+                    defaultValue={average_review}
+                    readOnly={true}
+                    activeColor="#eb8fcc"
+                  />
+                )}
               </div>
             </div>
             <div className="border-green w-full border-1  mt-2 mb-1 "></div>
