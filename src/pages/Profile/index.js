@@ -108,7 +108,7 @@ export function Profile() {
       <div class="flex flex-col mx-4 my-4">
         <div class="sm:row sm:profile sm:d-flex sm:flex-row sm:align-content-center flex">
           <div class="grow flex-1">
-            <div class="mt-4 account text-[#c0eb8f] flex gap-3 items-center text-sm sm:text-base">
+            <div class=" mt-4 account text-[#c0eb8f] flex sm:flex-row flex-col gap-3 items-center text-sm sm:text-base">
               <FaUser className="mr-3 ml-3 text-pink-text" size={150} />
               <div className="flex flex-col gap-2 ">
                 <div class="  mt-3 font-bold text-pink-text">

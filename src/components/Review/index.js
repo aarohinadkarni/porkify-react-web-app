@@ -34,7 +34,9 @@ export function Review({ data: { song, review, user } }) {
                   {user.username}
                 </Link>
               </div>
-              <div className="truncate text-base">{review.body}</div>
+              <div className="text-xs sm:text-base break-normal">
+                {review.body}
+              </div>
             </div>
           </div>
           <Rating

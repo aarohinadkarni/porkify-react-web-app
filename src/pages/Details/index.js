@@ -105,11 +105,6 @@ export function Details() {
                     className="relative sm:space-x-3   cursor-pointer flex flex-col sm:flex-row justify-between rounded-lg border border-[#C0EB8F] px-3 py-3 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 "
                   >
                     <div className="flex flex-col gap-4 items-center">
-                      {/* <img
-                        src={review.album_art_url}
-                        width={100}
-                        className=" rounded-md"
-                      ></img> */}
                       <div className=" flex flex-col gap-2">
                         <div className="text-lg font-bold">
                           <span className="text-base font-normal">
@@ -170,7 +165,7 @@ export function Details() {
                   <SongSlider
                     name="Instrumentalness"
                     min={0}
-                    max={100}
+                    max={1}
                     step={1}
                     value={song.instrumentalness}
                     left_label="None"
@@ -284,7 +279,7 @@ export function Details() {
                           album_art_url: track.album_art_url,
                           song_id: track.id,
                           user_id: user._id,
-                          username : user.username,
+                          username: user.username,
                           ...review,
                         };
 

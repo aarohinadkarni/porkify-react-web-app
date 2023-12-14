@@ -133,7 +133,7 @@ function Navigation() {
                             y: -32,
                             transition: { duration: 0.2 },
                           }}
-                          className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pb-6 pt-24 shadow-2xl shadow-gray-900/20"
+                          className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl px-6 pb-6 pt-24 shadow-2xl shadow-gray-900/20"
                           style={{ backgroundColor: "#333333" }}
                         >
                           <div className="space-y-4">
@@ -195,14 +195,14 @@ function Navigation() {
               {({ open }) => (
                 <>
                   <Popover.Button
-                    className="relative z-10 -m-2 inline-flex items-center rounded-lg stroke-gray-900 p-2 hover:bg-gray-200/50 hover:stroke-gray-600 active:stroke-gray-900 ui-not-focus-visible:outline-none"
+                    className="text-green relative z-10 -m-2 inline-flex items-center rounded-lg stroke-gray-900 p-2 hover:bg-gray-200/50 hover:stroke-gray-600 active:stroke-gray-900 ui-not-focus-visible:outline-none"
                     aria-label="Toggle site navigation"
                   >
                     {({ open }) =>
                       open ? (
-                        <ChevronUpIcon className="h-6 w-6" />
+                        <ChevronUpIcon className="h-6 w-6 text-green" />
                       ) : (
-                        <MenuIcon className="h-6 w-6" />
+                        <MenuIcon className="h-6 w-6 text-green" />
                       )
                     }
                   </Popover.Button>
@@ -228,6 +228,7 @@ function Navigation() {
                             transition: { duration: 0.2 },
                           }}
                           className="absolute inset-x-0 top-0 z-0 origin-top rounded-b-2xl bg-gray-50 px-6 pb-6 pt-24 shadow-2xl shadow-gray-900/20"
+                          style={{ backgroundColor: "#333333" }}
                         >
                           <div className="space-y-4">
                             {links_logged_in.map((link, index) => (
