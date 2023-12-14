@@ -37,7 +37,11 @@ export function Review({ data: { song, review, user } }) {
               <div className="truncate text-base">{review.body}</div>
             </div>
           </div>
-          <Rating defaultValue={review.rating} readOnly={true} />
+          <Rating
+            defaultValue={review.rating}
+            readOnly={true}
+            activeColor="#eb8fcc"
+          />
         </div>
       </Link>
     </div>

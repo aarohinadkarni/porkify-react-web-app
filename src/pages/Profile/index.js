@@ -39,8 +39,8 @@ export function Profile() {
     const reviews = await client.findReviewsByUserId(id);
     console.log(reviews, "FOUND REVIEWS");
     setReviews(reviews);
-    setFavoritedReviews(reviews.filter(review => review.review.favorited));
-    console.log(favorited_reviews)
+    setFavoritedReviews(reviews.filter((review) => review.review.favorited));
+    console.log(favorited_reviews);
   };
 
   // const findFavoritedReviewsByUserId = async (id) => {
@@ -109,7 +109,7 @@ export function Profile() {
             <div class="mt-4 account text-[#c0eb8f] flex gap-3 items-center text-sm sm:text-base">
               <FaUser className="mr-3 ml-3" size={150} />
               <div className="flex flex-col gap-2 ">
-                <div class="  mt-3 font-bold green-text">
+                <div class="  mt-3 font-bold text-pink-text">
                   <font size="5">
                     {account.first_name} {account.last_name}
                   </font>
@@ -127,14 +127,14 @@ export function Profile() {
                   <div class=" green-text my-3">
                     <Link
                       to={`/profile/edit/${account._id}`}
-                      className="rounded-md no-underline hover:bg-white text-white bg-purple px-3.5 py-2.5 text-sm font-semibold shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      className="rounded-md no-underline hover:bg-pink-text text-white bg-purple px-3.5 py-2.5 text-sm font-semibold shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     >
                       Edit
                     </Link>
 
                     <Link
                       to="/home"
-                      className=" rounded-md no-underline text-white bg-purple edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      className=" rounded-md no-underline text-white bg-purple edit-profile-button px-3.5 py-2.5 text-sm font-semibold shadow-sm hover:bg-pink-text focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       style={{
                         marginBottom: "3px",
                         marginLeft: "10px",
@@ -147,7 +147,7 @@ export function Profile() {
                     {user.is_moderator && (
                       <Link
                         to="/admin"
-                        className="bg-purple text-white rounded-md no-underline hover:bg-white  px-3.5 py-2.5 text-sm font-semibold shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="bg-purple text-white rounded-md no-underline hover:bg-pink-text  px-3.5 py-2.5 text-sm font-semibold shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         style={{ marginLeft: "10px" }}
                       >
                         Admin
@@ -163,34 +163,42 @@ export function Profile() {
           <div class="favorite-songs green-text">
             <h4 className="font-bold mb-4 mt-4 ">FAVORITE SONGS</h4>
             <div class="row gap-2">
-            {favorited_reviews && favorited_reviews.length !== 0 && (
-              <div className="flex gap-5 flex-col">
-                <div className="flex gap-3">
-                  {[...Array(5)].map((x, i) => (
-                    <Card track={favorited_reviews[i]} key={i} size={200} />
-                  ))}
+              {favorited_reviews && favorited_reviews.length !== 0 && (
+                <div className="flex gap-5 flex-col">
+                  <div className="flex gap-3">
+                    {[...Array(5)].map((x, i) => (
+                      <Card track={favorited_reviews[i]} key={i} size={200} />
+                    ))}
+                  </div>
                 </div>
-              </div>)}
-              {favorited_reviews && favorited_reviews.length === 0 && 
+              )}
+              {favorited_reviews && favorited_reviews.length === 0 && (
                 <div>
-                  <h6>{account.first_name} {account.last_name} has not favorited any songs yet!</h6>
+                  <h6>
+                    {account.first_name} {account.last_name} has not favorited
+                    any songs yet!
+                  </h6>
                 </div>
-              }
+              )}
             </div>
           </div>
           <div class="recent-reviews green-text">
             <h4 className="font-bold mb-4 mt-4">RECENT REVIEWS</h4>
             <div class="flex flex-col gap-4">
-              {reviews && favorited_reviews.length !== 0 && (
+              {reviews &&
+                favorited_reviews.length !== 0 &&
                 reviews.map((recent, index) => (
                   <Review key={index} data={recent} />
-                )))}
+                ))}
             </div>
-            {reviews && reviews.length === 0 && 
-                <div>
-                  <h6>{account.first_name} {account.last_name} has not reviewed any songs yet!</h6>
-                </div>
-              }
+            {reviews && reviews.length === 0 && (
+              <div>
+                <h6>
+                  {account.first_name} {account.last_name} has not reviewed any
+                  songs yet!
+                </h6>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -204,9 +212,12 @@ function Card({ track, size }) {
       {track && (
         <div className="">
           {/* <Link to={`/details`}> */}
-          <Link to={`/details/${track.review.song_id}`} state={{ track: track.song }}>
+          <Link
+            to={`/details/${track.review.song_id}`}
+            state={{ track: track.song }}
+          >
             <img
-              className="rounded-md hover:opacity-80 hover:cursor-pointer  "
+              className="rounded-md hover:opacity-50 hover:cursor-pointer  "
               width={size}
               src={track.review.album_art_url}
               // src="https://i1.sndcdn.com/artworks-9HEHEhiFEVpP-0-t500x500.jpg"
